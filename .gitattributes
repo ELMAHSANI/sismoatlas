@@ -1,0 +1,11 @@
+# Fins de ligne LF dans le dépôt (compatibilité GitHub Actions / Linux)
+* text=auto eol=lf
+*.xls binary
+*.xlsx binary
+*.dbf binary
+*.shp binary
+*.shx binary
+*.woff2 binary
+*.png binary
+*.jpg binary
+*.pdf binary

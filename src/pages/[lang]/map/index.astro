@@ -1,0 +1,42 @@
+---
+/** Carte complète — construite en phase 7. */
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import MagnitudeScale from '../../../components/MagnitudeScale.astro';
+import type { Lang } from '../../../i18n/config';
+import { langStaticPaths, useTranslations } from '../../../i18n/utils';
+
+export const getStaticPaths = langStaticPaths;
+const lang = Astro.params.lang as Lang;
+const t = useTranslations(lang);
+---
+
+<BaseLayout lang={lang} title={t('nav.map')} description={t('section.map.intro')}>
+  <div class="container page">
+    <header class="page-header">
+      <h1>{t('nav.map')}</h1>
+      <p>{t('section.map.intro')}</p>
+    </header>
+    <div class="map-layout">
+      <div class="placeholder map-placeholder">{t('map.placeholder')}</div>
+      <MagnitudeScale lang={lang} />
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .map-layout {
+    display: grid;
+    gap: var(--space-5);
+  }
+  @media (min-width: 64rem) {
+    .map-layout {
+      grid-template-columns: 1fr 20rem;
+      align-items: start;
+    }
+  }
+  .map-placeholder {
+    min-height: 22rem;
+    display: grid;
+    place-items: center;
+  }
+</style>

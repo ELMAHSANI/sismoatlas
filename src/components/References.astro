@@ -1,0 +1,49 @@
+---
+import type { Lang } from '../i18n/config';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+  references: { citation: string; doi?: string; url?: string }[];
+}
+const { lang, references } = Astro.props;
+const t = useTranslations(lang);
+---
+
+{
+  references.length > 0 && (
+    <section class="references" aria-labelledby="references-title">
+      <h2 id="references-title">{t('common.references')}</h2>
+      <ol>
+        {references.map((r) => (
+          <li>
+            <span dir="auto">{r.citation}</span>{' '}
+            {r.doi && (
+              <a href={`https://doi.org/${r.doi}`} rel="noopener" dir="ltr">
+                doi:{r.doi}
+              </a>
+            )}
+            {!r.doi && r.url && (
+              <a href={r.url} rel="noopener" dir="ltr">
+                {r.url}
+              </a>
+            )}
+          </li>
+        ))}
+      </ol>
+    </section>
+  )
+}
+
+<style>
+  .references {
+    font-size: var(--fs-sm);
+  }
+  h2 {
+    font-size: var(--fs-xl);
+    margin-block-start: 0;
+  }
+  li {
+    overflow-wrap: anywhere;
+  }
+</style>

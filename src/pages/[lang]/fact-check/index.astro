@@ -1,0 +1,10 @@
+---
+import CollectionIndex from '../../../components/pages/CollectionIndex.astro';
+import { langStaticPaths } from '../../../i18n/utils';
+import type { Lang } from '../../../i18n/config';
+
+export const getStaticPaths = langStaticPaths;
+const lang = Astro.params.lang as Lang;
+---
+
+<CollectionIndex lang={lang} collection="factchecks" />

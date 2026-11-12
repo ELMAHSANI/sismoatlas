@@ -1,0 +1,37 @@
+---
+/** Page 404 : affichée dans la langue de l'URL demandée (repli : français). */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { DEFAULT_LANG, LANGS, LANG_META, type Lang } from '../i18n/config';
+import { isLang, localizePath, useTranslations } from '../i18n/utils';
+
+const first = Astro.url.pathname.split('/').filter(Boolean)[0];
+const lang: Lang = isLang(first) ? first : DEFAULT_LANG;
+const t = useTranslations(lang);
+const alternates = Object.fromEntries(LANGS.map((l) => [l, localizePath(l)])) as Record<Lang, string>;
+---
+
+<BaseLayout lang={lang} title={t('notFound.title')} alternates={alternates} noindex>
+  <div class="container page">
+    <h1>{t('notFound.title')}</h1>
+    <p>{t('notFound.text')}</p>
+    <ul class="links">
+      {
+        LANGS.map((l) => (
+          <li lang={l} dir={LANG_META[l].dir}>
+            <a href={localizePath(l)}>{useTranslations(l)('notFound.back')}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>
+
+<style>
+  .links {
+    list-style: none;
+    padding: 0;
+  }
+  .links li + li {
+    margin-block-start: var(--space-2);
+  }
+</style>

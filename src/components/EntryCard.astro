@@ -1,0 +1,89 @@
+---
+import type { Lang } from '../i18n/config';
+import { formatDate, useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+  href: string;
+  title: string;
+  description: string;
+  date?: Date;
+  draft?: boolean;
+  kicker?: string;
+}
+const { lang, href, title, description, date, draft, kicker } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<li class="entry-card">
+  <article>
+    <div class="meta">
+      {kicker && <span class="kicker">{kicker}</span>}
+      {draft && <span class="badge badge--draft">{t('common.draft')}</span>}
+    </div>
+    <h3><a href={href}>{title}</a></h3>
+    <p>{description}</p>
+    {date && <time class="muted" datetime={date.toISOString()}>{formatDate(date, lang)}</time>}
+  </article>
+</li>
+
+<style>
+  .entry-card article {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    box-shadow: var(--shadow);
+    transition: border-color 0.15s;
+  }
+  .entry-card article:hover,
+  .entry-card article:focus-within {
+    border-color: var(--color-primary);
+  }
+  .meta {
+    display: flex;
+    gap: var(--space-2);
+    align-items: center;
+    min-height: 1.2rem;
+  }
+  .kicker {
+    font-size: 0.75rem;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-accent);
+  }
+  :global(:root[lang='ar']) .kicker {
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  h3 {
+    margin: 0;
+    font-size: var(--fs-lg);
+  }
+  h3 a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  /* Toute la carte est cliquable */
+  h3 a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+  }
+  p {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--fs-sm);
+    flex: 1;
+  }
+  time {
+    font-size: 0.8rem;
+  }
+</style>

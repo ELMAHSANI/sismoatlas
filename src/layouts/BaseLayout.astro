@@ -1,0 +1,76 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/noto-sans-arabic';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { LANGS, LANG_META, DEFAULT_LANG, type Lang } from '../i18n/config';
+import { switchLangPath, useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+  title?: string;
+  description?: string;
+  /** Chemin de la page dans chaque langue (sinon : même chemin, langue remplacée). */
+  alternates?: Partial<Record<Lang, string>>;
+  noindex?: boolean;
+}
+
+const { lang, title, description, alternates, noindex = false } = Astro.props;
+const t = useTranslations(lang);
+const meta = LANG_META[lang];
+const siteName = t('site.name');
+const pageTitle = title ? `${title} · ${siteName}` : `${siteName} · ${t('site.tagline')}`;
+const pageDescription = description ?? t('site.description');
+
+const pathname = Astro.url.pathname;
+const altPaths = Object.fromEntries(
+  LANGS.map((l) => [l, alternates?.[l] ?? switchLangPath(pathname, l)]),
+) as Record<Lang, string>;
+// Les liens hreflang ne pointent que vers des traductions réellement disponibles.
+const hreflangLangs = alternates ? LANGS.filter((l) => alternates[l]) : LANGS;
+const canonical = new URL(pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang={meta.htmlLang} dir={meta.dir} class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="canonical" href={canonical} />
+    {hreflangLangs.map((l) => <link rel="alternate" hreflang={l} href={new URL(altPaths[l], Astro.site)} />)}
+    {!alternates && <link rel="alternate" hreflang="x-default" href={new URL(altPaths[DEFAULT_LANG], Astro.site)} />}
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={title ?? siteName} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:locale" content={meta.ogLocale} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta name="theme-color" content="#0b3d91" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a1120" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="generator" content={Astro.generator} />
+    <script is:inline>
+      // Avant l'affichage : thème choisi + suppression de la classe no-js.
+      (function () {
+        var d = document.documentElement;
+        d.classList.remove('no-js');
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'light' || t === 'dark') d.dataset.theme = t;
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">{t('a11y.skipToContent')}</a>
+    <Header lang={lang} altPaths={altPaths} />
+    <main id="content" tabindex="-1">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

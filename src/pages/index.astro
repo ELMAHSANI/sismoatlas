@@ -1,0 +1,62 @@
+---
+/**
+ * Racine « / » : envoie vers la langue du navigateur (arabe, anglais), sinon le français.
+ * Sans JavaScript : redirection vers /fr/ et liens vers les trois langues.
+ */
+import '../styles/global.css';
+import { LANGS, LANG_META, DEFAULT_LANG } from '../i18n/config';
+import { localizePath, useTranslations } from '../i18n/utils';
+---
+
+<!doctype html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SismoAtlas</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {LANGS.map((l) => <link rel="alternate" hreflang={l} href={new URL(localizePath(l), Astro.site)} />)}
+    <script is:inline>
+      (function () {
+        var langs = (navigator.languages || [navigator.language || '']).map(function (l) {
+          return String(l).toLowerCase().slice(0, 2);
+        });
+        var pick = 'fr';
+        for (var i = 0; i < langs.length; i++) {
+          if (langs[i] === 'fr' || langs[i] === 'ar' || langs[i] === 'en') {
+            pick = langs[i];
+            break;
+          }
+        }
+        location.replace('/' + pick + '/');
+      })();
+    </script>
+    <noscript><meta http-equiv="refresh" content={`0; url=${localizePath(DEFAULT_LANG)}`} /></noscript>
+  </head>
+  <body>
+    <main class="container page">
+      <ul class="lang-list">
+        {
+          LANGS.map((l) => (
+            <li lang={l} dir={LANG_META[l].dir}>
+              <a href={localizePath(l)}>{LANG_META[l].label}</a>
+              <span class="muted"> — {useTranslations(l)('langPicker.title')}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </main>
+  </body>
+</html>
+
+<style>
+  .lang-list {
+    list-style: none;
+    padding: 0;
+    font-size: var(--fs-lg);
+  }
+  .lang-list li + li {
+    margin-block-start: var(--space-3);
+  }
+</style>

@@ -1,0 +1,134 @@
+/*
+ * SismoAtlas — jetons de design (design tokens)
+ * Toutes les couleurs du site passent par ces variables.
+ * Thème clair par défaut, thème sombre via la préférence système ou data-theme="dark".
+ */
+
+:root {
+  color-scheme: light;
+
+  /* Fonds et surfaces */
+  --color-bg: #ffffff;
+  --color-surface: #f5f7fb;
+  --color-surface-2: #e9eef6;
+  --color-border: #d6deea;
+
+  /* Texte */
+  --color-text: #0e1a2e;
+  --color-text-muted: #47566d;
+
+  /* Marque : bleu profond + accents orange / rouge */
+  --color-primary: #0b3d91;
+  --color-primary-strong: #072a66;
+  --color-on-primary: #ffffff;
+  --color-accent: #d9480f;
+  --color-danger: #c92a2a;
+  --color-link: #0b4fbf;
+  --color-focus: #f08c00;
+
+  /* Échelle de magnitude (section 5.1 du cahier des charges) */
+  --mag-1: #2f9e44; /* < 3   vert   */
+  --mag-2: #f2c200; /* 3–4   jaune  */
+  --mag-3: #f76707; /* 4–5   orange */
+  --mag-4: #e03131; /* 5–6   rouge  */
+  --mag-5: #7b2cbf; /* ≥ 6   violet */
+  --mag-1-on: #ffffff;
+  --mag-2-on: #1f1a00;
+  --mag-3-on: #1f0d00;
+  --mag-4-on: #ffffff;
+  --mag-5-on: #ffffff;
+
+  /* Typographie */
+  --font-sans: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Mono', 'Segoe UI Mono', Consolas, monospace;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --fs-2xl: clamp(1.5rem, 1.2rem + 1.4vw, 2.125rem);
+  --fs-3xl: clamp(1.875rem, 1.4rem + 2.2vw, 2.75rem);
+  --lh-tight: 1.2;
+  --lh-base: 1.6;
+
+  /* Espacements, rayons, ombres */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --shadow: 0 1px 2px rgb(14 26 46 / 0.06), 0 4px 12px rgb(14 26 46 / 0.06);
+
+  /* Mise en page */
+  --container: 72rem;
+  --container-text: 46rem;
+  --gutter: 1rem;
+  --header-h: 3.5rem;
+}
+
+/* Arabe : police arabe en premier */
+:root[lang='ar'] {
+  --font-sans: 'Noto Sans Arabic Variable', 'Inter Variable', system-ui, Tahoma, Arial, sans-serif;
+  --lh-base: 1.8;
+}
+
+/* Thème sombre : préférence système (sauf choix explicite « clair ») */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --color-bg: #0a1120;
+    --color-surface: #111b2f;
+    --color-surface-2: #18243c;
+    --color-border: #26344f;
+    --color-text: #e6ecf5;
+    --color-text-muted: #a3b2c8;
+    --color-primary: #6fa8ff;
+    --color-primary-strong: #9cc3ff;
+    --color-on-primary: #061430;
+    --color-accent: #ff8a3d;
+    --color-danger: #ff6b6b;
+    --color-link: #8ab8ff;
+    --color-focus: #ffc078;
+    --mag-1: #51cf66;
+    --mag-2: #ffd43b;
+    --mag-3: #ff922b;
+    --mag-4: #ff6b6b;
+    --mag-5: #b57bee;
+    --mag-1-on: #06200b;
+    --mag-4-on: #2a0606;
+    --mag-5-on: #1c0730;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 4px 12px rgb(0 0 0 / 0.25);
+  }
+}
+
+/* Thème sombre : choix explicite */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-bg: #0a1120;
+  --color-surface: #111b2f;
+  --color-surface-2: #18243c;
+  --color-border: #26344f;
+  --color-text: #e6ecf5;
+  --color-text-muted: #a3b2c8;
+  --color-primary: #6fa8ff;
+  --color-primary-strong: #9cc3ff;
+  --color-on-primary: #061430;
+  --color-accent: #ff8a3d;
+  --color-danger: #ff6b6b;
+  --color-link: #8ab8ff;
+  --color-focus: #ffc078;
+  --mag-1: #51cf66;
+  --mag-2: #ffd43b;
+  --mag-3: #ff922b;
+  --mag-4: #ff6b6b;
+  --mag-5: #b57bee;
+  --mag-1-on: #06200b;
+  --mag-4-on: #2a0606;
+  --mag-5-on: #1c0730;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 4px 12px rgb(0 0 0 / 0.25);
+}

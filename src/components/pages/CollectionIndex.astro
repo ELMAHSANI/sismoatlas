@@ -1,0 +1,48 @@
+---
+/** Page de rubrique : titre, introduction et liste des contenus d'une collection. */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EntryCard from '../EntryCard.astro';
+import type { Lang } from '../../i18n/config';
+import { routePath, useTranslations } from '../../i18n/utils';
+import { entrySlug, getByLang, type ArticleCollection } from '../../lib/content';
+import { SECTIONS } from '../../lib/sections';
+
+interface Props {
+  lang: Lang;
+  collection: ArticleCollection;
+}
+const { lang, collection } = Astro.props;
+const t = useTranslations(lang);
+const section = SECTIONS[collection];
+const title = t(`nav.${section.route}`);
+const intro = section.intro ? t(section.intro) : undefined;
+const entries = await getByLang(collection, lang);
+---
+
+<BaseLayout lang={lang} title={title} description={intro}>
+  <div class="container page">
+    <header class="page-header">
+      <h1>{title}</h1>
+      {intro && <p>{intro}</p>}
+    </header>
+
+    {
+      entries.length ? (
+        <ul class="card-grid">
+          {entries.map((e) => (
+            <EntryCard
+              lang={lang}
+              href={routePath(lang, section.route, entrySlug(e))}
+              title={e.data.title}
+              description={e.data.description}
+              date={e.data.date}
+              draft={e.data.draft}
+            />
+          ))}
+        </ul>
+      ) : (
+        <p class="placeholder">{t('common.emptyList')}</p>
+      )
+    }
+  </div>
+</BaseLayout>

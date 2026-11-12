@@ -1,0 +1,17 @@
+---
+/** Guide de sécurité : page unique par langue (src/content/guide/<langue>/safety-guide.mdx). */
+import type { GetStaticPaths } from 'astro';
+import EntryPage from '../../../components/pages/EntryPage.astro';
+import { entrySlug, getPublished, type ArticleEntry } from '../../../lib/content';
+
+export const getStaticPaths = (async () => {
+  const entries = await getPublished('guide');
+  return entries
+    .filter((e) => entrySlug(e) === 'safety-guide')
+    .map((entry) => ({ params: { lang: entry.data.lang }, props: { entry } }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props as { entry: ArticleEntry };
+---
+
+<EntryPage entry={entry} collection="guide" singleton />

@@ -1,0 +1,37 @@
+# Dépendances et environnements
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+
+# Sorties de build et caches
+dist/
+.astro/
+.cache/
+
+# Fichiers temporaires / système
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.log
+*.lock
+!package-lock.json
+~$*
+.env
+.env.*
+!.env.example
+
+# Éditeurs
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Données brutes : on ne versionne que les LISEZ_MOI.
+# Raisons : 1045_2023.dbf (103 Mo) dépasse la limite de 100 Mo de GitHub ;
+# le fichier Peláez et al. (2007) n'a pas de licence de redistribution connue
+# (le dépôt pourra devenir public en phase 9). Les originaux restent sur le disque.
+donnees_brutes/**
+!donnees_brutes/**/
+!donnees_brutes/**/LISEZ_MOI.md
+!donnees_brutes/SOURCES.md

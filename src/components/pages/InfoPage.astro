@@ -1,0 +1,48 @@
+---
+/** Page institutionnelle (à propos, mentions légales…) chargée depuis la collection `pages`. */
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import type { Lang, RouteKey } from '../../i18n/config';
+import { formatDate, useTranslations } from '../../i18n/utils';
+
+interface Props {
+  lang: Lang;
+  /** Nom du fichier dans src/content/pages/<langue>/ */
+  slug: string;
+  route: RouteKey;
+}
+const { lang, slug } = Astro.props;
+const t = useTranslations(lang);
+// Repli sur le français si la traduction n'existe pas encore.
+const entry = (await getEntry('pages', `${lang}/${slug}`)) ?? (await getEntry('pages', `fr/${slug}`));
+if (!entry) throw new Error(`Page manquante : src/content/pages/fr/${slug}.mdx`);
+const isFallback = entry.data.lang !== lang;
+const { Content } = await render(entry);
+---
+
+<BaseLayout lang={lang} title={entry.data.title} description={entry.data.description}>
+  <article class="container page">
+    <header class="page-header">
+      <h1 lang={entry.data.lang}>{entry.data.title}</h1>
+      {entry.data.draft && <span class="badge badge--draft">{t('common.draft')}</span>}
+      {isFallback && <p class="placeholder">{t('common.translationMissing')}</p>}
+    </header>
+    <div class="prose" lang={entry.data.lang} dir={entry.data.lang === 'ar' ? 'rtl' : 'ltr'}>
+      <Content />
+    </div>
+    {
+      entry.data.updated && (
+        <p class="muted updated">
+          <time datetime={entry.data.updated.toISOString()}>{t('common.updatedOn', { date: formatDate(entry.data.updated, lang) })}</time>
+        </p>
+      )
+    }
+  </article>
+</BaseLayout>
+
+<style>
+  .updated {
+    margin-block-start: var(--space-6);
+    font-size: var(--fs-sm);
+  }
+</style>

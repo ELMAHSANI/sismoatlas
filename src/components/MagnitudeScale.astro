@@ -1,0 +1,70 @@
+---
+/** Légende de l'échelle de magnitude (section 5.1). Réutilisée sur la carte en phase 4. */
+import type { Lang } from '../i18n/config';
+import { useTranslations } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+const t = useTranslations(Astro.props.lang);
+const levels = [1, 2, 3, 4, 5] as const;
+---
+
+<figure class="mag-scale">
+  <figcaption>{t('scale.title')}</figcaption>
+  <ul>
+    {
+      levels.map((n) => (
+        <li style={`--c: var(--mag-${n}); --on: var(--mag-${n}-on)`}>
+          <span class="swatch">{t(`scale.m${n}.range`)}</span>
+          <span class="label">{t(`scale.m${n}.label`)}</span>
+        </li>
+      ))
+    }
+  </ul>
+  <p class="muted note">{t('scale.note')}</p>
+</figure>
+
+<style>
+  .mag-scale {
+    margin: 0;
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-bg);
+  }
+  figcaption {
+    font-weight: 650;
+    margin-block-end: var(--space-3);
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-2);
+  }
+  li {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .swatch {
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius-sm);
+    background: var(--c);
+    color: var(--on);
+    font-weight: 650;
+    font-size: var(--fs-sm);
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+  .label {
+    font-size: var(--fs-sm);
+  }
+  .note {
+    font-size: 0.8rem;
+    margin: var(--space-3) 0 0;
+  }
+</style>

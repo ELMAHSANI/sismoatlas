@@ -1,0 +1,17 @@
+---
+import type { GetStaticPaths } from 'astro';
+import EntryPage from '../../../components/pages/EntryPage.astro';
+import { entrySlug, getPublished, type ArticleEntry } from '../../../lib/content';
+
+export const getStaticPaths = (async () => {
+  const entries = await getPublished('articles');
+  return entries.map((entry) => ({
+    params: { lang: entry.data.lang, slug: entrySlug(entry) },
+    props: { entry },
+  }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props as { entry: ArticleEntry };
+---
+
+<EntryPage entry={entry} collection="articles" />

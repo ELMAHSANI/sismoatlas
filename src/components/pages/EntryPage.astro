@@ -1,0 +1,101 @@
+---
+/** Page d'un contenu (article, fiche, rapport…) avec métadonnées, références et licence. */
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import References from '../References.astro';
+import { LANGS, type Lang } from '../../i18n/config';
+import { formatDate, routePath, useTranslations } from '../../i18n/utils';
+import { getAlternates, type ArticleCollection, type ArticleEntry } from '../../lib/content';
+import { SECTIONS } from '../../lib/sections';
+import { SITE } from '../../site.config';
+
+interface Props {
+  entry: ArticleEntry;
+  collection: ArticleCollection;
+  /** Pour une page unique (guide) : chemin de la rubrique sans slug. */
+  singleton?: boolean;
+}
+const { entry, collection, singleton = false } = Astro.props;
+const { data } = entry;
+const lang = data.lang as Lang;
+const t = useTranslations(lang);
+const section = SECTIONS[collection];
+const { Content } = await render(entry);
+
+// Sélecteur de langue : traduction si elle existe, sinon la rubrique dans l'autre langue.
+const slugs = await getAlternates(collection, data.translationKey);
+const alternates = Object.fromEntries(
+  LANGS.map((l) => [
+    l,
+    singleton ? routePath(l, section.route) : slugs[l] ? routePath(l, section.route, slugs[l]) : routePath(l, section.route),
+  ]),
+) as Record<Lang, string>;
+---
+
+<BaseLayout lang={lang} title={data.title} description={data.description} alternates={alternates}>
+  <article class="container page">
+    <header class="page-header">
+      {!singleton && <a class="section-link" href={routePath(lang, section.route)}>{t(`nav.${section.route}`)}</a>}
+      <h1>{data.title}</h1>
+      <p>{data.description}</p>
+      <div class="meta muted">
+        {data.draft && <span class="badge badge--draft">{t('common.draft')}</span>}
+        <span>{t('common.by', { author: data.author })}</span>
+        <time datetime={data.date.toISOString()}>{t('common.publishedOn', { date: formatDate(data.date, lang) })}</time>
+        {
+          data.updated && (
+            <time datetime={data.updated.toISOString()}>{t('common.updatedOn', { date: formatDate(data.updated, lang) })}</time>
+          )
+        }
+      </div>
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <div class="prose after">
+      <References lang={lang} references={data.references} />
+      {
+        data.tags.length > 0 && (
+          <p class="tags">
+            <span class="visually-hidden">{t('common.tags')}</span>
+            {data.tags.map((tag) => <span class="badge">{tag}</span>)}
+          </p>
+        )
+      }
+      <p class="muted license">
+        <a href={SITE.contentLicenseUrl} rel="license noopener">{t('common.license', { license: data.license })}</a>
+      </p>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .section-link {
+    display: inline-block;
+    margin-block-end: var(--space-3);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-4);
+    font-size: var(--fs-sm);
+  }
+  .after {
+    margin-block-start: var(--space-7);
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+  .license {
+    font-size: var(--fs-sm);
+  }
+</style>
