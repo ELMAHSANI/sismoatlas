@@ -1,0 +1,560 @@
+geonameid,name_fr,name_ar,name_en,lat,lon,population,country,source_country,feature_code,admin1,name_ar_source
+2553604,Casablanca,الدار البيضاء,Casablanca,33.58831,-7.61138,3665954,MA,MA,PPLA,06,osm
+2538475,Rabat,الرباط,Rabat,34.01325,-6.83255,1655753,MA,MA,PPLC,04,osm
+2548885,Fès,فاس,Fes,34.03313,-5.00028,1191905,MA,MA,PPLA,03,osm
+2530335,Tanger,طنجة,Tangier,35.76727,-5.79975,1035141,MA,MA,PPLA,01,osm
+2542997,Marrakech,مراكش,Marrakesh,31.63416,-7.99994,995871,MA,MA,PPLA,07,osm
+2537763,Salé,سلا,Salé,34.0531,-6.79846,972299,MA,MA,PPL,04,osm
+2485926,Oran,وهران,Oran,35.69906,-0.63588,803329,DZ,DZ,PPLA,09,geonames
+2561668,Agadir,أ,Agadir,30.42018,-9.59815,698310,MA,MA,PPLA,09,osm
+2510911,Séville,إشبيلية,Seville,37.38283,-5.97317,686741,ES,ES,PPLA,51,geonames
+2514256,Málaga,مالقة,Málaga,36.72016,-4.42034,592346,ES,ES,PPLA2,51,geonames
+2542715,Meknès,مكناس,Meknes,33.89352,-5.54727,568295,MA,MA,PPLA2,03,osm
+2540483,Oujda,وجدة,Oujda,34.68139,-1.90858,539711,MA,MA,PPLA,02,osm
+2513416,Murcie,مرسية,Murcia,37.98704,-1.13004,471982,ES,ES,PPLA,31,geonames
+2544571,Kénitra,القنيطرة,Kenitra,34.26101,-6.5802,470949,MA,MA,PPLA,04,osm
+2528910,Tétouan,تطوان,Tétouan,35.57845,-5.36837,415810,MA,MA,PPLA2,01,osm
+2558545,Al Hoceima,الحسيمة,Al Hoceima,35.25165,-3.93723,395644,MA,MA,PPLA2,01,geonames
+2515270,Las Palmas de Gran Canaria,,Las Palmas de Gran Canaria,28.10178,-15.41573,383516,ES,ES,PPLA,53,
+2529013,Temara,تمارة,Temara,33.92866,-6.90656,342345,MA,MA,PPLA3,04,osm
+2537881,Safi,آسفي,Safi,32.29939,-9.23718,336883,MA,MA,PPLA2,07,osm
+2519240,Cordoue,قرطبة,Córdoba,37.89155,-4.77275,325708,ES,ES,PPLA2,51,geonames
+2517117,Grenade,غرناطة,Granada,37.18817,-3.60667,233532,ES,ES,PPLA2,51,geonames
+2542051,Mohammédia,المحمدية,Mohammedia,33.68607,-7.38298,227799,MA,MA,PPLA3,06,osm
+2544248,Khouribga,خريبكة,Khouribga,32.88108,-6.9063,214241,MA,MA,PPLA3,05,osm
+2520058,Carthagène,كارتاخينا,Cartagena,37.60197,-0.98397,213943,ES,ES,PPLA3,31,geonames
+2516326,Xérès,شريش,Jerez de la Frontera,36.68645,-6.13606,212879,ES,ES,PPLA3,51,geonames
+2550078,El Jadida,الجديدة,El Jadida,33.25682,-8.50882,212863,MA,MA,PPL,06,osm
+2511174,Santa Cruz de Ténérife,سانتا كروث دي تينيريفه,Santa Cruz de Tenerife,28.46824,-16.25462,211359,ES,ES,PPLA,53,geonames
+2555745,Béni Mellal,بني ملال,Beni Mellal,32.33725,-6.34983,210397,MA,MA,PPLA,05,osm
+2481007,Sidi-Bel-Abbès,سيدي بلعباس,Sidi Bel Abbes,35.18994,-0.63085,210146,DZ,DZ,PPLA,30,geonames
+10920963,Salé Al Jadida,,Salé Al Jadida,33.99722,-6.74047,200000,MA,MA,PPL,04,
+2521886,Almería,ألمرية,Almería,36.83814,-2.45974,196851,ES,ES,PPLA2,51,geonames
+2462881,Laâyoune,العيون,Laayoune,27.1418,-13.18797,196331,MA,EH,PPLA,,geonames
+10374934,Ait Melloul,,Ait Melloul,30.34164,-9.50356,187652,MA,MA,PPL,09,
+2541479,Nador,الناظور,Nador,35.16813,-2.93352,176600,MA,MA,PPLA3,02,osm
+2475687,Tlemcen,تلمسان,Tlemcen,34.87833,-1.315,173531,DZ,DZ,PPLA,15,geonames
+2552615,Dar Bouazza,دار بوعزة,Dar Bouazza,33.51535,-7.81677,165295,MA,MA,PPLA3,06,osm
+2505530,Béchar,بشار,Béchar,31.61667,-2.21667,165241,DZ,DZ,PPLA,38,geonames
+2487134,Mostaganem,مستغانم,Mostaganem,35.93115,0.08918,162885,DZ,DZ,PPLA,07,geonames
+2529317,Taza,تازة,Taza,34.21,-4.01,162110,MA,MA,PPLA2,03,osm
+2514169,Marbella,ماربيا,Marbella,36.51543,-4.88583,156295,ES,ES,PPLA3,51,geonames
+2537406,Settat,سطات,Settat,33.00103,-7.61662,155333,MA,MA,PPLA2,06,osm
+2511401,San Cristóbal de La Laguna,,San Cristóbal de La Laguna,28.4853,-16.32014,150661,ES,ES,PPL,53,
+2556272,Berrechid,برشيد,Berrechid,33.26553,-7.58754,149201,MA,MA,PPLA3,06,osm
+2516548,Huelva,,Huelva,37.26638,-6.94004,144258,ES,ES,PPLA2,51,
+2558470,Khemisset,الخميسات,Khemisset,33.82404,-6.06627,143640,MA,MA,PPLA3,04,osm
+2482572,Saïda,سعيدة,Saida,34.83033,0.15171,142497,DZ,DZ,PPLA,10,geonames
+2545957,Inezgane,إنزكان,Inezgane,30.35535,-9.53639,142320,MA,MA,PPLA3,09,osm
+2544001,Ksar El Kebir,القصر الكبير,Ksar El Kebir,35.00044,-5.90378,138262,MA,MA,PPL,01,osm
+2543549,Larache,العرائش,Larache,35.19321,-6.15572,136505,MA,MA,PPLA3,01,osm
+2548526,Guelmim,كلميم,Guelmim,28.98696,-10.05738,129200,MA,MA,PPLA,10,osm
+2544333,Khénifra,الخنيفرة,Khenifra,32.93492,-5.66167,128318,MA,MA,PPLA3,05,osm
+2510542,Telde,تيلدي,Telde,27.99243,-15.41915,123265,ES,ES,PPLA3,53,geonames
+2483668,Relizane,ولاية غليزان,Relizane,35.73734,0.55599,123255,DZ,DZ,PPLA,51,geonames
+2518794,Dos Hermanas,,Dos Hermanas,37.28287,-5.92088,122943,ES,ES,PPLA3,51,
+2522013,Algésiras,الجزيرة الخضراء,Algeciras,36.13326,-5.45051,121414,ES,ES,PPLA3,51,geonames
+2555467,Berkane,بركان,Berkane,34.92,-2.32,119284,MA,MA,PPLA3,02,osm
+2520600,Cadix,قادس,Cadiz,36.52672,-6.2891,116979,ES,ES,PPLA2,51,geonames
+2516395,Jaén,جيان,Jaén,37.76922,-3.79028,113457,ES,ES,PPLA2,51,geonames
+2530048,Taourirt,تاوريرت,Taourirt,34.40731,-2.89732,112908,MA,MA,PPLA3,02,osm
+2554006,Bouskoura,بوسكورة,Bouskoura,33.44976,-7.65239,112501,MA,MA,PPLA3,06,osm
+2548830,Al Fqih Ben Çalah,,Al Fqih Ben Çalah,32.50213,-6.68771,111402,MA,MA,PPL,05,
+2490098,Mascara,معسكر‎,Mascara,35.39664,0.14027,108629,DZ,DZ,PPLA,26,geonames
+2463447,Dakhla,الداخلة,Dakhla,23.68477,-15.95798,106277,MA,EH,PPLA,CE,geonames
+2267827,Funchal,فونشال,Funchal,32.66568,-16.92547,105795,PT,PT,PPLA,10,geonames
+2540689,Oued Zem,وادي زم,Oued Zem,32.8627,-6.57359,104029,MA,MA,PPLA3,05,osm
+2549979,El Kelaa des Srarhna,,El Kelaa des Srarhna,32.05121,-7.41079,103982,MA,MA,PPL,07,
+2532945,Sidi Slimane,سيدي سليمان,Sidi Slimane,34.26479,-5.92598,101541,MA,MA,PPLA3,04,osm
+7280528,Errachidia,الرشيدية,Errachidia,31.9314,-4.42663,100870,MA,MA,PPLA3,08,osm
+2548489,Guercif,جرسيف,Guercif,34.22568,-3.35361,99238,MA,MA,PPLA3,03,osm
+2539134,Oulad Teïma,,Oulad Teïma,30.39467,-9.20897,97608,MA,MA,PPL,09,
+2556018,Ben Guerir,بن جرير,Ben Guerir,32.24088,-7.95397,96777,MA,MA,PPL,07,osm
+12718669,Ouislane,ويسلان,Ouislane,33.91406,-5.48969,95995,MA,MA,PPL,03,osm
+2511388,San Fernando,سان فرناندو,San Fernando,36.4759,-6.19817,95174,ES,ES,PPLA3,51,geonames
+2511716,Roquetas de Mar,روكويتاس دي مار,Roquetas de Mar,36.76419,-2.61475,94925,ES,ES,PPLA3,51,geonames
+2528659,Tiflet,تيفلت,Tiflet,33.89469,-6.30649,94684,MA,MA,PPLA3,04,osm
+2514891,Lorca,لوركا,Lorca,37.67119,-1.7017,93079,ES,ES,PPLA3,31,geonames
+10375044,Lqoliaa,,Lqoliaa,30.29759,-9.46597,90890,MA,MA,PPL,09,
+2518207,El Puerto de Santa María,إل بويرتو دي سانتا ماريا,El Puerto de Santa María,36.59389,-6.23298,88364,ES,ES,PPL,51,geonames
+2529649,Taroudant,تارودانت,Taroudant,30.47028,-8.87695,87520,MA,MA,PPLA3,09,osm
+2490584,Maghnia,,Maghnia,34.84969,-1.72753,87373,DZ,DZ,PPL,15,
+2537545,Sefrou,صفرو,Sefrou,33.83186,-4.828,87234,MA,MA,PPLA3,03,osm
+2513947,Melilla,مليلية,Melilla,35.29369,-2.93833,85985,ES,ES,PPLA,ML,geonames
+2549263,Essaouira,الصويرة,Essaouira,31.5125,-9.77,85137,MA,MA,PPLA3,07,osm
+2518494,El Ejido,إلإيجايدو,El Ejido,36.77629,-2.81456,84710,ES,ES,PPL,51,geonames
+2548818,Fnidek,,Fnidek,35.84906,-5.35747,84558,MA,MA,PPL,01,
+2519513,Chiclana de la Frontera,,Chiclana de la Frontera,36.41976,-6.14367,83831,ES,ES,PPLA3,51,
+6362987,Ceuta,,Ceuta,35.88919,-5.32042,83179,ES,ES,PPLA,CE,
+2533191,Sidi Kacem,سيدي قاسم,Sidi Kacem,34.22149,-5.70775,82632,MA,MA,PPL,04,osm
+2510253,Torrevieja,توريفايجا,Torrevieja,37.97872,-0.68222,82599,ES,ES,PPLA3,60,geonames
+2527089,Tiznit,تزنيت,Tiznit,29.69742,-9.73162,81569,MA,MA,PPLA3,09,osm
+2513882,Mijas,ميخاس,Mijas,36.59575,-4.63728,80630,ES,ES,PPLA3,51,geonames
+2530241,Tan-Tan,طانطان,Tan-Tan,28.43799,-11.10321,79942,MA,MA,PPLA2,10,osm
+2521582,Arona,أرونا,Arona,28.09962,-16.68102,78614,ES,ES,PPLA3,53,geonames
+2540850,Ouarzazate,ورزازات,Ouarzazate,30.91894,-6.89341,77603,MA,MA,PPLA2,08,osm
+12718688,Souk El Arbaa,,Souk El Arbaa,34.68473,-6.00344,75635,MA,MA,PPL,04,
+2509769,Vélez-Málaga,فيليث-مالقة,Vélez-Málaga,36.78107,-4.10266,74190,ES,ES,PPLA3,51,geonames
+2526488,Youssoufia,اليوسفية,Youssoufia,32.24634,-8.52941,73848,MA,MA,PPLA3,07,osm
+2546917,Ifrane,إفران,Ifrane,33.52666,-5.11019,73782,MA,MA,PPLA3,03,osm
+2511150,Santa Lucía,,Santa Lucía,27.91174,-15.54071,71863,ES,ES,PPL,53,
+2517595,Fuengirola,سهيل,Fuengirola,36.53998,-4.62473,71482,ES,ES,PPLA3,51,geonames
+2507901,Aïn Témouchent,عين تموشنت,Ain Temouchent,35.29749,-1.14037,70810,DZ,DZ,PPLA,36,geonames
+12718676,Lahraouyine,الهراويين,Lahraouyine,33.54138,-7.52848,70783,MA,MA,PPL,06,osm
+2268339,Faro,فارو,Faro,37.01869,-7.92716,70347,PT,PT,PPLA,09,geonames
+2542987,Martil,مرتيل,Martil,35.61662,-5.27522,70274,MA,MA,PPLA3,01,osm
+2522165,Alcalá de Guadaira,,Alcalá de Guadaira,37.33791,-5.83951,70155,ES,ES,PPL,51,
+2508813,Adrar,أدرار,Adrar,27.87429,-0.29388,68276,DZ,DZ,PPLA,34,geonames
+2560841,Aïn Harrouda,عين حرودة,Aïn Harrouda,33.63737,-7.44971,68161,MA,MA,PPL,06,osm
+2511306,Sanlúcar de Barrameda,شلوقة,Sanlúcar de Barrameda,36.77808,-6.3515,68037,ES,ES,PPL,51,geonames
+2503874,Bir el Djir,,Bir el Djir,35.72,-0.545,68032,DZ,DZ,PPL,09,
+2517816,Estepona,إستيبونا,Estepona,36.42764,-5.14589,67012,ES,ES,PPLA3,51,geonames
+2532412,Souq Sebt Oulad Nemma,,Souq Sebt Oulad Nemma,32.2973,-6.70301,65601,MA,MA,PPL,05,
+2510281,Torremolinos,توريمولينوس,Torremolinos,36.62035,-4.49976,65448,ES,ES,PPLA3,51,geonames
+2562055,Skhirate,,Skhirate,33.8527,-7.03171,65272,MA,MA,PPLA3,04,
+2540810,Ouezzane,,Ouezzane,34.79584,-5.57849,65088,MA,MA,PPLA2,01,
+2489865,Mecheria,,Mecheria,33.54453,-0.28117,65043,DZ,DZ,PPL,49,
+2515812,La Línea de la Concepción,لا يينا دي لا كونسيبسيون,La Línea de la Concepción,36.16809,-5.34777,64595,ES,ES,PPL,51,geonames
+2487293,Mohammadia,,Mohammadia,35.58861,0.06861,62410,DZ,DZ,PPL,26,
+2555519,Benslimane,بن سليمان,Benslimane,33.61601,-7.12153,62352,MA,MA,PPL,06,osm
+2555882,Beni Enzar,,Beni Enzar,35.26,-2.93,61786,MA,MA,PPL,02,
+2542898,Mdiq,المضيق,Mdiq,35.68313,-5.32871,61398,MA,MA,PPLA2,01,osm
+2479609,Sig,,Sig,35.52832,-0.19369,61373,DZ,DZ,PPL,26,
+2521570,Arrecife,,Arrecife,28.96302,-13.54769,61351,ES,ES,PPLA3,53,
+2536074,Sidi Bennour,سيدي بنور,Sidi Bennour,32.65236,-8.42769,60948,MA,MA,PPLA3,06,osm
+2513477,Motril,موتريل,Motril,36.75066,-3.5179,60592,ES,ES,PPLA3,51,geonames
+2542227,Midelt,ميدلت,Midelt,32.6852,-4.74512,60390,MA,MA,PPLA3,05,osm
+2556464,Azrou,أزرو,Azrou,33.43443,-5.22126,59348,MA,MA,PPLA3,03,osm
+2521139,Benalmádena,بينالمادينا,Benalmádena,36.5961,-4.57267,58854,ES,ES,PPLA3,51,geonames
+2506385,Arzew,أرزيو,Arzew,35.85048,-0.318,58162,DZ,DZ,PPL,09,geonames
+2527645,Tirhanimîne,,Tirhanimîne,35.23619,-3.95453,55827,MA,MA,PPL,01,
+10375207,My Drarga,,My Drarga,30.37733,-9.47342,55631,MA,MA,PPL,09,
+2485582,Oued Rhiou,وادي ارهيو,Oued Rhiou,35.96124,0.91896,55430,DZ,DZ,PPL,51,geonames
+2560939,Ain El Aouda,عين العودة,Ain El Aouda,33.80333,-6.79461,54397,MA,MA,PPL,04,osm
+2494065,Assi Bou Nif,,Assi Bou Nif,35.69222,-0.49944,53700,DZ,DZ,PPL,09,
+2511440,San Bartolomé de Tirajana,,San Bartolomé de Tirajana,27.92481,-15.57329,53588,ES,ES,PPL,53,
+2555567,Ben Jerrar,,Ben Jerrar,30.26224,-9.50377,53026,MA,MA,PPL,09,
+2510073,Utrera,,Utrera,37.18516,-5.78093,52617,ES,ES,PPLA3,51,
+2490183,Mansoûra,,Mansoûra,34.86158,-1.33935,52285,DZ,DZ,PPL,15,
+2552292,Ad Darwa,الدورة,Deroua,33.37487,-7.5356,52108,MA,MA,PPL,06,osm
+2542013,Al Aaroui,العروي,Al Aaroui,35.0109,-3.00938,51976,MA,MA,PPL,02,osm
+2544720,Kasba Tadla,قصبة تادلة,Kasba Tadla,32.5977,-6.26844,51697,MA,MA,PPLA3,05,osm
+2497269,En Nedjma,,En Nedjma,35.64785,-0.5695,51665,DZ,DZ,PPL,09,
+12718663,Bejaâd,,Bejaâd,32.77133,-6.39231,51206,MA,MA,PPL,05,
+10797349,Sidi Taibi,سيدي طيبي,Sidi Taibi,34.18698,-6.68176,51050,MA,MA,PPL,04,osm
+2545017,Jerada,جرادة,Jerada,34.31,-2.16,47507,MA,MA,PPLA3,02,osm
+2553455,Chefchaouen,شفشاون,Chefchaouen,35.16878,-5.2636,46721,MA,MA,PPLA2,01,osm
+2545069,Mrirt,مريرت,Mrirt,33.16427,-5.56722,46660,MA,MA,PPL,05,osm
+2527915,Tinghir,تنغير,Tinghir,31.51472,-5.53278,45911,MA,MA,PPLA2,08,osm
+2550806,El Aïoun,العيون,El Aïoun,34.58319,-2.50612,45679,MA,MA,PPL,02,osm
+2556657,Azemmour,أزمور,Azemmour,33.28952,-8.3425,44683,MA,MA,PPLA3,06,osm
+2532394,Souq Larb’a al Gharb,,Souq Larb’a al Gharb,34.68664,-6.00272,44059,MA,MA,PPLA3,04,
+2526452,Zagora,زاكورة,Zagora,30.33241,-5.8384,43752,MA,MA,PPLA3,08,osm
+2559217,Ait Ourir,ايت اورير,Ait Ourir,31.56517,-7.66163,42705,MA,MA,PPL,07,osm
+2463029,Boujdour,بوجدور,Boujdour,26.13073,-14.48513,42651,MA,EH,PPL,,geonames
+2556570,Azilal,أزيلال,Azilal,31.96156,-6.57109,42062,MA,MA,PPLA3,05,osm
+2461874,Smara,السمارة,Smara,26.73841,-11.67194,42056,MA,MA,PPL,11,geonames
+2532822,Sidi Yahia El Gharb,,Sidi Yahia El Gharb,34.30494,-6.30404,41472,MA,MA,PPLA3,04,
+10374981,Tine Biougra,,Tine Biougra,30.20942,-9.37922,41421,MA,MA,PPL,09,
+2530155,Taounate,تاونات,Taounate,34.53661,-4.64009,41075,MA,MA,PPLA3,03,osm
+2553751,Bouznika,بوزنيقة,Bouznika,33.78942,-7.15968,40663,MA,MA,PPLA3,06,osm
+12718675,Had Soualem,حـد الـسـوالـم,Had Soualem,33.41972,-7.85237,40146,MA,MA,PPL,06,osm
+2550898,Imzouren,,Imzouren,35.14637,-3.85063,40000,MA,MA,PPLA3,01,
+2526435,Zaïo,زايو,Zaïo,34.94282,-2.7329,39099,MA,MA,PPLA3,02,osm
+2557500,Aourir,,Aourir,30.49238,-9.6355,38617,MA,MA,PPLA3,09,
+2550252,El Hajeb,الحاجب,El Hajeb,33.68786,-5.371,38527,MA,MA,PPLA3,03,osm
+2537538,Zeghanghane,,Zeghanghane,35.15561,-3.00236,37154,MA,MA,PPL,02,
+2556076,Ben Ahmed,بن أحمد,Ben Ahmed,33.06635,-7.24161,36149,MA,MA,PPL,06,osm
+2527271,Tit Mellil,تيط مليل,Tit Mellil,33.55808,-7.48647,35797,MA,MA,PPLA3,06,osm
+2542866,Mechraa Bel Ksiri,,Mechraa Bel Ksiri,34.57373,-5.95585,34393,MA,MA,PPLA3,04,
+2557055,Assilah,أصيلة,Asilah,35.46522,-6.03415,34011,MA,MA,PPL,01,osm
+2532171,Tabount,,Tabount,30.90321,-6.91579,33929,MA,MA,PPL,08,
+12718681,Laâttaouia,,Laâttaouia,31.83532,-7.31431,33103,MA,MA,PPL,07,
+12718684,Sidi Slimane Echcharaa,سيدي سليمان ا,Sidi Slimane Echcharaa,34.90818,-2.35055,32979,MA,MA,PPL,02,osm
+2552317,Demnate,دمناط,Demnate,31.73443,-7.00505,32217,MA,MA,PPLA3,05,osm
+2549356,Arfoud,,Arfoud,31.4353,-4.23258,31971,MA,MA,PPL,08,
+2555157,Bouarfa,بوعرفة,Bouarfa,32.53379,-1.96209,31499,MA,MA,PPLA3,02,osm
+2532421,Souk et Tnine Jorf el Mellah,,Souk et Tnine Jorf el Mellah,34.49162,-5.50846,31318,MA,MA,PPL,04,
+2542768,Mehdya,المهدية,Mehdya,34.25596,-6.67345,31269,MA,MA,PPL,04,osm
+2560774,Aïn Taoujdat,,Aïn Taoujdat,33.93575,-5.21328,30889,MA,MA,PPL,03,
+8299790,Tamesna,تامسنا,Tamesna,33.81809,-6.91658,30705,MA,MA,PPL,04,osm
+10375138,Oadar Temsia,,Oadar Temsia,30.36531,-9.41044,30526,MA,MA,PPL,09,
+2553303,Chichaoua,شيشاوة,Chichaoua,31.54351,-8.76275,30432,MA,MA,PPLA3,07,osm
+2531480,Tahla,,Tahla,34.04965,-4.42162,30279,MA,MA,PPLA3,03,
+2461993,El Marsa,المرسى,El Marsa,27.09611,-13.41583,28848,MA,EH,PPL,00,geonames
+11025266,Sabaa Aiyoun,سبع عيون,Sabaa Aiyoun,33.90331,-5.36868,28693,MA,MA,PPL,03,osm
+2538059,Rich,,Rich,32.25644,-4.50152,28382,MA,MA,PPL,08,
+2542147,Missour,ميسور,Missour,33.04893,-3.98947,27937,MA,MA,PPLA3,03,osm
+2526359,Zawyat ech Cheïkh,,Zawyat ech Cheïkh,32.64445,-5.91826,27723,MA,MA,PPL,05,
+2535530,Bouknadel,,Bouknadel,34.11849,-6.7389,27577,MA,MA,PPL,04,
+12718687,Aïn Attig,عين عتيق,Aïn Attig,33.88758,-6.96807,27384,MA,MA,PPL,04,osm
+8504943,Tamansourt,,Tamansourt,31.755,-8.11,27383,MA,MA,PPL,07,
+2411585,Gibraltar,جبل طارق,Gibraltar,36.14474,-5.35257,26544,GI,GI,PPLC,00,geonames
+2553382,Echemmaia Est,,Echemmaia Est,32.08102,-8.62458,26538,MA,MA,PPL,07,
+2540180,Oulad Barhil,,Oulad Barhil,30.64042,-8.46875,26521,MA,MA,PPL,09,
+2555342,Bir Jdid,البير الجديد,Bir Jdid,33.37362,-7.99462,26355,MA,MA,PPL,06,osm
+2540207,Oulad Ayad,اولاد عياد,Oulad Ayad,32.2,-6.8,26008,MA,MA,PPLA3,05,osm
+2541210,Zawyat an Nwaçer,,Zawyat an Nwaçer,33.37981,-7.61932,25991,MA,MA,PPL,06,
+2537368,Gueznaia,,Gueznaia,35.70211,-5.89044,25771,MA,MA,PPL,01,
+2542826,Mediouna,مديونـــة,Mediouna,33.45161,-7.51995,24506,MA,MA,PPLA3,06,osm
+12718664,Moulay Ali Cherif,,Moulay Ali Cherif,31.28244,-4.26541,24251,MA,MA,PPL,08,
+2534515,Sidi Ifni,سيدي إفني,Sidi Ifni,29.37975,-10.17299,23606,MA,MA,PPLA3,09,osm
+2537469,Selouane,سلوان,Selouane,35.07313,-2.9423,23553,MA,MA,PPLA3,02,osm
+2571932,Azla,أذلاء,Azla,35.55303,-5.24472,22985,MA,MA,PPLA3,01,osm
+2550419,El Gara,الكارة,El Gara,33.27732,-7.23236,22773,MA,MA,PPL,06,osm
+2546128,Imi-n-Tanout,,Imi-n-Tanout,31.17213,-8.84728,22753,MA,MA,PPL,07,
+2533182,Sidi Rahal,,Sidi Rahal,33.47739,-7.93641,22525,MA,MA,PPL,06,
+2538401,Ras el Ma,,Ras el Ma,33.97399,-5.09613,22345,MA,MA,PPL,03,
+2526239,Sti Fadma,ستي فاطمة,Setti Fatma,31.22508,-7.67751,22283,MA,MA,PPL,07,osm
+2549750,El Ksiba,القصيبة,El Ksiba,32.57286,-6.01947,21840,MA,MA,PPLA3,05,osm
+2558428,El Mansouria,المنصورية,El Mansouria,33.74643,-7.30194,21679,MA,MA,PPL,06,osm
+2561124,Ahfir,أحفي,Ahfir,34.95368,-2.10027,21435,MA,MA,PPLA3,02,osm
+2550547,Al Brouj,,Al Brouj,32.50467,-7.19238,21004,MA,MA,PPL,06,
+2546028,Imouzzer Kandar,إيموزار كندر,Imouzzer Kandar,33.72871,-5.01092,20884,MA,MA,PPL,03,osm
+2551147,Douar Toulal,,Douar Toulal,33.88483,-5.59664,20831,MA,MA,PPL,03,
+2544821,Karia Ba Mohamed,قرية با محمد,Karia Ba Mohamed,34.37094,-5.2138,20487,MA,MA,PPLA3,03,osm
+2538027,Reçani,,Reçani,31.28318,-4.26565,20469,MA,MA,PPL,08,
+2529362,Tata,طاطا,Tata,29.74409,-7.973,20322,MA,MA,PPLA3,09,osm
+2537610,Sebt Gzoula,سبت جزولة,Sebt Gzoula,32.10779,-9.08366,20248,MA,MA,PPL,07,osm
+10958491,Bni Bouayach,,Bni Bouayach,35.10506,-3.84028,19951,MA,MA,PPL,01,
+2558436,Beni Yakhlef,,Beni Yakhlef,33.68407,-7.33924,19622,MA,MA,PPL,06,
+2538898,Oulmès,ولماس,Oulmes,33.42585,-6.00137,19014,MA,MA,PPLA3,04,osm
+2557533,Aoulouz,اولوز,Aoulouz,30.67307,-8.18087,19010,MA,MA,PPLA3,09,osm
+2557019,Asni,أسني,Asni,31.24653,-7.9789,18674,MA,MA,PPL,07,osm
+2549981,Kelaat Mgouna,,Kelaat Mgouna,31.24573,-6.1326,18515,MA,MA,PPL,08,
+12718680,Méchouar-Kasba,,Méchouar-Kasba,31.6008,-7.98653,18410,MA,MA,PPL,07,
+2596460,Ribat Al Khayr,,Ribat Al Khayr,33.81518,-4.40717,18278,MA,MA,PPL,03,
+2561358,Agouraï,أكوراي,Agouraï,33.63,-5.58,18182,MA,MA,PPL,03,osm
+2530704,Tamallalt,,Tamallalt,31.81897,-7.51446,18060,MA,MA,PPL,07,
+2548623,Goulmima,كلميمة,Goulmima,31.69227,-4.95256,17929,MA,MA,PPLA3,08,osm
+2538573,Outat Oulad Al Haj,,Outat Oulad Al Haj,33.34499,-3.70387,17895,MA,MA,PPL,03,
+2560922,Aïn Beni Mathar,,Aïn Beni Mathar,34.0097,-2.03238,17787,MA,MA,PPL,02,
+6546693,Boujniba,بو جنيبة,Boujniba,32.90046,-6.77464,17504,MA,MA,PPL,05,osm
+12718686,Mers El Kheir,,Mers El Kheir,33.86262,-6.92964,17352,MA,MA,PPL,04,
+2536392,Sidi Allal El Bahraoui,سيدي علال الب,Sidi Allal El Bahraoui,34.0077,-6.53082,17325,MA,MA,PPL,04,osm
+2543667,Lalla Mimouna,لالة ميمونة,Lalla Mimouna,34.84606,-6.06645,17217,MA,MA,PPLA3,04,osm
+2554281,Boumia,بومية,Boumia,32.7236,-5.1025,17091,MA,MA,PPLA3,05,osm
+2550162,El Harhoura,هرهورة,El Harhoura,33.94483,-6.93106,16773,MA,MA,PPL,04,osm
+2542230,Midar,ميضار,Midar,34.94025,-3.53311,16402,MA,MA,PPLA3,02,osm
+2550985,Driouch,الدريوش,Driouch,34.97705,-3.37902,16096,MA,MA,PPL,02,osm
+2556996,Assa,آسـا,Assa,28.60986,-9.42986,15910,MA,MA,PPL,10,osm
+2558052,Amizmiz,أمزميز,Amizmiz,31.21673,-8.23184,15685,MA,MA,PPLA3,07,osm
+2558844,Ait Yazza,,Ait Yazza,30.50188,-8.79917,15570,MA,MA,PPL,09,
+2555504,Ben Taieb,بن الطيب,Ben Taieb,35.04427,-3.45418,15568,MA,MA,PPL,02,osm
+2554594,Bou Izakarn,,Bou Izakarn,29.17705,-9.71181,15536,MA,MA,PPL,10,
+2539139,Oulad Tayeb,أولاد الطيب,Oulad Tayeb,33.94633,-4.99509,15491,MA,MA,PPLA3,03,osm
+2561290,Aguelmous,,Aguelmous,33.16139,-5.84626,15480,MA,MA,PPLA3,05,
+2533481,Sidi Lmokhtar,,Sidi Lmokhtar,31.57739,-9.01575,14803,MA,MA,PPL,07,
+2529872,Targuist,تارجيست,Targuist,34.93769,-4.31856,14621,MA,MA,PPLA3,01,osm
+2549888,Zemamra,,Zemamra,32.62287,-8.70227,14500,MA,MA,PPL,06,
+2548343,Oulad Frej,أولاد فريج,Oulad Frej,32.95956,-8.2274,14492,MA,MA,PPLA3,06,osm
+2561737,Afourer,,Afourer,32.20721,-6.53824,14397,MA,MA,PPL,05,
+12718683,Bouizazarene Ihaddadene,,Bouizazarene Ihaddadene,35.15779,-2.97377,14326,MA,MA,PPL,02,
+2555395,Bhalil,البهاليل,Bhalil,33.85194,-4.87228,14192,MA,MA,PPLA3,03,osm
+2554943,Bou Fekrane,بوفكران,Bou Fekrane,33.76097,-5.48748,14131,MA,MA,PPL,03,osm
+2532707,Sidi Zouine,,Sidi Zouine,31.66914,-8.34541,14017,MA,MA,PPL,07,
+2526459,Zag,الزاك,Zag,28.0221,-9.29397,13936,MA,MA,PPL,10,osm
+2535619,Sidi Bou Lanouar,,Sidi Bou Lanouar,32.86,-6.88,13929,MA,MA,PPL,05,
+2549623,El Menzel,المنزل,El Menzel,33.83758,-4.54472,13803,MA,MA,PPL,03,osm
+10904142,Loudaya,,Loudaya,31.63348,-8.24893,13775,MA,MA,PPL,07,
+2541906,Moulay Abdallah,,Moulay Abdallah,33.19664,-8.58811,13601,MA,MA,PPLA3,06,
+2554322,Boumalne Dades,بومالن دادس,Boumalne Dades,31.37986,-5.98819,13461,MA,MA,PPL,08,osm
+12718690,El Guerdane,,El Guerdane,30.37757,-9.01997,13445,MA,MA,PPL,09,
+2544968,Jorf,جرف,Jorf,31.49442,-4.40598,13433,MA,MA,PPLA3,08,osm
+2557134,Ar Rommani,الرماني,Ar Rommani,33.52838,-6.60348,13428,MA,MA,PPL,04,osm
+2526389,Zaouïa Aït Ishak,,Zaouïa Aït Ishak,32.76181,-5.72535,13299,MA,MA,PPL,05,
+2531432,Tahannout,,Tahannout,31.35236,-7.95012,13215,MA,MA,PPLA2,07,
+2543394,Ifrane,,Ifrane,31.70217,-6.3494,13000,MA,MA,PPL,05,
+2541805,Moulay Driss Zerhoun,,Moulay Driss Zerhoun,34.05555,-5.52132,12683,MA,MA,PPL,03,
+2552545,Dar Ould Zidouh,,Dar Ould Zidouh,32.31247,-6.90494,12547,MA,MA,PPLA3,05,
+2548851,Figuig,فكيك,Figuig,32.10891,-1.22855,12516,MA,MA,PPL,02,osm
+2555009,Boudenib,,Boudenib,31.95229,-3.60604,12419,MA,MA,PPL,08,
+2532420,Jem’at Oulad ’Abbou,,Jem’at Oulad ’Abbou,33.1148,-7.9336,12338,MA,MA,PPL,06,
+2545051,Jamaat Shaim,جمعة سحيم,Jamaat Shaim,32.34694,-8.84249,12285,MA,MA,PPL,07,osm
+2527366,Tissa,تيسة,Tissa,34.28791,-4.66372,12224,MA,MA,PPLA3,03,osm
+13608369,Mehaires,محيرس,Meharrize,26.14763,-11.0693,12000,MA,EH,PPL,,geonames
+2555885,Bni Drar,بني درار,Bni Drar,34.86005,-1.98979,11939,MA,MA,PPL,02,osm
+2539829,Oulad Embarek,,Oulad Embarek,32.27162,-6.44967,11840,MA,MA,PPL,05,
+2561539,Agdz,أكدز,Agdz,30.69356,-6.44628,11663,MA,MA,PPLA3,08,osm
+12718662,Hattane,حطان,Hattane,32.84085,-6.80027,11594,MA,MA,PPL,05,osm
+2530843,Tamanar,تمنار,Tamanar,31.00087,-9.67802,11557,MA,MA,PPLA3,07,osm
+2529411,Tassila,,Tassila,29.97134,-9.64195,11419,MA,MA,PPL,09,
+2540716,Oued Amlil,واد أمليل,Oued Amlil,34.2,-4.28,11362,MA,MA,PPLA3,03,osm
+2537611,Sebt Bni Garfett,,Sebt Bni Garfett,35.25796,-5.83334,11311,MA,MA,PPL,01,
+2544334,Khenichet-sur Ouerrha,,Khenichet-sur Ouerrha,34.44041,-5.67879,11241,MA,MA,PPL,04,
+2558414,Almis du Guigou,,Almis du Guigou,33.38738,-4.82927,11060,MA,MA,PPL,03,
+2560905,Aïn Cheggag,عين الشكاك,Aïn Cheggag,33.89286,-5.03699,11055,MA,MA,PPL,03,osm
+12718668,Zoualet,,Zoualet,33.93664,-5.46514,10985,MA,MA,PPL,03,
+2532821,Sidi Yahya Zaer,,Sidi Yahya Zaer,33.82977,-6.91262,10926,MA,MA,PPL,04,
+2533178,Sidi Rahhal,سيدي رحال,Sidi Rahhal,31.65031,-7.47288,10817,MA,MA,PPLA3,07,osm
+2564788,Aklim,اكليم,Aklim,34.92,-2.43,10586,MA,MA,PPL,02,osm
+2539114,Oulad Yaïch,,Oulad Yaïch,32.43498,-6.3245,10560,MA,MA,PPL,05,
+2540698,Oued Laou,واد لاو,Oued Laou,35.4484,-5.09627,10553,MA,MA,PPLA3,01,osm
+12718661,Ouaouizeght,,Ouaouizeght,32.15872,-6.35408,10318,MA,MA,PPL,05,
+12718678,El Ouatia,الوطية,El Ouatia,28.49624,-11.33268,10149,MA,MA,PPL,10,osm
+2535534,Sidi Bou Othmane,سيدي بو عثمان,Sidi Bou Othmane,31.90226,-7.94169,10025,MA,MA,PPLA3,07,osm
+10955770,Cap Negro II,,Cabo Negro,35.6597,-5.28525,10000,MA,MA,PPL,01,
+2565267,Mhamid,,Mhamid,29.82,-5.72,10000,MA,MA,PPL,08,
+2530641,Tameslouht,تمصلوحت,Tameslouht,31.49472,-8.09772,9929,MA,MA,PPL,07,osm
+2530923,Talsint,تالسينت,Talsint,32.53599,-3.44143,9914,MA,MA,PPL,02,osm
+2548769,Foum Zguid,فم زكيد,Foum Zguid,30.08792,-6.87119,9812,MA,MA,PPL,09,osm
+2527925,Tinajdad,,Tinajdad,31.50764,-5.03293,9764,MA,MA,PPL,08,
+2558424,Al M’aziz,,Al M’aziz,33.67073,-6.31613,9719,MA,MA,PPL,04,
+2527641,Tirhassaline,,Tirhassaline,32.7822,-5.65282,9620,MA,MA,PPL,05,
+2537802,Saidia,السعيدية,Saidia,35.08195,-2.22897,9587,MA,MA,PPL,02,osm
+12718674,Oulad M'Rah,,Oulad M'Rah,32.91284,-7.26438,9496,MA,MA,PPL,06,
+12718660,Ighram Laalam,,Ighram Laalam,32.52378,-6.14977,9467,MA,MA,PPL,05,
+12718673,Sidi Ali Ben Hamdouche,,Sidi Ali Ben Hamdouche,33.28665,-8.32664,9463,MA,MA,PPL,06,
+2528981,Tendrara,تندرارة,Tendrara,33.04964,-2.00018,9289,MA,MA,PPL,02,osm
+2555610,Bni Tajjit,,Bni Tajjit,32.28928,-3.46616,9269,MA,MA,PPL,02,
+2550016,Al Qbab,,Al Qbab,32.74121,-5.51994,9112,MA,MA,PPL,05,
+2532434,Souq Al Had Bradya,,Souq Al Had Bradya,32.44928,-6.5366,9080,MA,MA,PPL,05,
+2526710,Tounfit,تونفيت,Tounfit,32.46945,-5.24512,8920,MA,MA,PPL,08,osm
+12718685,Zirara,زيرارة,Zirara,34.24099,-5.7424,8735,MA,MA,PPL,04,osm
+11024543,Bouderbala,,Bouderbala,33.81672,-5.27583,8634,MA,MA,PPL,03,
+2548320,Had Kourt,حد كرت,Had Kourt,34.61588,-5.7404,8564,MA,MA,PPLA3,04,osm
+2550749,Laouamra,العوامرة,Laouamra,35.06938,-6.08835,8509,MA,MA,PPL,01,osm
+2541068,Oualidia,الوليديـة,Oualidia,32.73372,-9.03059,8484,MA,MA,PPL,06,osm
+2538392,Ras Kebdana,,Ras Kebdana,35.14069,-2.42455,8277,MA,MA,PPL,02,
+2541833,Moulay Bousselham,مولاي بو سلهام,Moulay Bousselham,34.88158,-6.29455,8050,MA,MA,PPL,04,osm
+2542616,Melqa el Ouidane,,Melqa el Ouidane,34.55964,-3.02321,8009,MA,MA,PPL,02,
+2529245,Taznakht,,Taznakht,30.57836,-7.20341,7950,MA,MA,PPLA3,08,
+10965229,Souq Khmis Aït Yadine,,Souq Khmis Aït Yadine,33.9716,-6.01689,7908,MA,MA,PPL,04,
+2526104,Zayda,,Zayda,32.81921,-4.96099,7831,MA,MA,PPL,08,
+12718659,Kahf Nssar,,Kahf Nssar,32.91361,-5.95873,7821,MA,MA,PPL,05,
+10640347,Sidi Ahmed,,Sidi Ahmed,32.20807,-8.49141,7781,MA,MA,PPL,07,
+2560940,Ain Aicha,عين عائشة,Ain Aicha,34.46103,-4.69026,7759,MA,MA,PPL,03,osm
+2554389,Boulemane,بولمان,Boulemane,33.36376,-4.72896,7757,MA,MA,PPLA3,03,osm
+2531171,Talat-n-Ya’qoub,,Talat-n-Ya’qoub,30.98893,-8.18927,7702,MA,MA,PPL,07,
+2558667,Akka,أقا,Akka,29.38914,-8.2549,7501,MA,MA,PPL,09,osm
+2557310,Aghbala,اغبالة,Aghbala,32.48076,-5.64295,7365,MA,MA,PPL,05,osm
+2531014,Taliouine,تالوين,Taliouine,30.52917,-7.91262,7345,MA,MA,PPLA3,09,osm
+2529777,Tarhjicht,,Tarhjicht,29.05827,-9.42877,7316,MA,MA,PPL,10,
+2551836,Douar el Caïd el Gueddari,,Douar el Caïd el Gueddari,34.42121,-6.09099,7254,MA,MA,PPL,04,
+2548196,Haj Kaddour,,Haj Kaddour,33.82507,-5.42501,7106,MA,MA,PPL,03,
+2552975,Ben Qarrich,,Ben Qarrich,35.5109,-5.42047,7021,MA,MA,PPL,01,
+2548676,Ghafsaï,غفساي,Ghafsaï,34.62799,-4.91266,6946,MA,MA,PPL,03,osm
+12718689,Fam El Hisn,,Fam El Hisn,29.01889,-8.89111,6937,MA,MA,PPL,09,
+2531877,Tafraout,,Tafraout,29.72449,-8.9747,6928,MA,MA,PPLA3,09,
+2544367,Khémis Sahel,الساحل,Khemis Sahel,35.25344,-6.0796,6816,MA,MA,PPL,01,osm
+8556357,Sidi Bouzid,سيدي بوزيد,Sidi Bouzid,33.23151,-8.55062,6741,MA,MA,PPL,06,osm
+9645313,Gueltat Zemmour,,Gueltat Zemmour,25.14276,-12.37168,6740,MA,MA,PPL,11,
+2536047,Sidi Bibi,سيدي بيبي,Sidi Bibi,30.23784,-9.52877,6728,MA,MA,PPL,09,osm
+11471726,Oulad El Rhadabne,,Oulad El Rhadabne,33.17521,-8.60592,6717,MA,MA,PPL,06,
+2532405,Souq at Tlata des Loulad,,Souq at Tlata des Loulad,32.99471,-7.11982,6614,MA,MA,PPL,06,
+2556377,Bab Taza,باب تازة,Bab Taza,35.06166,-5.19828,6448,MA,MA,PPLA3,01,osm
+2545346,Itzer,,Itzer,32.8783,-5.0515,6438,MA,MA,PPLA3,05,
+2532440,Foum Jam’a,,Foum Jam’a,31.96166,-6.98354,6359,MA,MA,PPL,05,
+11025160,Lemhaya,,Lemhaya,33.97716,-5.251,6354,MA,MA,PPL,03,
+11131249,Souk El Arba Des Aït Baha,,Souk El Arba Des Aït Baha,30.06958,-9.15465,6189,MA,MA,PPL,09,
+2548601,Gourrama,كرامة,Gourrama,32.34016,-4.07349,6129,MA,MA,PPL,08,osm
+10933159,Had Oulad Zbair,,Had Oulad Zbair,34.2894,-4.31952,6099,MA,MA,PPL,03,
+2532918,Sidi Smai’il,,Sidi Smai’il,32.82461,-8.51122,6076,MA,MA,PPL,06,
+2461677,Tichla,,Tichla,21.5837,-14.97222,6036,MA,EH,PPL,,
+2540953,Aït Ouaoumana,,Aït Ouaoumana,32.71029,-5.8063,6001,MA,MA,PPL,05,
+2544815,Kariat Arkmane,قرية أركمان,Kariat Arkmane,35.1071,-2.74693,5882,MA,MA,PPLA3,02,osm
+2532646,Skhour Rehamna,,Skhour Rehamna,32.48244,-7.91533,5835,MA,MA,PPL,07,
+2463161,Aousserd,أوسرد,Aousserd,22.554,-14.33,5832,MA,MA,PPL,12,geonames
+2558766,Ajdir,أجدير,Ajdir,35.19537,-3.91166,5802,MA,MA,PPL,01,geonames
+2541843,Moulay Bou ’azza,مولاي بوعزة,Moulay Bou ’azza,33.22576,-6.19807,5753,MA,MA,PPL,05,osm
+2550681,Arbaa Laaounate,,Arbaa Laaounate,32.7434,-8.19501,5661,MA,MA,PPL,06,
+2531453,Dhar Souk,,Dhar Souk,34.65197,-4.27921,5658,MA,MA,PPL,03,
+2529923,Tarfaya,طرفاية,Tarfaya,27.9392,-12.92604,5615,MA,MA,PPL,11,osm
+2554130,Boureït,,Boureït,34.99827,-4.89297,5434,MA,MA,PPL,01,
+2560813,Aïn Leuh,عين اللوح,Aïn Leuh,33.28984,-5.33863,5426,MA,MA,PPL,03,osm
+2549150,Tlet El Hanchane,,Tlet El Hanchane,31.52207,-9.43594,5421,MA,MA,PPL,07,
+2552407,Debdou,دبدو,Debdou,33.98228,-3.04263,5416,MA,MA,PPLA3,02,osm
+10984425,Ain Karma,عين كرمة,Ain Karma,34.00664,-5.6157,5372,MA,MA,PPL,03,osm
+2536383,Sidi Allal Tazi,سيدي علال التازي,Sidi Allal Tazi,34.52257,-6.32197,5317,MA,MA,PPL,04,osm
+2568012,Taghazout,تغازوت,Taghazout,30.544,-9.707,5233,MA,MA,PPLA3,09,osm
+2527055,Tiztoutine,تيزضوضين,Tiztoutine,34.97159,-3.15273,5224,MA,MA,PPLA3,02,osm
+10869575,Bellaa,,Bellaa,30.05145,-9.56162,5186,MA,MA,PPL,09,
+12718677,Lakhsas,الاخصاص,Lakhsas,29.36606,-9.75082,5163,MA,MA,PPL,10,osm
+2558398,Alnif,النيف,Alnif,31.11411,-5.17154,5162,MA,MA,PPLA3,08,osm
+2534496,Sidi Jaber,سيدي جابر,Sidi Jaber,32.38952,-6.42095,5100,MA,MA,PPLA3,05,osm
+12718667,Al Machouar - Stinia,المشور الستينية,Al Machouar - Stinia,33.88543,-5.55574,5092,MA,MA,PPL,03,osm
+2542167,Mirleft,مير لفت,Mirleft,29.57829,-10.03245,5092,MA,MA,PPL,10,osm
+2541779,Moulay Yacoub,مولاي يعقوب,Moulay Yacoub,34.08793,-5.18171,5036,MA,MA,PPLA3,03,osm
+2462879,El Aargub,,El Aargub,23.60882,-15.86726,5020,MA,EH,PPL,,
+2563695,Beni Chiker,,Had Beni Chiker,35.27652,-3.01452,4852,MA,MA,PPL,02,
+2525874,Zoumi,,Zoumi,34.80321,-5.34458,4846,MA,MA,PPLA3,01,
+2558633,Aknoul,اكنول,Aknoul,34.65371,-3.86754,4807,MA,MA,PPLA3,03,osm
+2550800,El Akarta,,El Akarta,32.67372,-9.09502,4770,MA,MA,PPL,07,
+2532628,Skoura,سكورة,Skoura,31.06262,-6.5525,4730,MA,MA,PPLA3,08,osm
+2526230,Talmest,,Talmest,31.81224,-9.3379,4726,MA,MA,PPL,07,
+2463112,Bir Gandouz,بئر كندوز,Bir Ganduz,21.60336,-16.45018,4625,MA,EH,PPL,00,geonames
+13645465,Bir Ghandouz,,Bir Ghandouz,22.05318,-16.74836,4625,MA,EH,PPLA2,,
+11708554,Sidi ’Addi,,Sidi ’Addi,33.3957,-5.33341,4604,MA,MA,PPL,03,
+2546029,Imouzzer des Marmoucha,,Imouzzer des Marmoucha,33.47024,-4.29571,4600,MA,MA,PPL,03,
+2553654,Bzou,بزو,Bzou,32.09171,-7.04786,4588,MA,MA,PPLA3,05,osm
+2596457,Zerarda,,Zerarda,33.97,-4.38,4573,MA,MA,PPL,03,
+2526371,Za Bougrine,,Za Bougrine,33.85524,-4.48813,4490,MA,MA,PPL,03,
+2545797,Ighram,,Ighram,30.08928,-8.46023,4485,MA,MA,PPL,09,
+2543602,Lalla Takerkoust,للا تكركوست,Lake Lalla Takerkoust,31.36179,-8.1336,4455,MA,MA,PPL,07,geonames
+2540468,Oukaïmden,,Oukaïmedene,31.20603,-7.86089,4440,MA,MA,PPL,07,
+13608327,Amgala,أمگالة,Amgala,26.28729,-11.13547,4398,MA,EH,PPL,,geonames
+12747061,Idmine,إضمين,Idmine,30.61064,-9.34996,4279,MA,MA,PPL,09,osm
+2549076,Ezzhiliga,ازحيليكة,Ezzhiliga,33.3,-6.53,4211,MA,MA,PPLA3,04,osm
+2550079,Jebha,لجبهة,Jebha,35.20549,-4.66524,4102,MA,MA,PPL,01,osm
+10970845,Sebt Jahjouh,جحجوح,Sebt Jahjouh,33.71581,-5.6687,4094,MA,MA,PPL,03,osm
+12718666,Kantina,,Kantina,33.73177,-5.57938,3976,MA,MA,PPL,03,
+12718672,Ras El Aïn,,Ras El Aïn,32.98253,-7.3975,3946,MA,MA,PPL,06,
+2544656,Dar Kebdani,دار الكبداني,Dar Kebdani,35.12237,-3.33148,3939,MA,MA,PPL,02,osm
+2528103,Timahdit,تيمحضيت,Timahdit,33.23654,-5.05954,3895,MA,MA,PPL,03,osm
+2529069,Tiddas,تيداس,Tiddas,33.56955,-6.26594,3843,MA,MA,PPL,04,osm
+2549224,Essekhinat,,Essekhinat,34.03394,-4.86151,3831,MA,MA,PPL,03,
+2560894,Ain Dourij,,Ain Dourij,34.61427,-5.28733,3706,MA,MA,PPL,01,
+8559176,Douar Sidi Bouafif,,Douar Sidi Bouafif,35.17244,-3.86732,3658,MA,MA,PPL,01,
+2555182,Bou’nane,,Bou’nane,32.03738,-3.04978,3635,MA,MA,PPL,02,
+2569052,Smimou,سميمو,Smimou,31.21014,-9.70863,3505,MA,MA,PPLA3,07,osm
+2531927,Tafersit,تفرسيت,Tafersit,35.00857,-3.54088,3425,MA,MA,PPL,02,osm
+2526780,Touissit,تويسيت,Touissit,34.47857,-1.7685,3425,MA,MA,PPL,02,osm
+2541830,Moulay Brahim,مولاي إبراهيم,Moulay Brahim,31.28785,-7.9683,3401,MA,MA,PPLA3,07,osm
+2557391,Arbaoua,,Arbaoua,34.90239,-5.94871,3330,MA,MA,PPLA3,04,
+12718658,Had Bouhssoussen,,Had Bouhssoussen,33.14861,-6.07972,3329,MA,MA,PPL,05,
+11734596,Aït Lous,,Aït Lous,31.10772,-9.34422,3228,MA,MA,PPL,07,
+8739768,Mosquée,,Mosquée,34.80622,-2.41297,3150,MA,MA,PPL,02,
+13608370,Oum Dreyga,أم ادريكة‎,Oum Dreyga,24.10094,-13.2965,3146,MA,EH,PPL,,geonames
+2461667,Tifariti,تفاريتي,Tifariti,26.1579,-10.55889,3000,MA,EH,PPL,00,geonames
+11708832,Souq al Had,,Souq al Had,33.2923,-5.49078,2973,MA,MA,PPL,03,
+2560792,Ain Erreggada,,Ain Erreggada,34.93348,-2.22995,2941,MA,MA,PPL,02,
+12718682,Kassita,كسيطة,Kassita,34.89025,-3.72657,2921,MA,MA,PPL,02,osm
+12718671,Méchouar de Casablanca,,Méchouar de Casablanca,33.57918,-7.60615,2888,MA,MA,PPL,06,
+11092343,Korouna,,Korouna,35.11628,-3.64215,2822,MA,MA,PPL,02,
+2560891,Aïn Jemaa,عين الجمعة,Aïn Jemaa,34.0259,-5.79355,2717,MA,MA,PPL,03,osm
+12718692,Issaguen,اساكن,Issaguen,34.91875,-4.56889,2701,MA,MA,PPL,01,osm
+2548420,Guisser,ڭيسر,Guisser,32.76645,-7.49818,2698,MA,MA,PPLA3,06,osm
+2543231,Madagh,مداغ,Madagh,35.01032,-2.33701,2677,MA,MA,PPLA3,02,osm
+2542957,Matmata,مطماطة,Matmata,34.09914,-4.55219,2620,MA,MA,PPLA3,03,osm
+2463090,Bu Craa,,Bu Craa,26.35389,-12.78389,2519,MA,EH,PPL,00,
+2557290,Aghbalou N Sardane,,Aghbalou N Sardane,32.67953,-5.29854,2511,MA,MA,PPL,08,
+2532626,Skoura,,Skoura,33.51935,-4.54351,2479,MA,MA,PPL,03,
+2539320,Oulad Saïd,اولاد سعيد,Oulad Saïd,32.96789,-7.81277,2407,MA,MA,PPL,06,osm
+13608365,Haouza,حوزة,Haouza,27.10048,-11.00976,2400,MA,EH,PPL,,geonames
+2549102,Bni Hadifa,بني حذيفة,Bni Hadifa,35.02251,-4.14009,2370,MA,MA,PPL,01,osm
+11071896,Imlili,إمليلي,Imlili,23.23441,-16.08041,2269,MA,MA,PPL,12,geonames
+2544510,Kerrouchen,كروشن,Kerrouchen,32.79639,-5.3188,2241,MA,MA,PPLA3,05,osm
+2537824,Aç-çahrij,,Aç-çahrij,31.80489,-7.14638,2195,MA,MA,PPL,07,
+2526999,Tlet Sidi Bouguedra,,Tlet Sidi Bouguedra,32.25507,-8.98067,2127,MA,MA,PPL,07,
+12534572,Ait Khallouf,,Ait Khallouf,31.26179,-9.27259,2109,MA,MA,PPL,07,
+2526092,Boubker,,Boubker,34.47369,-1.7295,2068,MA,MA,PPL,02,
+10795660,Sebt El Maarif,,Sebt El Maarif,32.50149,-8.57453,2002,MA,MA,PPL,06,
+2530814,Tamassint,تاماسينت,Tamassint,35.07203,-3.96118,1999,MA,MA,PPL,01,osm
+2527002,Tlet Ighoud,,Tlet Ighoud,31.86011,-8.88214,1993,MA,MA,PPL,07,
+12718670,Oulad Amrane,أولاد عمران,Oulad Amrane,32.39313,-8.51993,1964,MA,MA,PPL,06,osm
+11707723,Tighza,,Tighza,33.18739,-5.62436,1950,MA,MA,PPL,05,
+2548363,Had Abdallah Rhiat,,Had Abdallah Rhiat,31.51914,-7.83691,1857,MA,MA,PPL,07,
+2531366,Taïneste,,Taïneste,34.55415,-4.13582,1850,MA,MA,PPL,03,
+8504646,Foum el Oued,فم الواد,Foum el Oued,27.17357,-13.39886,1844,MA,EH,PPL,,geonames
+2527100,Tizi Ouzli,,Tizi Ouzli,34.76214,-3.79582,1831,MA,MA,PPL,03,
+2542024,Mokrisset,,Mokrisset,34.92997,-5.35293,1784,MA,MA,PPL,01,
+2462900,Dchira,,Dchira,27.02611,-13.05194,1745,MA,EH,PPL,00,
+9645312,Akhfennir,أخفنير,Akhfennir,28.09455,-12.05157,1583,MA,MA,PPL,11,osm
+2558768,Ajdir,أجدير,Ajdir,34.74347,-3.97582,1577,MA,MA,PPLA3,03,osm
+13608358,Tah,طاح,Tah,27.67311,-12.9576,1516,MA,MA,PPL,,osm
+2542380,Messeïed,,Messeïed,28.01506,-10.81399,1501,MA,MA,PPL,10,
+2552886,Dar Chaoui,دار شاوي,Dar Chaoui,35.5377,-5.71742,1401,MA,MA,PPLA3,01,osm
+2540704,Oued el Himer,,Oued el Himer,34.44897,-1.9006,1399,MA,MA,PPL,02,
+2550278,Had Hrara,,Had Hrara,32.44072,-9.13344,1387,MA,MA,PPL,07,
+2532410,Tafetachte,,Tafetachte,31.58341,-9.2561,1387,MA,MA,PPL,07,
+13608373,Jraifia,الجريفية,Jraifia,24.91219,-14.82118,1385,MA,EH,PPL,,geonames
+2538755,Ounagha,اوناغا,Ounagha,31.53203,-9.54944,1347,MA,MA,PPL,07,osm
+8556210,Aghmat,,Aghmat,31.4225,-7.80111,1319,MA,MA,PPL,07,
+2557595,Aoufous,أوفوس,Aoufous,31.68,-4.17,1295,MA,MA,PPLA3,08,osm
+12718679,M'Nabha,,M'Nabha,31.86662,-8.18195,1276,MA,MA,PPL,07,
+2553694,Brikcha,,Brikcha,34.96732,-5.57295,1274,MA,MA,PPLA3,01,
+2463113,Bir Anzarane,,Bir Anzarane,23.89,-14.53603,1273,MA,EH,PPL,,
+2526981,Tmourghout,,Tmourghout,33.9065,-4.02696,1250,MA,MA,PPL,03,
+12718665,N'zalat,,N'zalat,34.12301,-5.43068,1249,MA,MA,PPL,03,
+2596325,Jebel Tiskaouine,,Jebel Tiskaouine,31.02722,-5.11643,1197,MA,MA,PPL,08,
+12718691,Karia,,Karia,35.4665,-5.79715,1191,MA,MA,PPL,01,
+2541460,Naima,نا,Naima,34.60277,-2.21764,1188,MA,MA,PPL,02,osm
+2462188,Lemsid,لمسيد,Lemsid,26.53914,-13.83876,1161,MA,EH,PPL,00,geonames
+2526968,Tnine Sidi Lyamani,,Tnine Sidi Lyamani,35.36929,-5.97242,1155,MA,MA,PPL,01,
+9645564,Daoura,دورة,Daoura,27.46175,-12.99412,1108,MA,EH,PPL,,geonames
+2562202,Abadou,أبادو,Abadou,31.57917,-7.31308,0,MA,MA,PPLA3,07,osm
+2561978,Adar,أدار,Adar,30.14111,-8.37221,0,MA,MA,PPLA3,09,osm
+2561957,Adassil,أداسيل,Adassil,31.10783,-8.49083,0,MA,MA,PPLA3,07,osm
+2561614,Agadir Melloul,أڭادير ملول,Agadir Melloul,30.22492,-7.79601,0,MA,MA,PPLA3,09,osm
+2558415,Almis Marmoucha,ألميس مرموشة,Almis Marmoucha,33.32,-4.18,0,MA,MA,PPLA3,03,osm
+2558337,Amalou,أملو,Amalou,30.19153,-8.74873,0,MA,MA,PPLA3,09,osm
+2558122,Amersid,,Amersid,32.74983,-4.47063,0,MA,MA,PPLA3,05,
+2558118,Amerzgane,أمرزڭان,Amerzgane,31.0437,-7.21037,0,MA,MA,PPLA3,08,osm
+2557995,Amouguer,,Amouguer,32.27491,-4.93535,0,MA,MA,PPLA3,08,
+2559366,Anergui,أنرڭي,Anergui,32.06914,-5.93961,0,MA,MA,PPLA3,05,osm
+2557415,Arazane,,Arazane,30.50346,-8.60637,0,MA,MA,PPLA3,09,
+2557347,Argana,أرڭانة,Argana,30.7825,-9.11968,0,MA,MA,PPLA3,09,osm
+2556991,Assads,أصادص,Assads,30.23,-8.86,0,MA,MA,PPLA3,09,osm
+2556835,Assoul,أسول,Assoul,31.95286,-5.20812,0,MA,MA,PPLA3,08,osm
+2556629,Azgour,أزڭور,Azgour,31.13753,-8.31488,0,MA,MA,PPLA3,07,osm
+2555372,Bigoudine,بيڭودين,Bigoudine,30.72376,-9.21097,0,MA,MA,PPLA3,09,osm
+2555262,Bouabout,بوعبوط,Bouabout,31.26554,-9.17865,0,MA,MA,PPLA3,07,osm
+2571909,Bouarouss,بوعروس,Bouarouss,34.36,-4.81,0,MA,MA,PPLA3,03,osm
+2554997,Boudinar,بودينار,Boudinar,35.15601,-3.62358,0,MA,MA,PPLA3,02,osm
+2572146,Boukhalef,بوخالف,Boukhalef,35.7328,-5.89954,0,MA,MA,PPLA3,01,osm
+2554409,Boulaouane,بولعوان,Boulaouane,32.85995,-8.05555,0,MA,MA,PPLA3,06,osm
+2552306,Derdara,,Derdara,35.11041,-5.29015,0,MA,MA,PPLA3,01,
+2548869,Fezna,,Fezna,31.52921,-4.45562,0,MA,MA,PPLA3,08,
+2548855,Fifi,فيفي,Fifi,34.94873,-5.24798,0,MA,MA,PPLA3,01,osm
+2548713,Galaz,غالاز,Galaz,34.54424,-4.80355,0,MA,MA,PPLA3,03,osm
+2538099,Ghouazi,اغوازي,Ghouazi,34.47737,-5.30235,0,MA,MA,PPLA3,03,osm
+2548503,Guenfouda,كنفوذة,Guenfouda,34.48361,-2.04562,0,MA,MA,PPLA3,02,osm
+2547782,Hassi Berkane,حاسي بركان,Hassi Berkane,34.83898,-2.86699,0,MA,MA,PPLA3,02,osm
+2546627,Iguidi,,Iguidi,30.83826,-7.90294,0,MA,MA,PPLA3,09,
+2546081,Imider,إميضر,Imider,31.37324,-5.79384,0,MA,MA,PPLA3,08,osm
+2546187,Imilchil,إملشيل,Imilchil,32.15309,-5.62453,0,MA,MA,PPLA3,08,osm
+2545436,Isseksi,إسكسي,Isseksi,32.22981,-6.27661,0,MA,MA,PPLA3,05,osm
+2565241,Mellila,مليلة,Mellila,33.38,-7.14,0,MA,MA,PPLA3,06,osm
+2541840,Moulay Bouchta,مولاي بوشتى,Moulay Bouchta,34.48922,-5.13023,0,MA,MA,PPLA3,03,osm
+2550684,Ouaoula,واولى,Ouaoula,31.87,-6.75,0,MA,MA,PPLA3,05,osm
+2540554,Ouijjane,ويجّان,Ouijjane,29.62777,-9.53959,0,MA,MA,PPLA3,09,osm
+2539936,Oulad Daoud,أولاد داود,Oulad Daoud,34.40438,-4.69342,0,MA,MA,PPLA3,03,osm
+2538652,Ourtzagh,أورتزاغ,Ourtzagh,34.53477,-4.96878,0,MA,MA,PPLA3,03,osm
+2538385,Ratba,الرتبة,Ratba,34.77772,-4.93989,0,MA,MA,PPLA3,03,osm
+2538332,Reggada,الرقادة,Reggada,29.58016,-9.70086,0,MA,MA,PPLA3,09,geonames
+2552531,Riah,رياح,Riah,33.15122,-7.37504,0,MA,MA,PPLA3,06,osm
+2538028,Rislane,رسلان,Rislane,34.76987,-2.46034,0,MA,MA,PPLA3,02,osm
+2537965,Rouadi,,Rouadi,35.14119,-4.13631,0,MA,MA,PPLA3,01,
+2526159,Saddina,صدينة,Saddina,35.6141,-5.45191,0,MA,MA,PPLA3,01,osm
+2532542,Senada,زنادة,Senada,35.07452,-4.21583,0,MA,MA,PPLA3,01,osm
+2537320,Sidi Abdallah,سيدي عبد الله,Sidi Abdallah,32.53544,-7.83243,0,MA,MA,PPLA3,07,osm
+8504942,Sidi Abdallah Ghiat,سيدي عبدالله غي,Sidi Abdallah Ghiat,31.523,-7.833,0,MA,MA,PPLA3,07,osm
+2536370,Sidi Amar,,Sidi Amar,32.94987,-5.83225,0,MA,MA,PPLA3,05,
+2535477,Sidi Bousber,,Sidi Bousber,34.56283,-5.36208,0,MA,MA,PPLA3,04,
+2534572,Sidi Harazem,,Sidi Harazem,34.02733,-4.88343,0,MA,MA,PPLA3,03,
+2534315,Sidi Lamine,,Sidi Lamine,32.90783,-6.05069,0,MA,MA,PPLA3,05,
+2533339,Sidi Moussa,,Sidi Moussa,32.27209,-7.20095,0,MA,MA,PPLA3,07,
+2533158,Sidi Redouane,,Sidi Redouane,34.68692,-5.44538,0,MA,MA,PPLA3,04,
+2532797,Sidi Yahya Ou Saad,سيدي يحيى,Sidi Yahya Ou Saad,32.68011,-5.57738,0,MA,MA,PPLA3,05,osm
+2532270,Tabant,تبانت,Tabant,31.65255,-6.41049,0,MA,MA,PPLA3,05,osm
+2532214,Tabia,تابية,Tabia,32.03009,-6.79985,0,MA,MA,PPLA3,05,osm
+2532230,Tabia,,Tabia,30.03462,-8.87688,0,MA,MA,PPLA3,09,
+2532195,Tabouda,,Tabouda,34.71923,-5.1403,0,MA,MA,PPLA3,03,
+2531994,Tadrart,تدرارت,Tadrart,30.77477,-9.45951,0,MA,MA,PPLA3,09,osm
+2530906,Talzemt,تالزمت,Talzemt,33.59,-4.19,0,MA,MA,PPLA3,03,osm
+2530516,Tamorot,تمروت,Tamorot,34.93632,-4.7794,0,MA,MA,PPLA3,01,osm
+2568400,Tamri,التامري,Tamri,30.69602,-9.82972,0,MA,MA,PPLA3,09,osm
+2530395,Tanalt,تنالت,Tanalt,29.77548,-9.16796,0,MA,MA,PPLA3,09,osm
+2530188,Taouima,,Taouima,35.1299,-2.9279,0,MA,MA,PPLA3,02,
+2530160,Taouloukoult,تاولوكلت,Taouloukoult,31.22218,-9.07943,0,MA,MA,PPLA3,07,osm
+2530148,Taounza,تاونزا,Taounza,32.09368,-6.60607,0,MA,MA,PPLA3,05,osm
+2529621,Tarsouat,تارسوات,Tarsouat,29.58153,-9.02664,0,MA,MA,PPLA3,09,osm
+2529286,Tazarine,تازارين,Tazarine,33.88307,-4.1862,0,MA,MA,PPLA3,03,osm
+2529251,Tazemmourt,تزمورت,Tazemmourt,30.40854,-8.829,0,MA,MA,PPLA3,09,osm
+2529133,Tazouta,تازوطة,Tazouta,33.66991,-4.63392,0,MA,MA,PPLA3,03,osm
+2529019,Telouet,تلوات,Telouet,31.28925,-7.23789,0,MA,MA,PPLA3,08,osm
+2529656,Teroual,,Teroual,34.67452,-5.27331,0,MA,MA,PPLA3,04,
+2565258,Tidili Mesfioua,تيدلي مسفيوة,Tidili Mesfioua,31.46586,-7.61199,0,MA,MA,PPLA3,07,osm
+2528650,Tifni,تفني,Tifni,31.62777,-6.94093,0,MA,MA,PPLA3,05,osm
+2528258,Tilmi,تلمي,Tilmi,31.81794,-5.76812,0,MA,MA,PPLA3,08,osm
+2528130,Timezgadiouine,تمزڭدوين,Timezgadiouine,30.88366,-9.04548,0,MA,MA,PPLA3,07,osm
+2528129,Timezgana,,Timezgana,34.58,-4.73,0,MA,MA,PPLA3,03,
+2528013,Timoulilt,,Timoulilt,32.20368,-6.4666,0,MA,MA,PPLA3,05,
+2527749,Tiouli,,Tiouli,34.36679,-1.83705,0,MA,MA,PPLA3,02,
+2527695,Tiout,تيوت,Tiout,30.3887,-8.69572,0,MA,MA,PPLA3,09,osm
+2571059,Tizgane,,Tizgane,35.41211,-5.06836,0,MA,MA,PPLA3,01,
+2527184,Tizguine,تيزڭين,Tizguine,31.22836,-8.31611,0,MA,MA,PPLA3,07,osm
+2526924,Touama,التوامة,Touama,31.53501,-7.49291,0,MA,MA,PPLA3,07,osm
+10916940,Zawit Al Bour,,Zawit Al Bour,30.67478,-8.17424,0,MA,MA,PPLA2,09,
+2548313,Zerkten,زرقطن,Zerkten,31.4447,-7.39224,0,MA,MA,PPLA3,07,osm
+2525973,Zinat,زينة,Zinat,35.43,-5.4,0,MA,MA,PPLA3,01,osm

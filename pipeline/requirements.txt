@@ -1,0 +1,10 @@
+# Pipeline de données SismoAtlas (Python 3)
+pandas>=2.2
+numpy>=1.26
+openpyxl>=3.1
+xlrd>=2.0          # lecture du catalogue Peláez (.xls)
+geopandas>=1.0
+pyogrio>=0.10      # lecture/écriture des shapefiles
+shapely>=2.0
+pyproj>=3.6
+requests>=2.31
