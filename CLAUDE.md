@@ -150,7 +150,9 @@ Objectif : une personne qui vient de sentir une secousse comprend tout en 5 seco
 - **Traduire les données brutes en langage simple** :
   - coordonnées → « à 18 km au nord d'Al Hoceima » (ville la plus proche, liste locale de villes)
   - heure UTC → « il y a 12 minutes », heure du Maroc via le fuseau IANA **`Africa/Casablanca`**
-    (ne jamais coder le décalage en dur : il change pendant le Ramadan)
+    (ne jamais coder le décalage en dur : le Maroc est revenu à GMT/UTC+0 le 20/09/2026, décret
+    n° 2.26.530, après le régime GMT+1 de 2018 ; les bases de fuseaux anciennes — ex. Node 24, tz 2025b —
+    l'ignorent encore : le rendu serveur affiche l'heure UTC, le navigateur calcule l'heure du Maroc)
   - profondeur → « peu profond / profond » avec info-bulle
 - **Échelle de couleurs** :
   - < 3 vert « généralement non ressenti »

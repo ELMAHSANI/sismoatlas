@@ -1,0 +1,646 @@
+---
+/**
+ * Section d'accueil « Séismes au Maroc » (CLAUDE.md §5.1).
+ * Rendu serveur à partir de public/data/live/30d.geojson (régénéré toutes les 15 min puis redéployé) :
+ * la page affiche immédiatement le dernier séisme et la liste, même sans JavaScript ni carte.
+ * Ensuite, le script prend le relais : onglets, filtre, temps relatif, direct EMSC, carte chargée en différé.
+ */
+import fs from 'node:fs';
+import path from 'node:path';
+import MagnitudeScale from '../MagnitudeScale.astro';
+import type { Lang } from '../../i18n/config';
+import { localizePath, useTranslations, type UIKey } from '../../i18n/utils';
+import fr from '../../i18n/fr.json';
+import ar from '../../i18n/ar.json';
+import en from '../../i18n/en.json';
+import {
+  DEFAULT_MIN_MAG, EXCLUDE_CANARIES, formatMag, fromFeature, itemHtml, latestHtml, utcTime, type Quake,
+} from '../../lib/quake';
+// Rendu serveur : heures en UTC (voir src/lib/quake.ts) ; le navigateur affiche ensuite l'heure du Maroc.
+const localTime = utcTime;
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const tt = (key: string, vars?: Record<string, string | number>) => t(key as UIKey, vars);
+const pageUrl = new URL(localizePath(lang), Astro.site).href;
+
+// Données au moment de la construction du site
+let quakes: Quake[] = [];
+let generated: string | undefined;
+try {
+  const file = path.join(process.cwd(), 'public', 'data', 'live', '30d.geojson');
+  const fc = JSON.parse(fs.readFileSync(file, 'utf-8'));
+  generated = fc.metadata?.generated;
+  quakes = fc.features.map(fromFeature).filter((q: Quake) => !(EXCLUDE_CANARIES && q.canaries));
+  quakes.sort((a, b) => b.time.localeCompare(a.time));
+} catch {
+  quakes = [];
+}
+const visible = quakes.filter((q) => q.mag != null && q.mag >= DEFAULT_MIN_MAG);
+const latest = visible[0];
+const LIVE_COUNT = 20;
+const list = visible.slice(0, LIVE_COUNT);
+const ref = generated ? new Date(generated).getTime() : Date.now();
+const last24 = visible.filter((q) => ref - new Date(q.time).getTime() <= 86_400_000);
+const max24 = last24.reduce<Quake | undefined>((m, q) => (!m || (q.mag ?? 0) > (m.mag ?? 0) ? q : m), undefined);
+
+// Textes transmis au navigateur (uniquement ceux dont le script a besoin)
+const dicts = { fr, ar, en } as Record<Lang, Record<string, string>>;
+const prefixes = ['live.', 'quake.', 'place.', 'dir.', 'scale.', 'home.live.'];
+const dict = Object.fromEntries(
+  Object.keys(fr)
+    .filter((k) => prefixes.some((p) => k.startsWith(p)))
+    .map((k) => [k, dicts[lang][k] ?? (fr as Record<string, string>)[k]]),
+);
+const tabs = [
+  { id: 'live', key: 'home.live.tab.live' },
+  { id: '24h', key: 'home.live.tab.24h' },
+  { id: '7d', key: 'home.live.tab.7d' },
+  { id: '30d', key: 'home.live.tab.30d' },
+] as const;
+const minLabel = formatMag(DEFAULT_MIN_MAG, lang);
+---
+
+<section
+  class="live"
+  aria-labelledby="live-title"
+  data-live
+  data-lang={lang}
+  data-page-url={pageUrl}
+  data-min-mag={DEFAULT_MIN_MAG}
+  data-live-count={LIVE_COUNT}
+>
+  <div class="container">
+    <header class="live-header">
+      <div>
+        <h1 id="live-title">{t('home.live.title')}</h1>
+        <p class="lead">{t('home.live.intro')}</p>
+      </div>
+      <p class="live-status js-only" data-status="connecting" role="status">
+        <span class="live-dot" aria-hidden="true"></span><span data-status-text>{t('live.status.connecting')}</span>
+      </p>
+    </header>
+
+    <div class="live-top">
+      <div id="live-latest" aria-live="polite">
+        {latest ? <Fragment set:html={latestHtml(latest, lang, tt, pageUrl, false)} /> : <p class="placeholder">{t('live.unavailable')}</p>}
+      </div>
+      <dl class="live-stats">
+        <div>
+          <dt>{t('live.stats.count')}</dt>
+          <dd data-stat="count">{last24.length}</dd>
+          <dd class="hint" data-stat="countHint">{t('home.live.tab.24h')} · {t('live.stats.countHint', { min: minLabel })}</dd>
+        </div>
+        <div>
+          <dt>{t('live.stats.max')}</dt>
+          <dd data-stat="max">{max24 ? formatMag(max24.mag, lang) : '—'}</dd>
+          <dd class="hint" data-stat="maxHint">{max24 ? localTime(max24.time, lang) : ''}</dd>
+        </div>
+        <div>
+          <dt>{t('live.stats.last')}</dt>
+          <dd data-stat="last">{latest ? localTime(latest.time, lang, false) : '—'}</dd>
+          <dd class="hint" data-stat="lastHint">{latest ? localTime(latest.time, lang) : ''}</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="live-controls js-only">
+      <div class="tabs" role="tablist" aria-label={t('live.list.title')}>
+        {
+          tabs.map((tab, i) => (
+            <button type="button" role="tab" class="tab" data-tab={tab.id} aria-selected={i === 0 ? 'true' : 'false'} aria-controls="live-list">
+              {tab.id === 'live' && <span class="live-dot" aria-hidden="true" />}
+              {t(tab.key)}
+            </button>
+          ))
+        }
+      </div>
+      <button type="button" class="toggle-all" aria-pressed="false" data-toggle-all>
+        {t('live.filter.showAll')}
+      </button>
+    </div>
+
+    <div class="live-grid">
+      <div class="live-map-wrap">
+        <div id="live-map" class="live-map" role="region" aria-label={t('live.map.label')}>
+          <button type="button" class="map-load js-only" data-map-load>{t('live.map.load')}</button>
+        </div>
+      </div>
+      <div class="live-list-wrap">
+        <h2 class="visually-hidden">{t('live.list.title')}</h2>
+        <p class="list-hint muted" data-list-hint>{t('live.list.liveHint', { n: LIVE_COUNT })}</p>
+        <ol id="live-list" class="live-list" role="tabpanel">
+          <Fragment set:html={list.map((q) => itemHtml(q, lang, tt, pageUrl, false)).join('')} />
+        </ol>
+        {list.length === 0 && <p class="placeholder" data-empty>{t('live.list.empty', { min: minLabel })}</p>}
+      </div>
+    </div>
+
+    <div class="live-footer">
+      <MagnitudeScale lang={lang} />
+      <div class="live-notes">
+        <p>{t('live.usual')}</p>
+        <p class="muted small">
+          <strong>{t('footer.disclaimer')}</strong>
+          {generated && <span data-updated> {t('live.updated', { time: localTime(generated, lang) })}.</span>}
+        </p>
+        <p class="muted small">EMSC-CSEM · USGS · GeoNames · © OpenStreetMap</p>
+      </div>
+    </div>
+  </div>
+  <script type="application/json" id="live-i18n" set:html={JSON.stringify(dict)} />
+</section>
+
+<script>
+  import { initLive } from '../../scripts/live';
+  initLive();
+</script>
+
+<style is:global>
+  .live {
+    padding-block: var(--space-6);
+    background:
+      radial-gradient(60rem 20rem at 85% -10%, color-mix(in srgb, var(--color-primary) 12%, transparent), transparent),
+      var(--color-surface);
+    border-block-end: 1px solid var(--color-border);
+  }
+  [dir='rtl'] .live {
+    background:
+      radial-gradient(60rem 20rem at 15% -10%, color-mix(in srgb, var(--color-primary) 12%, transparent), transparent),
+      var(--color-surface);
+  }
+  .no-js .js-only {
+    display: none !important;
+  }
+  .live-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+  .live-header h1 {
+    margin-block-end: var(--space-2);
+  }
+  .live .lead {
+    font-size: var(--fs-lg);
+    color: var(--color-text-muted);
+    max-width: var(--container-text);
+    margin-block-end: var(--space-4);
+  }
+  .live-status {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0;
+    padding: var(--space-1) var(--space-3);
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--color-text-muted);
+  }
+  .live-dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--color-text-muted);
+    flex: none;
+  }
+  .live-status[data-status='live'] .live-dot,
+  .tab[data-tab='live'] .live-dot {
+    background: var(--mag-4);
+    animation: live-pulse 1.8s ease-in-out infinite;
+  }
+  .live-status[data-status='offline'] .live-dot {
+    background: var(--mag-3);
+  }
+  @keyframes live-pulse {
+    50% {
+      opacity: 0.35;
+    }
+  }
+
+  /* Bandeau « le plus récent » + chiffres clés */
+  .live-top {
+    display: grid;
+    gap: var(--space-4);
+  }
+  @media (min-width: 64rem) {
+    .live-top {
+      grid-template-columns: 1fr 18rem;
+      align-items: start;
+    }
+  }
+  .latest-card {
+    display: flex;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    border-radius: var(--radius-lg);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-inline-start: 6px solid var(--c);
+    box-shadow: var(--shadow);
+    height: 100%;
+  }
+  .latest-mag {
+    flex: none;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    width: 4.75rem;
+    height: 4.75rem;
+    border-radius: 50%;
+    background: var(--c);
+    color: var(--on);
+    font-variant-numeric: tabular-nums;
+  }
+  .latest-mag-value {
+    font-size: 1.9rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .latest-mag-type {
+    font-size: 0.7rem;
+    font-weight: 600;
+    opacity: 0.85;
+  }
+  .latest-body {
+    min-width: 0;
+  }
+  .latest-kicker {
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-accent);
+  }
+  [lang='ar'] .latest-kicker {
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .latest-place {
+    margin: var(--space-1) 0;
+    font-size: var(--fs-xl);
+  }
+  .latest-hint,
+  .latest-meta,
+  .latest-effect {
+    margin: 0 0 var(--space-1);
+    font-size: var(--fs-sm);
+    color: var(--color-text-muted);
+  }
+  .latest-effect {
+    color: var(--color-text);
+    font-weight: 500;
+  }
+  .latest-effect .dot {
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: var(--c);
+    margin-inline-end: var(--space-2);
+  }
+  .has-help {
+    text-decoration: underline dotted;
+    text-underline-offset: 0.2em;
+    cursor: help;
+  }
+  .live-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2);
+    margin: 0;
+  }
+  @media (min-width: 64rem) {
+    .live-stats {
+      grid-template-columns: 1fr;
+    }
+  }
+  .live-stats > div {
+    padding: var(--space-3);
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+  }
+  .live-stats dt {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+  .live-stats dd {
+    margin: 0;
+  }
+  .live-stats [data-stat='count'],
+  .live-stats [data-stat='max'],
+  .live-stats [data-stat='last'] {
+    font-size: var(--fs-xl);
+    font-weight: 750;
+    font-variant-numeric: tabular-nums;
+  }
+  /* « il y a 12 minutes », « avant-hier » : plus long qu'un nombre, sans césure */
+  .live-stats [data-stat='last'] {
+    font-size: var(--fs-base);
+    line-height: 1.3;
+    hyphens: none;
+  }
+  .live-stats .hint {
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+  }
+
+  /* Boutons d'action */
+  .q-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-block-start: var(--space-3);
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 2.5rem;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .btn:hover {
+    border-color: var(--color-primary);
+  }
+  .btn--felt {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+  .btn--share svg {
+    color: #25d366;
+  }
+  .btn--link {
+    background: transparent;
+  }
+
+  /* Onglets et filtre */
+  .live-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-block: var(--space-5) var(--space-3);
+  }
+  .live .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    padding: 3px;
+    border-radius: 999px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+  }
+  .live .tab {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--color-text-muted);
+    font: inherit;
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .live .tab[aria-selected='true'] {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+  .live .tab[aria-selected='true'] .live-dot {
+    background: var(--color-on-primary);
+  }
+  .toggle-all {
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    color: var(--color-text);
+    font: inherit;
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .toggle-all[aria-pressed='true'] {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  /* Carte + liste */
+  .live-grid {
+    display: grid;
+    gap: var(--space-4);
+    margin-block-start: var(--space-4);
+  }
+  .js-only + .live-grid,
+  .live-controls + .live-grid {
+    margin-block-start: 0;
+  }
+  @media (min-width: 64rem) {
+    .live-grid {
+      grid-template-columns: 1.6fr 1fr;
+      align-items: start;
+    }
+  }
+  .live-map {
+    position: relative;
+    height: min(60vh, 26rem);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    background:
+      repeating-linear-gradient(45deg, transparent 0 12px, color-mix(in srgb, var(--color-border) 35%, transparent) 12px 13px),
+      var(--color-bg);
+    display: grid;
+    place-items: center;
+  }
+  @media (min-width: 64rem) {
+    .live-map {
+      height: 32rem;
+    }
+  }
+  .map-load {
+    padding: var(--space-3) var(--space-5);
+    border-radius: var(--radius);
+    border: 1px solid var(--color-primary);
+    background: var(--color-bg);
+    color: var(--color-primary);
+    font: inherit;
+    font-weight: 650;
+    cursor: pointer;
+  }
+  .live-list-wrap {
+    min-width: 0;
+  }
+  .list-hint {
+    margin: 0 0 var(--space-2);
+    font-size: var(--fs-sm);
+  }
+  .live-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-2);
+  }
+  @media (min-width: 64rem) {
+    .live-list {
+      max-height: 30rem;
+      overflow-y: auto;
+      padding-inline-end: var(--space-1);
+    }
+  }
+  .q details {
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-inline-start: 4px solid var(--c);
+  }
+  .q details[open] {
+    border-color: var(--c);
+  }
+  .q summary {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-3);
+    cursor: pointer;
+    list-style: none;
+  }
+  .q summary::-webkit-details-marker {
+    display: none;
+  }
+  .q-mag {
+    flex: none;
+    display: inline-grid;
+    place-items: center;
+    min-width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    background: var(--c);
+    color: var(--on);
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+  .q-mag--sm {
+    min-width: 2rem;
+    height: 2rem;
+    font-size: 0.85rem;
+  }
+  .q-body {
+    display: grid;
+    min-width: 0;
+  }
+  .q-place {
+    font-weight: 600;
+  }
+  .q-meta {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+  .q-details {
+    padding: 0 var(--space-3) var(--space-3);
+    font-size: var(--fs-sm);
+  }
+  .q-details p {
+    margin: 0;
+  }
+  .q--new details {
+    animation: q-flash 2.5s ease-out;
+  }
+  @keyframes q-flash {
+    from {
+      background: color-mix(in srgb, var(--c) 30%, var(--color-bg));
+    }
+  }
+  .badge--new {
+    background: var(--mag-4);
+    color: var(--mag-4-on);
+    border-color: transparent;
+  }
+
+  .live-footer {
+    display: grid;
+    gap: var(--space-4);
+    margin-block-start: var(--space-5);
+  }
+  @media (min-width: 64rem) {
+    .live-footer {
+      grid-template-columns: 20rem 1fr;
+      align-items: start;
+    }
+  }
+  .live-notes p {
+    margin-block-end: var(--space-2);
+  }
+  .small {
+    font-size: var(--fs-sm);
+  }
+
+  /* Carte MapLibre */
+  .live-map .maplibregl-map {
+    position: absolute;
+    inset: 0;
+    font-family: var(--font-sans);
+  }
+  .map-popup p {
+    margin: 0;
+  }
+  .map-popup-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: 650;
+    font-size: var(--fs-sm);
+    margin-block-end: var(--space-1) !important;
+  }
+  .map-popup-meta {
+    font-size: 0.78rem;
+    color: #47566d;
+  }
+  .maplibregl-popup-content {
+    padding: var(--space-3);
+    border-radius: var(--radius);
+    color: #0e1a2e;
+  }
+  .quake-pulse-wrap {
+    pointer-events: none;
+  }
+  .quake-pulse {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 3px solid var(--color-accent);
+    animation: quake-pulse 1.6s ease-out infinite;
+    pointer-events: none;
+  }
+  @keyframes quake-pulse {
+    from {
+      transform: scale(0.8);
+      opacity: 1;
+    }
+    to {
+      transform: scale(3);
+      opacity: 0;
+    }
+  }
+</style>

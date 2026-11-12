@@ -4,7 +4,7 @@
  *  1. Séismes au Maroc (phase 4)   2. Grands séismes dans le monde (phase 5)   3. Derniers articles et rapports
  */
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import MagnitudeScale from '../../components/MagnitudeScale.astro';
+import LiveSection from '../../components/live/LiveSection.astro';
 import EntryCard from '../../components/EntryCard.astro';
 import type { Lang } from '../../i18n/config';
 import { langStaticPaths, routePath, useTranslations, type UIKey } from '../../i18n/utils';
@@ -15,7 +15,6 @@ export const getStaticPaths = langStaticPaths;
 const lang = Astro.params.lang as Lang;
 const t = useTranslations(lang);
 
-const liveTabs: UIKey[] = ['home.live.tab.live', 'home.live.tab.24h', 'home.live.tab.7d', 'home.live.tab.30d'];
 const worldTabs: UIKey[] = ['home.world.tab.7d', 'home.world.tab.30d', 'home.world.tab.1y'];
 
 // Derniers contenus, toutes rubriques éditoriales confondues.
@@ -29,20 +28,7 @@ const latest = (
 ---
 
 <BaseLayout lang={lang}>
-  <section class="home-live" aria-labelledby="live-title">
-    <div class="container">
-      <h1 id="live-title">{t('home.live.title')}</h1>
-      <p class="lead">{t('home.live.intro')}</p>
-      <div class="tabs" role="presentation">
-        {liveTabs.map((key, i) => <span class:list={['tab', { active: i === 0 }]}>{t(key)}</span>)}
-      </div>
-      <div class="live-grid">
-        <div class="placeholder live-map">{t('common.placeholder')}</div>
-        <MagnitudeScale lang={lang} />
-      </div>
-      <p class="muted live-note">{t('footer.disclaimer')}</p>
-    </div>
-  </section>
+  <LiveSection lang={lang} />
 
   <section class="container home-section" aria-labelledby="world-title">
     <h2 id="world-title">{t('home.world.title')}</h2>
@@ -79,26 +65,6 @@ const latest = (
 </BaseLayout>
 
 <style>
-  .home-live {
-    padding-block: var(--space-6);
-    background:
-      radial-gradient(60rem 20rem at 85% -10%, color-mix(in srgb, var(--color-primary) 14%, transparent), transparent),
-      var(--color-surface);
-    border-block-end: 1px solid var(--color-border);
-  }
-  :global([dir='rtl']) .home-live {
-    background:
-      radial-gradient(60rem 20rem at 15% -10%, color-mix(in srgb, var(--color-primary) 14%, transparent), transparent),
-      var(--color-surface);
-  }
-  .home-live h1 {
-    margin-block-end: var(--space-2);
-  }
-  .lead {
-    font-size: var(--fs-lg);
-    color: var(--color-text-muted);
-    max-width: var(--container-text);
-  }
   .tabs {
     display: flex;
     flex-wrap: wrap;
@@ -118,26 +84,6 @@ const latest = (
     background: var(--color-primary);
     border-color: var(--color-primary);
     color: var(--color-on-primary);
-  }
-  .live-grid {
-    display: grid;
-    gap: var(--space-4);
-  }
-  @media (min-width: 64rem) {
-    .live-grid {
-      grid-template-columns: 1fr 20rem;
-      align-items: start;
-    }
-  }
-  .live-map {
-    min-height: 18rem;
-    display: grid;
-    place-items: center;
-    background: var(--color-bg);
-  }
-  .live-note {
-    margin: var(--space-4) 0 0;
-    font-size: var(--fs-sm);
   }
   .home-section {
     padding-block-start: var(--space-2);

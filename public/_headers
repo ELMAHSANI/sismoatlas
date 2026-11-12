@@ -1,0 +1,11 @@
+# En-têtes HTTP pour Cloudflare Pages (https://developers.cloudflare.com/pages/configuration/headers/)
+
+# Données en direct : régénérées toutes les 15 min — cache court
+/data/live/*
+  Cache-Control: public, max-age=60, must-revalidate
+/data/world/*
+  Cache-Control: public, max-age=300, must-revalidate
+
+# Fichiers versionnés par Astro (nom contenant une empreinte) : cache long
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
