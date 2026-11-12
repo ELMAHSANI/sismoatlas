@@ -1,18 +1,58 @@
 /**
- * Carte MapLibre de la section « Séismes au Maroc » (chargée à la demande, jamais au premier affichage).
+ * Carte MapLibre des séismes, partagée par les sections « Séismes au Maroc » et « Grands séismes dans le monde ».
+ * Chargée à la demande (jamais au premier affichage) ; la bibliothèque n'est téléchargée qu'une fois.
  * - fond de carte OpenFreeMap (gratuit, sans clé), clair ou sombre selon le thème ;
- * - frontières et noms de pays du fond de carte masqués : on dessine la couche des limites du Maroc
- *   fournie (territoire complet, CLAUDE.md §4.1) ;
- * - cercles colorés selon l'échelle de magnitude, séisme le plus récent mis en évidence.
+ * - frontières et noms de pays du fond de carte masqués, couche des limites du Maroc fournie
+ *   (territoire complet, CLAUDE.md §4.1) ;
+ * - cercles colorés selon la magnitude (Maroc) ou le niveau d'impact PAGER (monde).
  */
 import * as maplibregl from 'maplibre-gl';
 import type { GeoJSONSource, Map as MLMap, MapLayerMouseEvent } from 'maplibre-gl';
 import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
 // Feuille de style chargée avec la carte (et non dans le <head> de la page : elle bloquerait l'affichage en 3G)
 import cssUrl from 'maplibre-gl/dist/maplibre-gl.css?url';
-import { popupHtml, type Lang, type Quake, type T } from '../lib/quake';
+import type { Lang, T } from '../lib/quake';
 
 maplibregl.setWorkerUrl(workerUrl);
+
+const STYLES = {
+  light: 'https://tiles.openfreemap.org/styles/positron',
+  dark: 'https://tiles.openfreemap.org/styles/dark',
+};
+export const MOROCCO_BOUNDS: [[number, number], [number, number]] = [
+  [-17.5, 20.5],
+  [0.5, 37.5],
+];
+export const WORLD_BOUNDS: [[number, number], [number, number]] = [
+  [-180, -58],
+  [180, 72],
+];
+
+export interface MapPoint {
+  id: string;
+  lat: number;
+  lon: number;
+  mag: number | null;
+  alert?: string | null;
+  tsunami?: boolean;
+}
+
+export interface QuakeMap {
+  setData(points: MapPoint[], latestId?: string): void;
+  select(id: string): void;
+}
+
+export interface QuakeMapOptions {
+  lang: Lang;
+  t: T;
+  label: string;
+  bounds: [[number, number], [number, number]];
+  colorMode: 'mag' | 'pager';
+  popup: (id: string) => string;
+  onSelect: (id: string) => void;
+  maxZoom?: number;
+  selectZoom?: number;
+}
 
 function loadCss(href: string): Promise<void> {
   if (document.querySelector(`link[href="${href}"]`)) return Promise.resolve();
@@ -23,26 +63,6 @@ function loadCss(href: string): Promise<void> {
     link.onload = link.onerror = () => resolve();
     document.head.append(link);
   });
-}
-
-const STYLES = {
-  light: 'https://tiles.openfreemap.org/styles/positron',
-  dark: 'https://tiles.openfreemap.org/styles/dark',
-};
-const BOUNDS: [[number, number], [number, number]] = [
-  [-17.5, 20.5],
-  [0.5, 37.5],
-];
-
-export interface LiveMap {
-  setData(quakes: Quake[], latestId?: string): void;
-  select(id: string): void;
-}
-
-interface Options {
-  lang: Lang;
-  t: T;
-  onSelect: (id: string) => void;
 }
 
 const css = (name: string) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -68,27 +88,42 @@ function adaptBaseStyle(map: MLMap, lang: Lang): void {
   }
 }
 
-export async function createLiveMap(container: HTMLElement, { lang, t, onSelect }: Options): Promise<LiveMap> {
-  let data: Quake[] = [];
+function circleColor(mode: 'mag' | 'pager'): any {
+  if (mode === 'pager') {
+    return [
+      'match', ['get', 'alert'],
+      'green', css('--pager-green'),
+      'yellow', css('--pager-yellow'),
+      'orange', css('--pager-orange'),
+      'red', css('--pager-red'),
+      css('--pager-none'),
+    ];
+  }
+  return ['step', ['get', 'mag'], css('--mag-1'), 3, css('--mag-2'), 4, css('--mag-3'), 5, css('--mag-4'), 6, css('--mag-5')];
+}
+
+export async function createQuakeMap(container: HTMLElement, o: QuakeMapOptions): Promise<QuakeMap> {
+  let points: MapPoint[] = [];
   let latest: string | undefined;
-  const byId = new Map<string, Quake>();
+  const byId = new Map<string, MapPoint>();
   await loadCss(cssUrl);
 
   const map = new maplibregl.Map({
     container,
     style: isDark() ? STYLES.dark : STYLES.light,
-    bounds: BOUNDS,
+    bounds: o.bounds,
     fitBoundsOptions: { padding: 12 },
-    maxZoom: 11,
-    attributionControl: { compact: true, customAttribution: 'EMSC-CSEM · USGS' },
+    maxZoom: o.maxZoom ?? 11,
+    renderWorldCopies: false,
+    attributionControl: { compact: true, customAttribution: o.colorMode === 'pager' ? 'USGS' : 'EMSC-CSEM · USGS' },
     cooperativeGestures: true,
     locale: {
-      'CooperativeGesturesHandler.WindowsHelpText': t('live.map.coopWindows'),
-      'CooperativeGesturesHandler.MacHelpText': t('live.map.coopMac'),
-      'CooperativeGesturesHandler.MobileHelpText': t('live.map.coopMobile'),
+      'CooperativeGesturesHandler.WindowsHelpText': o.t('live.map.coopWindows'),
+      'CooperativeGesturesHandler.MacHelpText': o.t('live.map.coopMac'),
+      'CooperativeGesturesHandler.MobileHelpText': o.t('live.map.coopMobile'),
     },
   });
-  map.getCanvas().setAttribute('aria-label', t('live.map.label'));
+  map.getCanvas().setAttribute('aria-label', o.label);
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }), document.documentElement.dir === 'rtl' ? 'top-left' : 'top-right');
 
   // L'animation est sur un élément enfant : MapLibre positionne le marqueur avec `transform`
@@ -101,37 +136,41 @@ export async function createLiveMap(container: HTMLElement, { lang, t, onSelect 
 
   const toGeoJSON = () => ({
     type: 'FeatureCollection' as const,
-    features: data.map((q) => ({
+    features: points.map((p) => ({
       type: 'Feature' as const,
-      geometry: { type: 'Point' as const, coordinates: [q.lon, q.lat] },
-      properties: { id: q.id, mag: q.mag ?? 0, latest: q.id === latest },
+      geometry: { type: 'Point' as const, coordinates: [p.lon, p.lat] },
+      properties: { id: p.id, mag: p.mag ?? 0, alert: p.alert ?? 'none', tsunami: !!p.tsunami, latest: p.id === latest },
     })),
   });
 
   function addOverlays(): void {
-    adaptBaseStyle(map, lang);
+    adaptBaseStyle(map, o.lang);
     if (!map.getSource('morocco')) {
       map.addSource('morocco', { type: 'geojson', data: '/data/sig/morocco.geojson' });
       map.addLayer({
         id: 'morocco-line',
         type: 'line',
         source: 'morocco',
-        paint: { 'line-color': css('--color-primary'), 'line-width': ['interpolate', ['linear'], ['zoom'], 4, 1, 8, 2], 'line-opacity': 0.8 },
+        paint: { 'line-color': css('--color-primary'), 'line-width': ['interpolate', ['linear'], ['zoom'], 1, 0.6, 4, 1, 8, 2], 'line-opacity': 0.8 },
       });
     }
     if (!map.getSource('quakes')) {
       map.addSource('quakes', { type: 'geojson', data: toGeoJSON() });
+      const radius =
+        o.colorMode === 'pager'
+          ? ['interpolate', ['linear'], ['get', 'mag'], 6, 4, 7, 8, 8, 14, 9, 20]
+          : ['interpolate', ['linear'], ['get', 'mag'], 0, 3, 2.5, 5, 4, 9, 5, 13, 6, 18, 7, 24];
       map.addLayer({
         id: 'quakes',
         type: 'circle',
         source: 'quakes',
         layout: { 'circle-sort-key': ['get', 'mag'] },
         paint: {
-          'circle-radius': ['interpolate', ['linear'], ['get', 'mag'], 0, 3, 2.5, 5, 4, 9, 5, 13, 6, 18, 7, 24],
-          'circle-color': ['step', ['get', 'mag'], css('--mag-1'), 3, css('--mag-2'), 4, css('--mag-3'), 5, css('--mag-4'), 6, css('--mag-5')],
-          'circle-opacity': 0.85,
-          'circle-stroke-width': ['case', ['get', 'latest'], 3, 1],
-          'circle-stroke-color': ['case', ['get', 'latest'], css('--color-accent'), css('--color-bg')],
+          'circle-radius': radius as any,
+          'circle-color': circleColor(o.colorMode),
+          'circle-opacity': 0.88,
+          'circle-stroke-width': ['case', ['get', 'latest'], 3, ['get', 'tsunami'], 2, 1],
+          'circle-stroke-color': ['case', ['get', 'latest'], css('--color-accent'), ['get', 'tsunami'], css('--color-link'), css('--color-bg')],
         },
       });
     }
@@ -139,13 +178,13 @@ export async function createLiveMap(container: HTMLElement, { lang, t, onSelect 
 
   function refresh(): void {
     (map.getSource('quakes') as GeoJSONSource | undefined)?.setData(toGeoJSON());
-    const q = latest ? byId.get(latest) : undefined;
-    if (q && !reduceMotion) pulse.setLngLat([q.lon, q.lat]).addTo(map);
+    const p = latest ? byId.get(latest) : undefined;
+    if (p && !reduceMotion) pulse.setLngLat([p.lon, p.lat]).addTo(map);
     else pulse.remove();
   }
 
-  function showPopup(q: Quake): void {
-    popup.setLngLat([q.lon, q.lat]).setHTML(popupHtml(q, lang, t)).addTo(map);
+  function showPopup(p: MapPoint): void {
+    popup.setLngLat([p.lon, p.lat]).setHTML(o.popup(p.id)).addTo(map);
   }
 
   map.on('style.load', () => {
@@ -154,10 +193,10 @@ export async function createLiveMap(container: HTMLElement, { lang, t, onSelect 
   });
   map.on('click', 'quakes', (e: MapLayerMouseEvent) => {
     const id = e.features?.[0]?.properties?.id as string | undefined;
-    const q = id ? byId.get(id) : undefined;
-    if (q) {
-      showPopup(q);
-      onSelect(q.id);
+    const p = id ? byId.get(id) : undefined;
+    if (p) {
+      showPopup(p);
+      o.onSelect(p.id);
     }
   });
   map.on('mouseenter', 'quakes', () => (map.getCanvas().style.cursor = 'pointer'));
@@ -169,24 +208,24 @@ export async function createLiveMap(container: HTMLElement, { lang, t, onSelect 
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme);
 
   await new Promise<void>((resolve) => (map.loaded() ? resolve() : map.once('load', () => resolve())));
-  // Cadrage sur tout le territoire une fois la taille définitive du conteneur connue
+  // Cadrage une fois la taille définitive du conteneur connue
   map.resize();
-  map.fitBounds(BOUNDS, { padding: 12, animate: false });
+  map.fitBounds(o.bounds, { padding: 12, animate: false });
 
   return {
-    setData(quakes, latestId) {
-      data = quakes;
+    setData(next, latestId) {
+      points = next;
       latest = latestId;
       byId.clear();
-      for (const q of quakes) byId.set(q.id, q);
+      for (const p of next) byId.set(p.id, p);
       if (latestId && !byId.has(latestId)) latest = undefined;
       refresh();
     },
     select(id) {
-      const q = byId.get(id);
-      if (!q) return;
-      map.flyTo({ center: [q.lon, q.lat], zoom: Math.max(map.getZoom(), 7), duration: reduceMotion ? 0 : 900 });
-      showPopup(q);
+      const p = byId.get(id);
+      if (!p) return;
+      map.flyTo({ center: [p.lon, p.lat], zoom: Math.max(map.getZoom(), o.selectZoom ?? 7), duration: reduceMotion ? 0 : 900 });
+      showPopup(p);
     },
   };
 }

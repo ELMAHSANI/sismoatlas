@@ -8,9 +8,9 @@
  */
 import {
   DEFAULT_MIN_MAG, EXCLUDE_CANARIES, NEAR_MAJOR_MIN_POP, NEAR_MIN_POP, depthClass, formatMag, fromFeature, inCanaries,
-  itemHtml, latestHtml, localTime, makeT, nearestCity, relativeTime, type City, type Lang, type Quake, type T,
+  itemHtml, latestHtml, localTime, makeT, popupHtml, nearestCity, relativeTime, type City, type Lang, type Quake, type T,
 } from '../lib/quake';
-import type { LiveMap } from './live-map';
+import type { QuakeMap } from './quake-map';
 
 type Tab = 'live' | '24h' | '7d' | '30d';
 const WINDOW_MS: Record<Exclude<Tab, 'live'>, number> = { '24h': 86_400_000, '7d': 7 * 86_400_000, '30d': 30 * 86_400_000 };
@@ -50,7 +50,7 @@ export function initLive(): void {
     newIds: new Set<string>(),
     selected: new URLSearchParams(location.search).get('q'),
   };
-  let map: LiveMap | null = null;
+  let map: QuakeMap | null = null;
   let cities: City[] | null = null;
   let scrollPending = !!state.selected;
 
@@ -252,8 +252,19 @@ export function initLive(): void {
       els.mapBtn.textContent = t('live.map.loading');
     }
     try {
-      const { createLiveMap } = await import('./live-map');
-      map = await createLiveMap(els.mapEl, { lang, t, onSelect: (id) => openItem(id, false) });
+      const { createQuakeMap, MOROCCO_BOUNDS } = await import('./quake-map');
+      map = await createQuakeMap(els.mapEl, {
+        lang,
+        t,
+        label: t('live.map.label'),
+        bounds: MOROCCO_BOUNDS,
+        colorMode: 'mag',
+        popup: (id) => {
+          const q = state.quakes.get(id);
+          return q ? popupHtml(q, lang, t) : '';
+        },
+        onSelect: (id) => openItem(id, false),
+      });
       els.mapBtn?.remove();
       const items = current();
       map.setData(items, [...state.quakes.values()].filter(keep).sort((a, b) => b.time.localeCompare(a.time))[0]?.id);

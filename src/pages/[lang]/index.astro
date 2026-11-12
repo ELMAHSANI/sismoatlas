@@ -5,9 +5,10 @@
  */
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import LiveSection from '../../components/live/LiveSection.astro';
+import WorldSection from '../../components/world/WorldSection.astro';
 import EntryCard from '../../components/EntryCard.astro';
 import type { Lang } from '../../i18n/config';
-import { langStaticPaths, routePath, useTranslations, type UIKey } from '../../i18n/utils';
+import { langStaticPaths, routePath, useTranslations } from '../../i18n/utils';
 import { entrySlug, getByLang, type ArticleCollection } from '../../lib/content';
 import { SECTIONS } from '../../lib/sections';
 
@@ -15,7 +16,6 @@ export const getStaticPaths = langStaticPaths;
 const lang = Astro.params.lang as Lang;
 const t = useTranslations(lang);
 
-const worldTabs: UIKey[] = ['home.world.tab.7d', 'home.world.tab.30d', 'home.world.tab.1y'];
 
 // Derniers contenus, toutes rubriques éditoriales confondues.
 const latestFrom: ArticleCollection[] = ['reports', 'articles', 'earthquakes', 'understand', 'factchecks'];
@@ -30,14 +30,7 @@ const latest = (
 <BaseLayout lang={lang}>
   <LiveSection lang={lang} />
 
-  <section class="container home-section" aria-labelledby="world-title">
-    <h2 id="world-title">{t('home.world.title')}</h2>
-    <p class="muted">{t('home.world.intro')}</p>
-    <div class="tabs" role="presentation">
-      {worldTabs.map((key, i) => <span class:list={['tab', { active: i === 0 }]}>{t(key)}</span>)}
-    </div>
-    <div class="placeholder">{t('common.placeholder')}</div>
-  </section>
+  <WorldSection lang={lang} />
 
   <section class="container home-section" aria-labelledby="latest-title">
     <h2 id="latest-title">{t('home.latest.title')}</h2>

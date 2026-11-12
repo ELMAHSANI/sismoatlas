@@ -38,6 +38,13 @@
   --mag-4-on: #ffffff;
   --mag-5-on: #ffffff;
 
+  /* Niveaux d'impact PAGER (USGS) — section « monde » */
+  --pager-green: #2f9e44;
+  --pager-yellow: #f2c200;
+  --pager-orange: #f76707;
+  --pager-red: #c92a2a;
+  --pager-none: #868e96;
+
   /* Typographie */
   --font-sans: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-mono: ui-monospace, 'Cascadia Mono', 'Segoe UI Mono', Consolas, monospace;
@@ -102,6 +109,11 @@
     --mag-1-on: #06200b;
     --mag-4-on: #2a0606;
     --mag-5-on: #1c0730;
+    --pager-green: #51cf66;
+    --pager-yellow: #ffd43b;
+    --pager-orange: #ff922b;
+    --pager-red: #ff6b6b;
+    --pager-none: #868e96;
     --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 4px 12px rgb(0 0 0 / 0.25);
   }
 }
@@ -130,5 +142,10 @@
   --mag-1-on: #06200b;
   --mag-4-on: #2a0606;
   --mag-5-on: #1c0730;
+  --pager-green: #51cf66;
+  --pager-yellow: #ffd43b;
+  --pager-orange: #ff922b;
+  --pager-red: #ff6b6b;
+  --pager-none: #868e96;
   --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 4px 12px rgb(0 0 0 / 0.25);
 }

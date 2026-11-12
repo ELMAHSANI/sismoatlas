@@ -1,0 +1,308 @@
+---
+/**
+ * Section « Grands séismes dans le monde » (CLAUDE.md §5.2) : M ≥ 6, niveau PAGER, indicateur tsunami.
+ * Rendu serveur à partir de public/data/world/1y.geojson, puis onglets et carte côté navigateur.
+ */
+import fs from 'node:fs';
+import path from 'node:path';
+import { getCollection } from 'astro:content';
+import type { Lang } from '../../i18n/config';
+import { routePath, useTranslations, type UIKey } from '../../i18n/utils';
+import fr from '../../i18n/fr.json';
+import ar from '../../i18n/ar.json';
+import en from '../../i18n/en.json';
+import { utcTime } from '../../lib/quake';
+import { fromWorldFeature, worldItemHtml, type WorldQuake } from '../../lib/world';
+import { entrySlug } from '../../lib/content';
+import { SITE } from '../../site.config';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const tt = (key: string, vars?: Record<string, string | number>) => t(key as UIKey, vars);
+
+let quakes: WorldQuake[] = [];
+let generated: string | undefined;
+try {
+  const fc = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'public', 'data', 'world', '1y.geojson'), 'utf-8'));
+  generated = fc.metadata?.generated;
+  quakes = fc.features.map(fromWorldFeature).sort((a: WorldQuake, b: WorldQuake) => b.time.localeCompare(a.time));
+} catch {
+  quakes = [];
+}
+
+// Rapports et fiches liés à un séisme (champ eventIds), dans la langue de la page
+const reports: Record<string, string> = {};
+for (const [collection, route] of [['reports', 'reports'], ['earthquakes', 'majorEarthquakes']] as const) {
+  for (const e of await getCollection(collection)) {
+    if (e.data.lang !== lang || (e.data.draft && !SITE.showDrafts)) continue;
+    for (const id of e.data.eventIds) reports[id] ??= routePath(lang, route, entrySlug(e));
+  }
+}
+for (const q of quakes) if (reports[q.id]) q.report = reports[q.id];
+
+const ref = generated ? new Date(generated).getTime() : Date.now();
+const week = quakes.filter((q) => ref - new Date(q.time).getTime() <= 7 * 86_400_000);
+
+const dicts = { fr, ar, en } as Record<Lang, Record<string, string>>;
+const prefixes = ['world.', 'quake.', 'live.map.', 'home.world.'];
+const dict = Object.fromEntries(
+  Object.keys(fr)
+    .filter((k) => prefixes.some((p) => k.startsWith(p)))
+    .map((k) => [k, dicts[lang][k] ?? (fr as Record<string, string>)[k]]),
+);
+const tabs = [
+  { id: '7d', key: 'home.world.tab.7d' },
+  { id: '30d', key: 'home.world.tab.30d' },
+  { id: '1y', key: 'home.world.tab.1y' },
+] as const;
+const levels = ['red', 'orange', 'yellow', 'green', 'none'] as const;
+---
+
+<section class="world" aria-labelledby="world-title" data-world data-lang={lang}>
+  <div class="container">
+    <h2 id="world-title">{t('home.world.title')}</h2>
+    <p class="muted">{t('home.world.intro')}</p>
+
+    <div class="world-controls">
+      <div class="tabs js-only" role="tablist" aria-label={t('world.list.title')}>
+        {
+          tabs.map((tab, i) => (
+            <button type="button" role="tab" class="tab" data-tab={tab.id} aria-selected={i === 0 ? 'true' : 'false'} aria-controls="world-list">
+              {t(tab.key)}
+            </button>
+          ))
+        }
+      </div>
+      <p class="world-count muted" data-world-count>{t('world.count', { n: week.length })}</p>
+    </div>
+
+    <div class="world-grid">
+      <div class="live-map world-map" id="world-map" role="region" aria-label={t('world.map.label')}>
+        <button type="button" class="map-load js-only" data-map-load>{t('live.map.load')}</button>
+      </div>
+      <div>
+        <h3 class="visually-hidden">{t('world.list.title')}</h3>
+        <ol id="world-list" class="world-list" role="tabpanel">
+          <Fragment set:html={week.map((q) => worldItemHtml(q, lang, tt, false)).join('')} />
+          {week.length === 0 && <li class="placeholder">{t('world.list.empty')}</li>}
+        </ol>
+      </div>
+    </div>
+
+    <div class="world-legend">
+      <p class="world-legend-title">{t('world.pager.title')}</p>
+      <ul>
+        {levels.map((l) => <li style={`--p:var(--pager-${l})`}><span class="pager-dot" aria-hidden="true" />{t(`world.pager.${l}` as UIKey)}</li>)}
+      </ul>
+      <p class="muted small">{t('world.pager.help')}</p>
+      <p class="muted small">{t('world.tsunami.help')}</p>
+      {generated && <p class="muted small" data-world-updated>{t('world.updated', { time: utcTime(generated, lang) })}</p>}
+    </div>
+  </div>
+  <script type="application/json" id="world-i18n" set:html={JSON.stringify(dict)} />
+  <script type="application/json" id="world-reports" set:html={JSON.stringify(reports)} />
+</section>
+
+<script>
+  import { initWorld } from '../../scripts/world';
+  initWorld();
+</script>
+
+<style is:global>
+  .world {
+    padding-block: var(--space-7) var(--space-4);
+  }
+  .world h2 {
+    margin-block: 0 var(--space-2);
+  }
+  .world-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-block: var(--space-4);
+  }
+  .world .tabs {
+    display: flex;
+    gap: var(--space-1);
+    padding: 3px;
+    border-radius: 999px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+  .world .tab {
+    padding: var(--space-2) var(--space-4);
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--color-text-muted);
+    font: inherit;
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .world .tab[aria-selected='true'] {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+  .world-count {
+    margin: 0;
+    font-size: var(--fs-sm);
+  }
+  .world-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+  @media (min-width: 64rem) {
+    .world-grid {
+      grid-template-columns: 1.6fr 1fr;
+      align-items: start;
+    }
+  }
+  .world-map {
+    height: min(50vh, 22rem);
+  }
+  @media (min-width: 64rem) {
+    .world-map {
+      height: 28rem;
+    }
+  }
+  .world-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-2);
+  }
+  @media (min-width: 64rem) {
+    .world-list {
+      max-height: 28rem;
+      overflow-y: auto;
+      padding-inline-end: var(--space-1);
+    }
+  }
+  .wq {
+    display: flex;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+    border-inline-start: 4px solid var(--p);
+    background: var(--color-bg);
+    cursor: pointer;
+  }
+  .wq[aria-current='true'] {
+    border-color: var(--p);
+    box-shadow: var(--shadow);
+  }
+  .wq-mag {
+    flex: none;
+    display: inline-grid;
+    place-items: center;
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    background: var(--mag-5);
+    color: var(--mag-5-on);
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+  .wq-body {
+    min-width: 0;
+  }
+  .wq-body p {
+    margin: 0;
+  }
+  .wq-title {
+    font-weight: 650;
+  }
+  .wq-sub,
+  .wq-meta {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+  .wq-sub {
+    overflow-wrap: anywhere;
+  }
+  .wq-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-block-start: var(--space-2) !important;
+  }
+  .pager,
+  .tsunami {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: 0.1rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    cursor: help;
+  }
+  .pager {
+    border-color: color-mix(in srgb, var(--p) 55%, transparent);
+  }
+  .pager-dot {
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: var(--p);
+    flex: none;
+  }
+  .pager--green {
+    --p: var(--pager-green);
+  }
+  .pager--yellow {
+    --p: var(--pager-yellow);
+  }
+  .pager--orange {
+    --p: var(--pager-orange);
+  }
+  .pager--red {
+    --p: var(--pager-red);
+  }
+  .pager--none {
+    --p: var(--pager-none);
+  }
+  .tsunami {
+    color: var(--color-link);
+    border-color: color-mix(in srgb, var(--color-link) 45%, transparent);
+  }
+  .world-legend {
+    margin-block-start: var(--space-4);
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+  }
+  .world-legend-title {
+    font-weight: 650;
+    margin-block-end: var(--space-2);
+  }
+  .world-legend ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-3);
+    font-size: var(--fs-sm);
+  }
+  .world-legend li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+  .world-legend p {
+    margin-block-end: var(--space-2);
+  }
+</style>

@@ -30,6 +30,11 @@ const articleSchema = z.object({
   references: z.array(reference).default([]),
   license: z.literal('CC BY 4.0').default('CC BY 4.0'),
   draft: z.boolean().default(false),
+  /**
+   * Identifiants des séismes traités (facultatif, en plus de la section 5.5) : « usgs:us7000kufc »,
+   * « emsc:20230908_0000250 ». Permet de relier un séisme de la carte à son rapport ou à sa fiche.
+   */
+  eventIds: z.array(z.string()).default([]),
 });
 
 const articleCollection = (dir: string) =>
