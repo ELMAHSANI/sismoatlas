@@ -9,34 +9,63 @@ category: "major-earthquake"
 tags:
   - "Agadir"
   - "Souss"
-references: []
+references:
+  - citation: "Peláez J. A., Chourak M., Tadili B. A., Aït Brahim L., Hamdache M., López Casado C., Martínez Solares J. M. (2007). A Catalog of Main Moroccan Earthquakes from 1045 to 2005. Seismological Research Letters 78(6), 614–621."
+    doi: "10.1785/gssrl.78.6.614"
+  - citation: "Storchak D. A. et al. (2013). Public Release of the ISC–GEM Global Instrumental Earthquake Catalogue (1900–2009). Seismological Research Letters 84(5), 810–815."
+    doi: "10.1785/0220130034"
+  - citation: "U.S. Geological Survey, ANSS ComCat — M 5.9, 29/02/1960 (ISC-GEM) (iscgem878424)."
+    url: "https://earthquake.usgs.gov/earthquakes/eventpage/iscgem878424"
+  - citation: "Styron R., Pagani M. (2020). The GEM Global Active Faults Database. Earthquake Spectra 36(1_suppl), 160–180."
+    doi: "10.1177/8755293020944182"
 license: "CC BY 4.0"
 draft: true
+eventIds:
+  - "usgs:iscgem878424"
 ---
+import EventParams from '../../../components/quake/EventParams.astro';
+import EventMap from '../../../components/quake/EventMap.astro';
+import FocalMechanisms from '../../../components/quake/FocalMechanisms.astro';
+import AftershockChart from '../../../components/quake/AftershockChart.astro';
+import FigureTodo from '../../../components/FigureTodo.astro';
+
+
 ## 1. Résumé
 
-[À COMPLÉTER : résumé grand public (5 lignes), paramètres sourcés : date, heure UTC, magnitude et type, profondeur, agence]
+[À COMPLÉTER : résumé grand public en 5 lignes, bilan humain sourcé ; expliquer qu'une magnitude modérée a pu causer une catastrophe]
+
+<EventParams event="agadir-1960" shock="1960" />
 
 ## 2. Contexte tectonique
 
-[À COMPLÉTER : contexte tectonique régional, failles impliquées, références]
+[À COMPLÉTER : contexte de la région d'Agadir (Anti-Atlas / Haut Atlas occidental, failles côtières) ; références]
+
+<FigureTodo>Carte de localisation et contexte structural de la région d'Agadir (source à citer)</FigureTodo>
 
 ## 3. Carte interactive
 
-[À COMPLÉTER : carte intégrée : épicentre, répliques, failles (composant prévu en phase 6)]
+<EventMap event="agadir-1960" />
 
 ## 4. Mécanisme au foyer
 
-[À COMPLÉTER : mécanisme au foyer (solution publiée, agence, référence)]
+<FocalMechanisms event="agadir-1960" shock="1960" />
+
+[À COMPLÉTER : mécanisme : aucune solution USGS ; citer les études publiées s'il en existe]
+
+<FigureTodo>Mécanisme au foyer publié dans la littérature, s'il existe (source à citer)</FigureTodo>
 
 ## 5. Séquence de répliques
 
-[À COMPLÉTER : séquence de répliques et loi d'Omori (données téléchargées, pas le catalogue déclusterisé)]
+<AftershockChart event="agadir-1960" shock="1960" days={60} />
+
+[À COMPLÉTER : répliques : aucune donnée dans les catalogues en ligne ; citer les témoignages et études historiques si disponibles]
 
 ## 6. Intensités et dégâts
 
-[À COMPLÉTER : intensité maximale (échelle), bilan humain et matériel avec sources]
+[À COMPLÉTER : intensité maximale (le catalogue de référence indique X EMS-98 — à confirmer), quartiers détruits, bilan humain sourcé]
+
+<FigureTodo>Photo historique ou carte des destructions (droits à vérifier, source à citer)</FigureTodo>
 
 ## 7. Enseignements
 
-[À COMPLÉTER : enseignements (construction, prévention, RPS 2000)]
+[À COMPLÉTER : enseignements : naissance de la réglementation parasismique marocaine, reconstruction de la ville]

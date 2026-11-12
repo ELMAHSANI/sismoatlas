@@ -52,6 +52,20 @@ const canonical = new URL(pathname, Astro.site);
     <meta name="theme-color" content="#0b3d91" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0a1120" media="(prefers-color-scheme: dark)" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    {
+      import.meta.env.PROD && (
+        <script is:inline>
+          // PWA : le guide de sécurité reste consultable hors ligne (public/sw.js)
+          if ('serviceWorker' in navigator) {
+            addEventListener('load', function () {
+              navigator.serviceWorker.register('/sw.js').catch(function () {});
+            });
+          }
+        </script>
+      )
+    }
     <meta name="generator" content={Astro.generator} />
     <script is:inline>
       // Avant l'affichage : thème choisi + suppression de la classe no-js.

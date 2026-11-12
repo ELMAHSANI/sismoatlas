@@ -1,0 +1,25 @@
+---
+/**
+ * Emplacement réservé pour une figure à produire (dans les MDX) :
+ *   <FigureTodo>Carte des intensités EMS-98, d'après … (source à citer)</FigureTodo>
+ * Visible sur le site tant que le contenu est en brouillon ; à remplacer par la vraie figure.
+ */
+import { langFromUrl, useTranslations } from '../i18n/utils';
+const t = useTranslations(langFromUrl(Astro.url));
+---
+
+<figure class="figure-todo">
+  <figcaption><strong>{t('figure.todo')}</strong> — <slot /></figcaption>
+</figure>
+
+<style>
+  .figure-todo {
+    margin: var(--space-5) 0;
+    padding: var(--space-5) var(--space-4);
+    border: 2px dashed color-mix(in srgb, var(--color-accent) 50%, var(--color-border));
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--color-accent) 6%, var(--color-bg));
+    font-size: var(--fs-sm);
+    color: var(--color-text-muted);
+  }
+</style>

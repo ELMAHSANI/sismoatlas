@@ -9,3 +9,7 @@
 # Fichiers versionnés par Astro (nom contenant une empreinte) : cache long
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
+
+# Service worker : toujours revalidé, pour que les mises à jour du guide arrivent vite
+/sw.js
+  Cache-Control: no-cache

@@ -7,6 +7,8 @@ export const DATA_SOURCES = [
   { id: 'emsc', name: 'EMSC-CSEM', url: 'https://www.emsc-csem.org/' },
   { id: 'ign', name: 'IGN (España)', url: 'https://www.ign.es/web/sis-catalogo-terremotos' },
   { id: 'pelaez2007', name: 'Peláez et al. (2007)', url: 'https://doi.org/10.1785/gssrl.78.6.614' },
+  // Failles actives (cartes des fiches)
+  { id: 'gem', name: 'GEM Active Faults (CC BY-SA 4.0)', url: 'https://github.com/GEMScienceTools/gem-global-active-faults' },
   // Villes de référence (« à 18 km au nord de… ») : attribution exigée par les licences
   { id: 'geonames', name: 'GeoNames (CC BY 4.0)', url: 'https://www.geonames.org/' },
   { id: 'osm', name: '© OpenStreetMap', url: 'https://www.openstreetmap.org/copyright' },

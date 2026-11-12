@@ -56,8 +56,9 @@ def _get(url: str, params: dict, retries: int = 3, timeout: int = 90) -> request
 
 
 def parse_time(value: Any) -> datetime:
-    if isinstance(value, (int, float)):  # USGS : millisecondes depuis 1970
-        return datetime.fromtimestamp(value / 1000, tz=timezone.utc)
+    if isinstance(value, (int, float)):  # USGS : millisecondes depuis 1970 (négatives avant 1970)
+        # fromtimestamp() échoue sous Windows pour les dates antérieures à 1970 : calcul par addition
+        return datetime(1970, 1, 1, tzinfo=timezone.utc) + timedelta(milliseconds=value)
     s = str(value).replace("Z", "+00:00")
     dt = datetime.fromisoformat(s)
     return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)

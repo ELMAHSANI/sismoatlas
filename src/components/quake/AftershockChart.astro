@@ -1,0 +1,112 @@
+---
+/**
+ * Graphique du nombre de répliques par jour (base de l'analyse de la loi d'Omori), dessiné en SVG au moment
+ * de la construction du site : aucune bibliothèque JavaScript téléchargée par le visiteur.
+ *   <AftershockChart event="al-hoceima-2004" shock="2004" days={60} />
+ */
+import { getShock } from '../../lib/events';
+import { langFromUrl, useTranslations } from '../../i18n/utils';
+import { formatMag } from '../../lib/quake';
+
+interface Props {
+  event: string;
+  shock?: string;
+  /** Nombre de jours affichés (par défaut : toute la fenêtre de recherche). */
+  days?: number;
+}
+const { event, shock, days } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const t = useTranslations(lang);
+const a = getShock(event, shock)?.aftershocks;
+const data = a ? a.perDay.slice(0, days ?? a.perDay.length) : [];
+const max = Math.max(1, ...data);
+
+// Géométrie
+const W = 640;
+const H = 240;
+const m = { top: 12, right: 12, bottom: 38, left: 44 };
+const iw = W - m.left - m.right;
+const ih = H - m.top - m.bottom;
+const bw = data.length ? iw / data.length : 0;
+const niceStep = (v: number) => {
+  const raw = v / 4;
+  const p = 10 ** Math.floor(Math.log10(raw || 1));
+  return [1, 2, 5, 10].map((k) => k * p).find((s) => s >= raw) ?? raw;
+};
+const step = niceStep(max);
+const yTicks = Array.from({ length: Math.floor(max / step) + 1 }, (_, i) => i * step);
+const xStep = data.length > 60 ? 20 : data.length > 30 ? 10 : 5;
+const xTicks = Array.from({ length: Math.floor((data.length - 1) / xStep) + 1 }, (_, i) => i * xStep);
+const y = (v: number) => m.top + ih - (v / max) * ih;
+const sources = a ? Object.entries(a.sources).map(([k, v]) => `${k} (${v})`).join(', ') : '';
+---
+
+{
+  !a || a.count === 0 ? (
+    <p class="muted">{t('event.after.none')}</p>
+  ) : (
+    <figure class="aftershock-chart">
+      <figcaption>
+        <strong>{t('event.after.title')}</strong>
+        <br />
+        {t('event.after.summary', { n: a.count, days: a.window.days, km: a.window.radiusKm, max: formatMag(a.maxMag, lang) })}
+      </figcaption>
+      <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={t('event.after.title')} style="direction: ltr">
+        {yTicks.map((v) => (
+          <g>
+            <line x1={m.left} x2={W - m.right} y1={y(v)} y2={y(v)} class="grid" />
+            <text x={m.left - 6} y={y(v) + 4} text-anchor="end" class="tick">{v}</text>
+          </g>
+        ))}
+        {data.map((v, i) => (
+          <rect x={m.left + i * bw + 0.5} y={y(v)} width={Math.max(1, bw - 1)} height={m.top + ih - y(v)} class="bar">
+            <title>{`J+${i} : ${v}`}</title>
+          </rect>
+        ))}
+        {xTicks.map((d) => (
+          <text x={m.left + d * bw + bw / 2} y={H - m.bottom + 16} text-anchor="middle" class="tick">{d}</text>
+        ))}
+        <text x={m.left + iw / 2} y={H - 4} text-anchor="middle" class="axis">{t('event.after.axisX')}</text>
+        <text transform={`translate(12 ${m.top + ih / 2}) rotate(-90)`} text-anchor="middle" class="axis">{t('event.after.axisY')}</text>
+      </svg>
+      <p class="muted note">{t('event.after.sources', { sources })}</p>
+    </figure>
+  )
+}
+
+<style>
+  .aftershock-chart {
+    margin: var(--space-5) 0;
+  }
+  figcaption {
+    margin-block-end: var(--space-2);
+    font-size: var(--fs-sm);
+  }
+  svg {
+    width: 100%;
+    height: auto;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+  .grid {
+    stroke: var(--color-border);
+    stroke-width: 1;
+  }
+  .bar {
+    fill: var(--color-accent);
+  }
+  .tick {
+    fill: var(--color-text-muted);
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+  }
+  .axis {
+    fill: var(--color-text-muted);
+    font-size: 12px;
+  }
+  .note {
+    font-size: 0.8rem;
+    margin-block-start: var(--space-2);
+  }
+</style>

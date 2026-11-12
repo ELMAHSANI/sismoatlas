@@ -11,11 +11,12 @@ import type { GeoJSONSource, Map as MLMap, MapLayerMouseEvent } from 'maplibre-g
 import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
 // Feuille de style chargée avec la carte (et non dans le <head> de la page : elle bloquerait l'affichage en 3G)
 import cssUrl from 'maplibre-gl/dist/maplibre-gl.css?url';
+export { cssUrl };
 import type { Lang, T } from '../lib/quake';
 
 maplibregl.setWorkerUrl(workerUrl);
 
-const STYLES = {
+export const STYLES = {
   light: 'https://tiles.openfreemap.org/styles/positron',
   dark: 'https://tiles.openfreemap.org/styles/dark',
 };
@@ -54,7 +55,7 @@ export interface QuakeMapOptions {
   selectZoom?: number;
 }
 
-function loadCss(href: string): Promise<void> {
+export function loadCss(href: string): Promise<void> {
   if (document.querySelector(`link[href="${href}"]`)) return Promise.resolve();
   return new Promise((resolve) => {
     const link = document.createElement('link');
@@ -65,14 +66,14 @@ function loadCss(href: string): Promise<void> {
   });
 }
 
-const css = (name: string) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-const isDark = () => {
+export const css = (name: string) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+export const isDark = () => {
   const theme = document.documentElement.dataset.theme;
   return theme === 'dark' || (!theme && matchMedia('(prefers-color-scheme: dark)').matches);
 };
 
 /** Masque frontières et noms de pays du fond de carte ; noms de lieux dans la langue de la page. */
-function adaptBaseStyle(map: MLMap, lang: Lang): void {
+export function adaptBaseStyle(map: MLMap, lang: Lang): void {
   for (const layer of map.getStyle().layers ?? []) {
     const sourceLayer = (layer as { 'source-layer'?: string })['source-layer'];
     if (sourceLayer === 'boundary' || /country/i.test(layer.id)) {

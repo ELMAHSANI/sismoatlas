@@ -1,0 +1,133 @@
+---
+/**
+ * Tableau des paramètres d'un séisme, à utiliser dans une fiche MDX :
+ *   <EventParams event="al-hoceima-2004" shock="2004" />
+ * Compare les valeurs USGS et celles du catalogue de référence Peláez et al. (2007), chacune avec sa source.
+ */
+import { getShock } from '../../lib/events';
+import { langFromUrl, useTranslations, type UIKey } from '../../i18n/utils';
+import { formatMag } from '../../lib/quake';
+
+interface Props {
+  event: string;
+  shock?: string;
+}
+const { event, shock } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const t = useTranslations(lang);
+const s = getShock(event, shock);
+const u = s?.usgs;
+const p = s?.pelaez;
+const locale = lang === 'ar' ? 'ar-MA-u-nu-latn' : lang === 'fr' ? 'fr-FR' : 'en-GB';
+const num = (v: number | null | undefined, d = 3) =>
+  v == null ? '—' : new Intl.NumberFormat(locale, { maximumFractionDigits: d }).format(v);
+const fullDate = (iso: string) =>
+  new Intl.DateTimeFormat(locale, {
+    day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'UTC',
+  }).format(new Date(iso));
+const pelaezDate = p ? (p.time ? `${p.date} ${p.time}` : p.date) : '';
+---
+
+{
+  !u && !p ? (
+    <p class="placeholder">{t('event.params.none')}</p>
+  ) : (
+    <figure class="event-params">
+      <figcaption>{t('event.params.title')}</figcaption>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col"><span class="visually-hidden">{t('event.params.source')}</span></th>
+              {u && <th scope="col">{t('event.params.usgs')}</th>}
+              {p && <th scope="col">{t('event.params.pelaez')}</th>}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{t('event.params.date')}</th>
+              {u && <td>{fullDate(u.time)}</td>}
+              {p && <td dir="ltr">{pelaezDate}</td>}
+            </tr>
+            <tr>
+              <th scope="row">{t('event.params.epicenter')}</th>
+              {u && <td dir="ltr">{num(u.lat)} ; {num(u.lon)}</td>}
+              {p && <td dir="ltr">{num(p.lat)} ; {num(p.lon)}</td>}
+            </tr>
+            <tr>
+              <th scope="row">{t('event.params.depth')}</th>
+              {u && <td>{u.depth != null ? `${num(u.depth, 1)} km` : '—'}</td>}
+              {p && <td>{p.depth != null ? `${num(p.depth, 1)} km` : '—'}</td>}
+            </tr>
+            <tr>
+              <th scope="row">{t('event.params.magnitude')}</th>
+              {u && <td><strong>{formatMag(u.mag, lang)}</strong> <span dir="ltr">{u.magType}</span></td>}
+              {p && <td><strong>{formatMag(p.mw, lang)}</strong> Mw{p.mwMethod && <span class="muted"> — {p.mwMethod}</span>}</td>}
+            </tr>
+            {
+              p && (
+                <tr>
+                  <th scope="row">{t('event.params.imax')}</th>
+                  {u && <td>—</td>}
+                  <td>{p.imax != null ? `${num(p.imax, 1)} (${p.intensityScale ?? ''})` : '—'}</td>
+                </tr>
+              )
+            }
+            <tr>
+              <th scope="row">{t('event.params.agency')}</th>
+              {u && <td dir="ltr">{u.usgsId}</td>}
+              {p && <td dir="ltr">{p.agency} · {p.id}</td>}
+            </tr>
+            {
+              u?.alert && (
+                <tr>
+                  <th scope="row">{t('event.params.pager')}</th>
+                  <td>{t(`world.pager.${u.alert}` as UIKey)}</td>
+                  {p && <td>—</td>}
+                </tr>
+              )
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="muted note">
+        {t('event.params.note')}
+        {u && <> <a href={u.url} rel="noopener" target="_blank">USGS {u.usgsId}</a></>}
+        {p && <> · <a href="https://doi.org/10.1785/gssrl.78.6.614" rel="noopener" target="_blank">doi:10.1785/gssrl.78.6.614</a></>}
+      </p>
+    </figure>
+  )
+}
+
+<style>
+  .event-params {
+    margin: var(--space-5) 0;
+  }
+  figcaption {
+    font-weight: 650;
+    margin-block-end: var(--space-2);
+  }
+  .table-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+  table {
+    min-width: 100%;
+  }
+  td {
+    overflow-wrap: anywhere;
+  }
+  thead th {
+    background: var(--color-surface);
+    font-size: 0.8rem;
+  }
+  th[scope='row'] {
+    font-weight: 600;
+    color: var(--color-text-muted);
+  }
+  .note {
+    font-size: 0.8rem;
+    margin-block-start: var(--space-2);
+  }
+</style>

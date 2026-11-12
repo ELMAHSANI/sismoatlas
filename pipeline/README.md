@@ -19,6 +19,8 @@ py -m venv .venv
 | `convert_shp.py` | Couches SIG → WGS84, version complète et version web simplifiée | `donnees_brutes/**/*.shp, .gpkg, .geojson` | `data/sig/`, `public/data/sig/` + `RAPPORT_SIG.md` | quand une couche est ajoutée |
 | `build_cities.py` | Villes de référence FR / AR / EN | GeoNames (téléchargé, cache `.cache/`) + `data/villes/noms_arabes_osm.csv` | `data/villes/cities.csv`, `public/data/cities.json` + `RAPPORT_VILLES.md` | rarement |
 | `fetch_recent_catalogue.py` | Sismicité depuis 2006 (EMSC + USGS) | services FDSN en ligne | `data/catalogue/recent_2006.csv` + `RAPPORT_RECENT.md` | mensuelle |
+| `fetch_faults.py` | Failles actives GEM (Styron et Pagani, 2020, CC BY-SA 4.0), zone Maroc | GitHub GEM (cache `.cache/`) | `public/data/sig/gem_faults.geojson` | rarement |
+| `build_events.py` | Données des fiches séismes majeurs : paramètres USGS, mécanismes au foyer, valeurs Peláez, répliques | `pipeline/events.json` + USGS/EMSC + `data/catalogue/` | `public/data/events/<slug>.json` + `data/events/RAPPORT_EVENEMENTS.md` | à l'ajout d'une fiche |
 | `fetch_live.py` | Séismes récents (Maroc 30 j) et grands séismes mondiaux (M ≥ 6, 1 an) | services FDSN en ligne | `public/data/live/{24h,7d,30d}.geojson`, `public/data/world/{7d,30d,1y}.geojson` | toutes les 15 min (GitHub Actions, phase 8) |
 
 ```bash
@@ -26,6 +28,8 @@ py -m venv .venv
 .venv/Scripts/python pipeline/convert_shp.py
 .venv/Scripts/python pipeline/build_cities.py
 .venv/Scripts/python pipeline/fetch_recent_catalogue.py
+.venv/Scripts/python pipeline/fetch_faults.py
+.venv/Scripts/python pipeline/build_events.py
 .venv/Scripts/python pipeline/fetch_live.py
 ```
 

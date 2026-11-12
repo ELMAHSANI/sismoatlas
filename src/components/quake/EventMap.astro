@@ -1,0 +1,93 @@
+---
+/**
+ * Carte intégrée pour les fiches MDX : épicentre(s), répliques, failles actives.
+ *   <EventMap event="al-hoceima-2004" />
+ * La bibliothèque de carte n'est chargée que lorsque la carte approche de l'écran.
+ */
+import { langFromUrl, useTranslations } from '../../i18n/utils';
+
+interface Props {
+  event: string;
+  /** Marge autour des séismes, en degrés (défaut 0,4). */
+  pad?: number;
+}
+const { event, pad } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<figure class="event-map">
+  <div class="event-map-canvas" data-event-map data-event={event} data-lang={lang} data-pad={pad} role="region" aria-label={t('event.map.label')}>
+    <noscript>{t('event.map.label')}</noscript>
+  </div>
+  <figcaption>
+    <ul class="event-map-legend">
+      <li><span class="sw sw-main" aria-hidden="true"></span>{t('event.map.main')}</li>
+      <li><span class="sw sw-after" aria-hidden="true"></span>{t('event.map.after')}</li>
+      <li><span class="sw sw-fault" aria-hidden="true"></span>{t('event.map.faults')}</li>
+    </ul>
+    <span class="muted">{t('event.map.credits')}</span>
+  </figcaption>
+</figure>
+
+<script>
+  import { initEventMaps } from '../../scripts/event-map-loader';
+  initEventMaps();
+</script>
+
+<style>
+  .event-map {
+    margin: var(--space-5) 0;
+  }
+  .event-map-canvas {
+    position: relative;
+    height: min(60vh, 26rem);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+  .event-map-canvas :global(.maplibregl-map) {
+    position: absolute;
+    inset: 0;
+  }
+  figcaption {
+    margin-block-start: var(--space-2);
+    font-size: 0.8rem;
+  }
+  .event-map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-1);
+    font-size: var(--fs-sm);
+  }
+  .event-map-legend li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+  .sw {
+    display: inline-block;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+  }
+  .sw-main {
+    background: var(--mag-5);
+    box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 3px var(--mag-5);
+  }
+  .sw-after {
+    width: 0.55rem;
+    height: 0.55rem;
+    background: var(--mag-2);
+  }
+  .sw-fault {
+    width: 1.2rem;
+    height: 2px;
+    border-radius: 0;
+    background: var(--color-danger);
+  }
+</style>

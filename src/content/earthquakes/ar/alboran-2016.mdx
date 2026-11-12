@@ -9,34 +9,59 @@ category: "major-earthquake"
 tags:
   - "Alboran"
   - "Rif"
-references: []
+references:
+  - citation: "U.S. Geological Survey, ANSS ComCat — M 6.3, 25/01/2016 (us10004gy9)."
+    url: "https://earthquake.usgs.gov/earthquakes/eventpage/us10004gy9"
+  - citation: "Styron R., Pagani M. (2020). The GEM Global Active Faults Database. Earthquake Spectra 36(1_suppl), 160–180."
+    doi: "10.1177/8755293020944182"
 license: "CC BY 4.0"
 draft: true
+eventIds:
+  - "usgs:us10004gy9"
 ---
+import EventParams from '../../../components/quake/EventParams.astro';
+import EventMap from '../../../components/quake/EventMap.astro';
+import FocalMechanisms from '../../../components/quake/FocalMechanisms.astro';
+import AftershockChart from '../../../components/quake/AftershockChart.astro';
+import FigureTodo from '../../../components/FigureTodo.astro';
+
+
 ## 1. ملخص
 
-[À COMPLÉTER : résumé grand public (5 lignes), paramètres sourcés : date, heure UTC, magnitude et type, profondeur, agence]
+[À COMPLÉTER : résumé grand public en 5 lignes : séisme en mer, ressenti à Al Hoceima, Nador, Melilla et dans le sud de l'Espagne — traduction arabe]
+
+<EventParams event="alboran-2016" shock="2016" />
 
 ## 2. السياق التكتوني
 
-[À COMPLÉTER : contexte tectonique régional, failles impliquées, références]
+[À COMPLÉTER : contexte de la mer d'Alboran : système de failles d'Al Idrissi, crise sismique 2016 ; références — traduction arabe]
+
+<FigureTodo>Carte bathymétrique d'Alboran avec les failles et la séquence 2016 (source à citer) (légende à traduire en arabe)</FigureTodo>
 
 ## 3. خريطة تفاعلية
 
-[À COMPLÉTER : carte intégrée : épicentre, répliques, failles (composant prévu en phase 6)]
+<EventMap event="alboran-2016" />
 
 ## 4. آلية البؤرة
 
-[À COMPLÉTER : mécanisme au foyer (solution publiée, agence, référence)]
+<FocalMechanisms event="alboran-2016" shock="2016" />
+
+[À COMPLÉTER : interprétation : décrochement sénestre, faille d'Al Idrissi ; références — traduction arabe]
+
+<FigureTodo>Sphère focale du séisme d'après la solution USGS (Mww) (légende à traduire en arabe)</FigureTodo>
 
 ## 5. تسلسل الهزات الارتدادية
 
-[À COMPLÉTER : séquence de répliques et loi d'Omori (données téléchargées, pas le catalogue déclusterisé)]
+<AftershockChart event="alboran-2016" shock="2016" days={60} />
+
+[À COMPLÉTER : description de la crise sismique (séismes précurseurs de 2016, répliques), paramètres d'Omori si calculés — traduction arabe]
 
 ## 6. الشدة والأضرار
 
-[À COMPLÉTER : intensité maximale (échelle), bilan humain et matériel avec sources]
+[À COMPLÉTER : intensités ressenties au Maroc et en Espagne, dégâts éventuels, sources — traduction arabe]
+
+<FigureTodo>Carte des témoignages « L'avez-vous ressenti ? » (EMSC) ou des intensités (source à citer) (légende à traduire en arabe)</FigureTodo>
 
 ## 7. الدروس المستخلصة
 
-[À COMPLÉTER : enseignements (construction, prévention, RPS 2000)]
+[À COMPLÉTER : enseignements : séismes en mer, réseau d'observation, risque tsunami en Alboran — traduction arabe]

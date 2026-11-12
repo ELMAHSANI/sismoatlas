@@ -1,0 +1,84 @@
+---
+/**
+ * Mécanismes au foyer publiés par l'USGS (plans nodaux), à utiliser dans une fiche MDX :
+ *   <FocalMechanisms event="al-hoceima-2004" shock="2004" />
+ */
+import { getShock } from '../../lib/events';
+import { langFromUrl, useTranslations, type UIKey } from '../../i18n/utils';
+
+interface Props {
+  event: string;
+  shock?: string;
+}
+const { event, shock } = Astro.props;
+const t = useTranslations(langFromUrl(Astro.url));
+const u = getShock(event, shock)?.usgs;
+const mechs = u?.mechanisms ?? [];
+const plane = (p?: { strike: number; dip: number; rake: number }) => (p ? `${p.strike}° / ${p.dip}° / ${p.rake}°` : '—');
+---
+
+{
+  mechs.length === 0 ? (
+    <p class="muted">{t('event.mech.none')}</p>
+  ) : (
+    <figure class="mechs">
+      <figcaption>
+        {t('event.mech.title')} <span class="muted">({t('event.mech.cols')})</span>
+      </figcaption>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">{t('event.mech.solution')}</th>
+              <th scope="col">{t('event.mech.plane1')}</th>
+              <th scope="col">{t('event.mech.plane2')}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {mechs.map((m) => (
+              <tr>
+                <td>
+                  {t(`event.mech.${m.kind}` as UIKey)} <span class="muted" dir="ltr">({m.source?.toUpperCase()}{m.method ? `, ${m.method}` : ''})</span>
+                </td>
+                <td dir="ltr">{plane(m.planes[0])}</td>
+                <td dir="ltr">{plane(m.planes[1])}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {u && <p class="muted note"><a href={`${u.url}/${mechs[0].kind}`} rel="noopener" target="_blank">USGS {u.usgsId}</a></p>}
+    </figure>
+  )
+}
+
+<style>
+  .mechs {
+    margin: var(--space-5) 0;
+  }
+  figcaption {
+    font-weight: 650;
+    margin-block-end: var(--space-2);
+  }
+  figcaption .muted {
+    font-weight: 400;
+    font-size: var(--fs-sm);
+  }
+  .table-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+  table {
+    min-width: 26rem;
+    font-variant-numeric: tabular-nums;
+  }
+  thead th {
+    background: var(--color-surface);
+    font-size: 0.8rem;
+  }
+  .note {
+    font-size: 0.8rem;
+    margin-block-start: var(--space-2);
+  }
+</style>

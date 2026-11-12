@@ -43,6 +43,12 @@ export function switchLangPath(pathname: string, target: Lang): string {
   return localizePath(target, parts.join('/'));
 }
 
+/** Langue d'une page d'après son URL (/ar/… → ar) ; français par défaut. */
+export function langFromUrl(url: URL): Lang {
+  const first = url.pathname.split('/').filter(Boolean)[0];
+  return isLang(first) ? first : DEFAULT_LANG;
+}
+
 /** getStaticPaths commun : une page par langue. */
 export function langStaticPaths() {
   return LANGS.map((lang) => ({ params: { lang } }));

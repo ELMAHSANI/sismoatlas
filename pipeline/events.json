@@ -1,0 +1,28 @@
+{
+  "_doc": "Séismes des fiches « séismes majeurs ». usgs : identifiants ComCat ; aftershocks : fenêtre de recherche des répliques (jours après le choc, rayon en km). pelaez : date (AAAA-MM-JJ) à retrouver dans le catalogue de référence.",
+  "events": [
+    {
+      "slug": "al-hoceima-2004",
+      "shocks": [
+        { "key": "2004", "usgs": "usp000cmxe", "pelaez": "2004-02-24", "aftershocks": { "days": 120, "radius_km": 40 } },
+        { "key": "1994", "usgs": "usp0006d5q", "pelaez": "1994-05-26", "aftershocks": { "days": 120, "radius_km": 40 } }
+      ]
+    },
+    {
+      "slug": "al-haouz-2023",
+      "shocks": [{ "key": "2023", "usgs": "us7000kufc", "aftershocks": { "days": 120, "radius_km": 60 } }]
+    },
+    {
+      "slug": "agadir-1960",
+      "shocks": [{ "key": "1960", "usgs": "iscgem878424", "pelaez": "1960-02-29", "aftershocks": { "days": 60, "radius_km": 40 } }]
+    },
+    {
+      "slug": "alboran-2016",
+      "shocks": [{ "key": "2016", "usgs": "us10004gy9", "aftershocks": { "days": 120, "radius_km": 60 } }]
+    },
+    {
+      "slug": "lisbon-1755",
+      "shocks": [{ "key": "1755", "pelaez": "1755-11-01" }]
+    }
+  ]
+}

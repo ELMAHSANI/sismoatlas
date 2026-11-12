@@ -9,34 +9,59 @@ category: "major-earthquake"
 tags:
   - "Haut Atlas"
   - "Al Haouz"
-references: []
+references:
+  - citation: "U.S. Geological Survey, ANSS ComCat — M 6.8, 08/09/2023 (us7000kufc)."
+    url: "https://earthquake.usgs.gov/earthquakes/eventpage/us7000kufc"
+  - citation: "Styron R., Pagani M. (2020). The GEM Global Active Faults Database. Earthquake Spectra 36(1_suppl), 160–180."
+    doi: "10.1177/8755293020944182"
 license: "CC BY 4.0"
 draft: true
+eventIds:
+  - "usgs:us7000kufc"
 ---
+import EventParams from '../../../components/quake/EventParams.astro';
+import EventMap from '../../../components/quake/EventMap.astro';
+import FocalMechanisms from '../../../components/quake/FocalMechanisms.astro';
+import AftershockChart from '../../../components/quake/AftershockChart.astro';
+import FigureTodo from '../../../components/FigureTodo.astro';
+
+
 ## 1. Résumé
 
-[À COMPLÉTER : résumé grand public (5 lignes), paramètres sourcés : date, heure UTC, magnitude et type, profondeur, agence]
+[À COMPLÉTER : résumé grand public en 5 lignes, bilan humain officiel sourcé]
+
+<EventParams event="al-haouz-2023" shock="2023" />
 
 ## 2. Contexte tectonique
 
-[À COMPLÉTER : contexte tectonique régional, failles impliquées, références]
+[À COMPLÉTER : contexte du Haut Atlas : chaîne intracontinentale, failles inverses (dont le système de Tizi n'Test), sismicité historique ; références]
+
+<FigureTodo>Coupe ou schéma tectonique du Haut Atlas occidental avec l'épicentre (source à citer)</FigureTodo>
 
 ## 3. Carte interactive
 
-[À COMPLÉTER : carte intégrée : épicentre, répliques, failles (composant prévu en phase 6)]
+<EventMap event="al-haouz-2023" />
 
 ## 4. Mécanisme au foyer
 
-[À COMPLÉTER : mécanisme au foyer (solution publiée, agence, référence)]
+<FocalMechanisms event="al-haouz-2023" shock="2023" />
+
+[À COMPLÉTER : interprétation : faille inverse à composante oblique, plan de faille retenu par les études publiées ; références]
+
+<FigureTodo>Sphère focale du séisme d'après la solution USGS (Mww)</FigureTodo>
 
 ## 5. Séquence de répliques
 
-[À COMPLÉTER : séquence de répliques et loi d'Omori (données téléchargées, pas le catalogue déclusterisé)]
+<AftershockChart event="al-haouz-2023" shock="2023" days={60} />
+
+[À COMPLÉTER : description de la séquence de répliques ; parties du catalogue manquantes ; paramètres d'Omori si calculés]
 
 ## 6. Intensités et dégâts
 
-[À COMPLÉTER : intensité maximale (échelle), bilan humain et matériel avec sources]
+[À COMPLÉTER : intensité maximale, douars et communes touchés, bilan humain et matériel, déformation mesurée (InSAR) avec sources]
+
+<FigureTodo>Carte des intensités et/ou de la déformation InSAR (Copernicus EMS, publications ; source à citer)</FigureTodo>
 
 ## 7. Enseignements
 
-[À COMPLÉTER : enseignements (construction, prévention, RPS 2000)]
+[À COMPLÉTER : enseignements : construction en terre et en pierre, accès aux zones de montagne, reconstruction]

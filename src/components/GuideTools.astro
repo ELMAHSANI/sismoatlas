@@ -1,0 +1,69 @@
+---
+/**
+ * Outils du guide de sécurité : impression / PDF et état « disponible hors ligne ».
+ *   <GuideTools />  (dans src/content/guide/<langue>/safety-guide.mdx)
+ */
+import { langFromUrl, useTranslations } from '../i18n/utils';
+const t = useTranslations(langFromUrl(Astro.url));
+---
+
+<div class="guide-tools">
+  <button type="button" class="btn btn--felt js-only" data-print>
+    <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v8H6z"></path>
+    </svg>
+    <span>{t('guide.print')}</span>
+  </button>
+  <p class="muted guide-offline" data-offline-note data-ready-text={t('guide.offlineReady')}>{t('guide.offline')}</p>
+</div>
+
+<script>
+  document.querySelector('[data-print]')?.addEventListener('click', () => window.print());
+  const note = document.querySelector<HTMLElement>('[data-offline-note]');
+  if (note && 'serviceWorker' in navigator) {
+    navigator.serviceWorker.ready
+      .then(async () => {
+        const hit = await caches.match(location.pathname);
+        if (hit) note.textContent = note.dataset.readyText ?? note.textContent;
+      })
+      .catch(() => {});
+  }
+</script>
+
+<style>
+  .guide-tools {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    margin: var(--space-4) 0 var(--space-6);
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+  }
+  .guide-offline {
+    margin: 0;
+    font-size: var(--fs-sm);
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 2.5rem;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-primary);
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    font: inherit;
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    cursor: pointer;
+  }
+  @media print {
+    .guide-tools {
+      display: none;
+    }
+  }
+</style>

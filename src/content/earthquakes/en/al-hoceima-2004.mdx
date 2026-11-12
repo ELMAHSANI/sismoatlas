@@ -9,34 +9,76 @@ category: "major-earthquake"
 tags:
   - "Rif"
   - "Al Hoceima"
-references: []
+references:
+  - citation: "Peláez J. A., Chourak M., Tadili B. A., Aït Brahim L., Hamdache M., López Casado C., Martínez Solares J. M. (2007). A Catalog of Main Moroccan Earthquakes from 1045 to 2005. Seismological Research Letters 78(6), 614–621."
+    doi: "10.1785/gssrl.78.6.614"
+  - citation: "U.S. Geological Survey, ANSS ComCat — M 6.4, 24/02/2004 (usp000cmxe)."
+    url: "https://earthquake.usgs.gov/earthquakes/eventpage/usp000cmxe"
+  - citation: "U.S. Geological Survey, ANSS ComCat — M 6.0, 26/05/1994 (usp0006d5q)."
+    url: "https://earthquake.usgs.gov/earthquakes/eventpage/usp0006d5q"
+  - citation: "Styron R., Pagani M. (2020). The GEM Global Active Faults Database. Earthquake Spectra 36(1_suppl), 160–180."
+    doi: "10.1177/8755293020944182"
 license: "CC BY 4.0"
 draft: true
+eventIds:
+  - "usgs:usp000cmxe"
+  - "usgs:usp0006d5q"
 ---
+import EventParams from '../../../components/quake/EventParams.astro';
+import EventMap from '../../../components/quake/EventMap.astro';
+import FocalMechanisms from '../../../components/quake/FocalMechanisms.astro';
+import AftershockChart from '../../../components/quake/AftershockChart.astro';
+import FigureTodo from '../../../components/FigureTodo.astro';
+
+
 ## 1. Summary
 
-[À COMPLÉTER : résumé grand public (5 lignes), paramètres sourcés : date, heure UTC, magnitude et type, profondeur, agence]
+[À COMPLÉTER : résumé grand public en 5 lignes : où, quand, quelle force, quelles conséquences (bilan humain sourcé), pourquoi deux séismes à dix ans d'intervalle — traduction anglaise]
+
+<EventParams event="al-hoceima-2004" shock="2004" />
+
+### The 26 May 1994 earthquake
+
+<EventParams event="al-hoceima-2004" shock="1994" />
 
 ## 2. Tectonic setting
 
-[À COMPLÉTER : contexte tectonique régional, failles impliquées, références]
+[À COMPLÉTER : contexte du Rif central et de la région d'Al Hoceima : convergence Afrique–Eurasie, failles en décrochement (orientation NNE-SSW / NW-SE), lien entre 1994 et 2004 ; références — traduction anglaise]
+
+<FigureTodo>Schéma tectonique du Rif central avec les failles principales et les épicentres de 1994 et 2004 (source à citer) (légende à traduire en anglais)</FigureTodo>
 
 ## 3. Interactive map
 
-[À COMPLÉTER : carte intégrée : épicentre, répliques, failles (composant prévu en phase 6)]
+<EventMap event="al-hoceima-2004" />
 
 ## 4. Focal mechanism
 
-[À COMPLÉTER : mécanisme au foyer (solution publiée, agence, référence)]
+<FocalMechanisms event="al-hoceima-2004" shock="2004" />
+
+### The 26 May 1994 earthquake
+
+<FocalMechanisms event="al-hoceima-2004" shock="1994" />
+
+[À COMPLÉTER : interprétation : jeu en décrochement, choix du plan de faille probable (arguments : répliques, InSAR, publications) ; références — traduction anglaise]
+
+<FigureTodo>Sphères focales (« beachballs ») des séismes de 1994 et 2004, d'après les solutions publiées (légende à traduire en anglais)</FigureTodo>
 
 ## 5. Aftershock sequence
 
-[À COMPLÉTER : séquence de répliques et loi d'Omori (données téléchargées, pas le catalogue déclusterisé)]
+<AftershockChart event="al-hoceima-2004" shock="2004" days={60} />
+
+### The 26 May 1994 earthquake
+
+<AftershockChart event="al-hoceima-2004" shock="1994" days={60} />
+
+[À COMPLÉTER : description de la séquence de 2004 : décroissance, plus fortes répliques, migration éventuelle ; paramètres de la loi d'Omori (p, c, K) s'ils sont calculés, avec la méthode — traduction anglaise]
 
 ## 6. Intensities and damage
 
-[À COMPLÉTER : intensité maximale (échelle), bilan humain et matériel avec sources]
+[À COMPLÉTER : intensité maximale observée (échelle et source), localités touchées, bilan humain et matériel avec sources officielles — traduction anglaise]
+
+<FigureTodo>Carte des intensités macrosismiques du séisme de 2004 (source à citer) (légende à traduire en anglais)</FigureTodo>
 
 ## 7. Lessons learned
 
-[À COMPLÉTER : enseignements (construction, prévention, RPS 2000)]
+[À COMPLÉTER : enseignements : constructions, RPS 2000 (révision de 2011), préparation — traduction anglaise]

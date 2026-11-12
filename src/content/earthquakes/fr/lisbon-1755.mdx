@@ -10,34 +10,56 @@ tags:
   - "Lisbonne"
   - "tsunami"
   - "historique"
-references: []
+references:
+  - citation: "Peláez J. A., Chourak M., Tadili B. A., Aït Brahim L., Hamdache M., López Casado C., Martínez Solares J. M. (2007). A Catalog of Main Moroccan Earthquakes from 1045 to 2005. Seismological Research Letters 78(6), 614–621."
+    doi: "10.1785/gssrl.78.6.614"
 license: "CC BY 4.0"
 draft: true
+eventIds: []
 ---
+import EventParams from '../../../components/quake/EventParams.astro';
+import EventMap from '../../../components/quake/EventMap.astro';
+import FocalMechanisms from '../../../components/quake/FocalMechanisms.astro';
+import AftershockChart from '../../../components/quake/AftershockChart.astro';
+import FigureTodo from '../../../components/FigureTodo.astro';
+
+
 ## 1. Résumé
 
-[À COMPLÉTER : résumé grand public (5 lignes), paramètres sourcés : date, heure UTC, magnitude et type, profondeur, agence]
+[À COMPLÉTER : résumé grand public en 5 lignes : le séisme le plus fort du catalogue, tsunami sur les côtes marocaines]
+
+<EventParams event="lisbon-1755" shock="1755" />
 
 ## 2. Contexte tectonique
 
-[À COMPLÉTER : contexte tectonique régional, failles impliquées, références]
+[À COMPLÉTER : contexte : golfe de Cadix, zone de Gorringe / Cap Saint-Vincent, débat sur la source ; références]
+
+<FigureTodo>Carte des sources proposées pour le séisme de 1755 (source à citer)</FigureTodo>
 
 ## 3. Carte interactive
 
-[À COMPLÉTER : carte intégrée : épicentre, répliques, failles (composant prévu en phase 6)]
+<EventMap event="lisbon-1755" />
 
 ## 4. Mécanisme au foyer
 
-[À COMPLÉTER : mécanisme au foyer (solution publiée, agence, référence)]
+<FocalMechanisms event="lisbon-1755" shock="1755" />
+
+[À COMPLÉTER : mécanisme : séisme pré-instrumental, aucune solution instrumentale ; résumer les hypothèses publiées]
+
+<FigureTodo>Schéma des hypothèses de source (source à citer)</FigureTodo>
 
 ## 5. Séquence de répliques
 
-[À COMPLÉTER : séquence de répliques et loi d'Omori (données téléchargées, pas le catalogue déclusterisé)]
+<AftershockChart event="lisbon-1755" shock="1755" />
+
+[À COMPLÉTER : répliques : aucune donnée instrumentale ; mentionner les témoignages historiques si disponibles]
 
 ## 6. Intensités et dégâts
 
-[À COMPLÉTER : intensité maximale (échelle), bilan humain et matériel avec sources]
+[À COMPLÉTER : effets au Maroc : villes côtières touchées par le tsunami (Tanger, Asilah, Larache, Salé, Rabat, Safi, Agadir…), témoignages historiques, sources (catalogues de tsunamis, archives)]
+
+<FigureTodo>Carte des effets du tsunami sur les côtes marocaines (source à citer)</FigureTodo>
 
 ## 7. Enseignements
 
-[À COMPLÉTER : enseignements (construction, prévention, RPS 2000)]
+[À COMPLÉTER : enseignements : risque tsunami sur la côte atlantique marocaine, systèmes d'alerte]
