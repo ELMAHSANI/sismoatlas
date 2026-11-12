@@ -282,9 +282,9 @@ def main() -> None:
         "",
         "Grandes villes sans nom arabe : " + (", ".join(c["name_fr"] for c in no_ar if c["population"] >= 20000) or "aucune"),
         "",
-        "## Point à trancher\n",
-        "- Ceuta et Melilla figurent dans la liste (code pays « ES » dans GeoNames) car elles servent de repère "
-        "pour les séismes du Rif oriental et du détroit. [À COMPLÉTER : choisir comment les nommer et les afficher sur le site]",
+        "## Choix validés\n",
+        "- Ceuta et Melilla figurent dans la liste, sous leurs noms GeoNames « Ceuta » et « Melilla » "
+        "(décision de l'utilisateur, 12/11/2026) : elles servent de repère pour les séismes du Rif oriental et du détroit.",
         "",
     ]
     if args.check_osm:

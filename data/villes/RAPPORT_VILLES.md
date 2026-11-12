@@ -1,6 +1,6 @@
 # Rapport — villes de référence
 
-*Généré le 12/11/2026 à 13:28 UTC par `pipeline/build_cities.py`.*
+*Généré le 12/11/2026 à 13:44 UTC par `pipeline/build_cities.py`.*
 
 **Source** : GeoNames (cities1000 + noms alternatifs), licence CC BY 4.0 — attribution à afficher sur le site.
 
@@ -17,6 +17,6 @@ Provinces du Sud (contrôle) : Laâyoune (196,331 hab.), Dakhla (106,277 hab.), 
 
 Grandes villes sans nom arabe : Salé Al Jadida, Ait Melloul, Al Fqih Ben Çalah, El Kelaa des Srarhna, Oulad Teïma, Lqoliaa, Fnidek, Souk El Arbaa, Souq Sebt Oulad Nemma, Skhirate, Ouezzane, Beni Enzar, Tirhanimîne, My Drarga, Ben Jerrar, Bejaâd, Souq Larb’a al Gharb, Sidi Yahia El Gharb, Tine Biougra, Imzouren, Aourir, Zeghanghane, Mechraa Bel Ksiri, Tabount, Laâttaouia, Arfoud, Souk et Tnine Jorf el Mellah, Aïn Taoujdat, Oadar Temsia, Tahla, Rich, Zawyat ech Cheïkh, Bouknadel, Tamansourt, Echemmaia Est, Oulad Barhil, Zawyat an Nwaçer, Gueznaia, Moulay Ali Cherif, Imi-n-Tanout, Sidi Rahal, Ras el Ma, Al Brouj, Douar Toulal, Reçani
 
-## Point à trancher
+## Choix validés
 
-- Ceuta et Melilla figurent dans la liste (code pays « ES » dans GeoNames) car elles servent de repère pour les séismes du Rif oriental et du détroit. [À COMPLÉTER : choisir comment les nommer et les afficher sur le site]
+- Ceuta et Melilla figurent dans la liste, sous leurs noms GeoNames « Ceuta » et « Melilla » (décision de l'utilisateur, 12/11/2026) : elles servent de repère pour les séismes du Rif oriental et du détroit.
