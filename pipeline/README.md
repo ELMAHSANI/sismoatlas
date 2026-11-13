@@ -22,7 +22,8 @@ py -m venv .venv
 | `fetch_faults.py` | Failles actives GEM (Styron et Pagani, 2020, CC BY-SA 4.0), zone Maroc | GitHub GEM (cache `.cache/`) | `public/data/sig/gem_faults.geojson` | rarement |
 | `build_events.py` | Données des fiches séismes majeurs : paramètres USGS, mécanismes au foyer, valeurs Peláez, répliques | `pipeline/events.json` + USGS/EMSC + `data/catalogue/` | `public/data/events/<slug>.json` + `data/events/RAPPORT_EVENEMENTS.md` | à l'ajout d'une fiche |
 | `build_map_data.py` | Données de la carte complète (formats compacts) + limites de plaques (Bird, 2003, ODC-By) | `data/catalogue/` + GitHub fraxen/tectonicplates | `public/data/catalogue/{reference,recent-m2,recent-small}.json`, `public/data/sig/plates.geojson` | après chaque mise à jour des catalogues |
-| `fetch_live.py` | Séismes récents (Maroc 30 j) et grands séismes mondiaux (M ≥ 6, 1 an) | services FDSN en ligne | `public/data/live/{24h,7d,30d}.geojson`, `public/data/world/{7d,30d,1y}.geojson` | toutes les 15 min (GitHub Actions, phase 8) |
+| `robot_rapports.py` | Robot de rapports : seuils, brouillons FR/AR/EN, données carte/graphique, une PR par rapport (voir `docs/ROBOT.md`) | USGS, EMSC, ReliefWeb (si `RELIEFWEB_APPNAME`), GDELT | `src/content/reports/`, `public/data/events/`, `data/robot/state.json` | toutes les 15 min (`robot.yml`) |
+| `fetch_live.py` | Séismes récents (Maroc 30 j) et grands séismes mondiaux (M ≥ 6, 1 an) | services FDSN en ligne | `public/data/live/{24h,7d,30d}.geojson`, `public/data/world/{7d,30d,1y}.geojson` | toutes les 15 min (`data-live.yml`) |
 
 ```bash
 .venv/Scripts/python pipeline/import_catalogue.py
@@ -57,3 +58,12 @@ Pour corriger un nom arabe à la main, modifier ce fichier puis relancer `build_
 - Îles Canaries signalées (`canaries: true`) pour pouvoir les écarter des statistiques « Maroc ».
 - Si une source principale est indisponible, les fichiers existants sont conservés (jamais de liste vide publiée
   par erreur) et le script se termine avec le code 1.
+
+## Automatisations (GitHub Actions, `.github/workflows/`)
+
+| Workflow | Quand | Rôle |
+|---|---|---|
+| `data-live.yml` | toutes les 15 min | `fetch_live.py`, enregistre `public/data/live` et `public/data/world` sur main |
+| `robot.yml` | toutes les 15 min (décalé) | robot de rapports, une Pull Request par rapport |
+| `catalogue.yml` | le 1er du mois | `fetch_recent_catalogue.py` + `build_map_data.py` |
+| `check.yml` | chaque PR et push sur main | contenus publiés complets, types, construction du site |

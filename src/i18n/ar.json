@@ -140,6 +140,7 @@
   "event.params.agency": "الهيئة / المعرّف",
   "event.params.pager": "التأثير المقدَّر (PAGER)",
   "event.params.usgs": "هيئة المسح الجيولوجي الأمريكية (فهرس ComCat)",
+  "event.params.emsc": "EMSC-CSEM (الحل المنقول)",
   "event.params.pelaez": "الفهرس المرجعي (Peláez وآخرون، 2007)",
   "event.params.note": "تختلف القيم حسب الهيئات وطرق الحساب: تُذكر كل قيمة مع مصدرها.",
   "event.params.none": "المعطيات غير متوفرة.",

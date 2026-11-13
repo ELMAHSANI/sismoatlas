@@ -39,7 +39,7 @@ const pelaezDate = p ? (p.time ? `${p.date} ${p.time}` : p.date) : '';
           <thead>
             <tr>
               <th scope="col"><span class="visually-hidden">{t('event.params.source')}</span></th>
-              {u && <th scope="col">{t('event.params.usgs')}</th>}
+              {u && <th scope="col">{u.source === 'EMSC' ? t('event.params.emsc') : t('event.params.usgs')}</th>}
               {p && <th scope="col">{t('event.params.pelaez')}</th>}
             </tr>
           </thead>
@@ -92,7 +92,7 @@ const pelaezDate = p ? (p.time ? `${p.date} ${p.time}` : p.date) : '';
       </div>
       <p class="muted note">
         {t('event.params.note')}
-        {u && <> <a href={u.url} rel="noopener" target="_blank">USGS {u.usgsId}</a></>}
+        {u && <> <a href={u.url} rel="noopener" target="_blank">{u.source ?? 'USGS'} {u.usgsId}</a></>}
         {p && <> · <a href="https://doi.org/10.1785/gssrl.78.6.614" rel="noopener" target="_blank">doi:10.1785/gssrl.78.6.614</a></>}
       </p>
     </figure>

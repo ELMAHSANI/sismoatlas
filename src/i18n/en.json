@@ -140,6 +140,7 @@
   "event.params.agency": "Agency / identifier",
   "event.params.pager": "Estimated impact (PAGER)",
   "event.params.usgs": "USGS (ComCat catalogue)",
+  "event.params.emsc": "EMSC-CSEM (relayed solution)",
   "event.params.pelaez": "Reference catalogue (Peláez et al., 2007)",
   "event.params.note": "Values differ between agencies and methods: each is given with its source.",
   "event.params.none": "Parameters not available.",

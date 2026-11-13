@@ -19,6 +19,8 @@ export interface Mechanism {
   planes: Plane[];
 }
 export interface UsgsShock {
+  /** Agence d'origine des paramètres : USGS par défaut, EMSC pour certains rapports du robot. */
+  source?: 'USGS' | 'EMSC';
   id: string;
   usgsId: string;
   time: string;

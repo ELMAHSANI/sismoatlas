@@ -8,3 +8,4 @@ pyogrio>=0.10      # lecture/écriture des shapefiles
 shapely>=2.0
 pyproj>=3.6
 requests>=2.31
+tzdata>=2026.6      # fuseaux à jour (Maroc revenu à GMT le 20/09/2026)

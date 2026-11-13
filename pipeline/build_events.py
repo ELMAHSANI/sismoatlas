@@ -57,7 +57,7 @@ def usgs_detail(event_id: str) -> dict:
     return {
         "id": f"usgs:{j['id']}", "usgsId": j["id"], "time": parse_time(p["time"]).strftime("%Y-%m-%dT%H:%M:%S.%f")[:-4] + "Z",
         "lat": lat, "lon": lon, "depth": depth, "mag": p.get("mag"), "magType": p.get("magType"),
-        "place": p.get("place"), "alert": p.get("alert"), "url": p.get("url"),
+        "place": p.get("place"), "alert": p.get("alert"), "url": p.get("url"), "tsunami": bool(p.get("tsunami")),
         "magSource": (p.get("magType") or "") + " (" + (p.get("net") or "").upper() + ")",
         "mechanisms": unique,
     }

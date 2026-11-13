@@ -35,3 +35,6 @@ donnees_brutes/**
 !donnees_brutes/**/
 !donnees_brutes/**/LISEZ_MOI.md
 !donnees_brutes/SOURCES.md
+
+# Sortie locale du robot de rapports (en CI : dossier temporaire)
+data/robot/changesets.json

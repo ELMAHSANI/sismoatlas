@@ -1,0 +1,89 @@
+# Robot de rapports (CLAUDE.md §5.3) : détecte les séismes au-dessus des seuils et ouvre UNE Pull Request par
+# rapport (préliminaire H+2, mise à jour J+1, bilan J+7). Rien n'est publié sans fusion par un humain.
+#
+# Prérequis (une fois, dans les réglages du dépôt) :
+#   Settings > Actions > General > « Allow GitHub Actions to create and approve pull requests » : activé.
+# Secrets facultatifs :
+#   RELIEFWEB_APPNAME  identifiant d'application ReliefWeb (à demander : https://apidoc.reliefweb.int/parameters#appname)
+#   ROBOT_PAT          jeton personnel : sans lui, les PR ouvertes par le robot ne déclenchent pas la vérification
+#                      automatique (limitation GitHub) ; elle se lance dès que quelqu'un pousse une correction.
+name: Robot de rapports
+
+on:
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+  workflow_dispatch:
+    inputs:
+      event:
+        description: "Traiter un seul séisme (ex. usgs:us7000kufc) — facultatif"
+        required: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: robot
+  cancel-in-progress: false
+
+jobs:
+  robot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.ROBOT_PAT || secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: pipeline/requirements.txt
+
+      - name: Installer le pipeline
+        run: pip install -r pipeline/requirements.txt
+
+      - name: Lister les rapports déjà proposés (branches robot/*)
+        run: git ls-remote --heads origin 'robot/*' | awk '{print $2}' > "$RUNNER_TEMP/branches.txt"
+
+      - name: Lancer le robot
+        env:
+          RELIEFWEB_APPNAME: ${{ secrets.RELIEFWEB_APPNAME }}
+          EVENT: ${{ github.event.inputs.event }}
+        run: |
+          ARGS=(--existing-branches "$RUNNER_TEMP/branches.txt" --changesets "$RUNNER_TEMP/changesets.json")
+          if [ -n "$EVENT" ]; then ARGS+=(--event "$EVENT"); fi
+          python pipeline/robot_rapports.py "${ARGS[@]}"
+
+      - name: Ouvrir une Pull Request par rapport
+        env:
+          GH_TOKEN: ${{ secrets.ROBOT_PAT || secrets.GITHUB_TOKEN }}
+        run: |
+          CS="$RUNNER_TEMP/changesets.json"
+          n=$(jq length "$CS")
+          if [ "$n" -eq 0 ]; then echo "Aucun rapport à proposer."; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          gh label create rapport --color FF8A3D --description "Rapport proposé par le robot" --force || true
+
+          # Mettre de côté tous les fichiers produits, puis une branche par rapport depuis main
+          OUT="$RUNNER_TEMP/robot-out"
+          mkdir -p "$OUT"
+          jq -r '.[].files[]' "$CS" | sort -u | while read -r f; do mkdir -p "$OUT/$(dirname "$f")"; cp "$f" "$OUT/$f"; done
+          git stash --include-untracked
+
+          for i in $(seq 0 $((n - 1))); do
+            branch=$(jq -r ".[$i].branch" "$CS")
+            title=$(jq -r ".[$i].title" "$CS")
+            jq -r ".[$i].body" "$CS" > "$RUNNER_TEMP/body.md"
+            git checkout -B "$branch" origin/main
+            jq -r ".[$i].files[]" "$CS" | while read -r f; do mkdir -p "$(dirname "$f")"; cp "$OUT/$f" "$f"; git add -- "$f"; done
+            git commit -m "$title"
+            git push --force-with-lease origin "$branch"
+            gh pr create --base main --head "$branch" --title "$title" --body-file "$RUNNER_TEMP/body.md" --label rapport \
+              || gh pr create --base main --head "$branch" --title "$title" --body-file "$RUNNER_TEMP/body.md" \
+              || echo "::warning::PR déjà ouverte pour $branch"
+            git checkout --detach origin/main
+          done
