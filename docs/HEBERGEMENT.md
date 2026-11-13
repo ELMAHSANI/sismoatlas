@@ -37,7 +37,7 @@ robot) consommeraient aussi plus de 2 000 minutes d'Actions par mois.
    - *Settings › Actions › General* : autoriser GitHub Actions à créer des Pull Requests ;
    - secrets : `CLOUDFLARE_DEPLOY_HOOK` (étape 2), facultatifs `RELIEFWEB_APPNAME`, `ROBOT_PAT`.
 2. Cloudflare Pages, projet relié au dépôt :
-   - commande de construction : `pip install "requests>=2.31" && (python pipeline/fetch_live.py || true) && npm run build`
+   - commande de construction : `npm run build:cf` (télécharge les données du moment puis construit le site)
      (le site part avec les données du moment ; si une source est en panne, la copie du dépôt est utilisée) ;
    - dossier de sortie : `dist` ;
    - variables : `NODE_VERSION=24`, `PUBLIC_LIVE_DATA_URL=https://<compte>.github.io/<dépôt>` ;

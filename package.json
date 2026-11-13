@@ -13,7 +13,8 @@
     "preview": "astro preview",
     "check": "astro check",
     "astro": "astro",
-    "check:content": "node scripts/check-content.mjs"
+    "check:content": "node scripts/check-content.mjs",
+    "build:cf": "pip install \"requests>=2.31\" && (python3 pipeline/fetch_live.py || python pipeline/fetch_live.py || true) && astro build"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.1.5",
