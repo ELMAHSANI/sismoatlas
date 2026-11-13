@@ -14,9 +14,15 @@ interface Props {
   /** Chemin de la page dans chaque langue (sinon : même chemin, langue remplacée). */
   alternates?: Partial<Record<Lang, string>>;
   noindex?: boolean;
+  /** Partage sur les réseaux : « website » (défaut) ou « article » (avec dates). */
+  ogType?: 'website' | 'article';
+  publishedTime?: Date;
+  modifiedTime?: Date;
+  /** Image de partage (chemin public) ; par défaut l'image SismoAtlas de la langue. */
+  image?: string;
 }
 
-const { lang, title, description, alternates, noindex = false } = Astro.props;
+const { lang, title, description, alternates, noindex = false, ogType = 'website', publishedTime, modifiedTime, image } = Astro.props;
 const t = useTranslations(lang);
 const meta = LANG_META[lang];
 const siteName = t('site.name');
@@ -30,6 +36,21 @@ const altPaths = Object.fromEntries(
 // Les liens hreflang ne pointent que vers des traductions réellement disponibles.
 const hreflangLangs = alternates ? LANGS.filter((l) => alternates[l]) : LANGS;
 const canonical = new URL(pathname, Astro.site);
+const ogImage = new URL(image ?? `/og/sismoatlas-${lang}.png`, Astro.site);
+// Statistiques sans cookies (Cloudflare Web Analytics) : jeton fourni par Cloudflare, en production seulement
+const beaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN as string | undefined;
+// Données structurées (moteurs de recherche) : le site, sur la page d'accueil de chaque langue
+const isHome = pathname === `/${lang}/`;
+const jsonLd = isHome
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: siteName,
+      url: new URL(`/${lang}/`, Astro.site).href,
+      inLanguage: meta.htmlLang,
+      description: pageDescription,
+    }
+  : null;
 ---
 
 <!doctype html>
@@ -47,8 +68,30 @@ const canonical = new URL(pathname, Astro.site);
     <meta property="og:title" content={title ?? siteName} />
     <meta property="og:description" content={pageDescription} />
     <meta property="og:locale" content={meta.ogLocale} />
-    <meta property="og:type" content="website" />
+    {hreflangLangs.filter((l) => l !== lang).map((l) => <meta property="og:locale:alternate" content={LANG_META[l].ogLocale} />)}
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${siteName} — ${t('site.tagline')}`} />
+    {publishedTime && <meta property="article:published_time" content={publishedTime.toISOString()} />}
+    {modifiedTime && <meta property="article:modified_time" content={modifiedTime.toISOString()} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title ?? siteName} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImage} />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+    {
+      import.meta.env.PROD && beaconToken && (
+        <script
+          is:inline
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={JSON.stringify({ token: beaconToken })}
+        />
+      )
+    }
     <meta name="theme-color" content="#0b3d91" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0a1120" media="(prefers-color-scheme: dark)" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />

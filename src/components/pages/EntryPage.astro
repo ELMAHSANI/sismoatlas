@@ -32,7 +32,15 @@ const alternates = Object.fromEntries(
 ) as Record<Lang, string>;
 ---
 
-<BaseLayout lang={lang} title={data.title} description={data.description} alternates={alternates}>
+<BaseLayout
+  lang={lang}
+  title={data.title}
+  description={data.description}
+  alternates={alternates}
+  ogType="article"
+  publishedTime={data.date}
+  modifiedTime={data.updated}
+>
   <article class="container page">
     <header class="page-header">
       {!singleton && <a class="section-link" href={routePath(lang, section.route)}>{t(`nav.${section.route}`)}</a>}
