@@ -1,0 +1,29 @@
+# Reconstruction quotidienne du site sur Cloudflare Pages (≈ 30 constructions par mois, bien sous la limite
+# gratuite de 500) : rafraîchit le contenu affiché sans JavaScript (dernier séisme, liste, monde).
+# Le reste du temps, le navigateur lit les données à jour sur GitHub Pages (data-live.yml).
+#
+# Prérequis : secret CLOUDFLARE_DEPLOY_HOOK = adresse d'un « Deploy hook » (Cloudflare Pages > Settings > Builds).
+name: Reconstruction quotidienne
+
+on:
+  schedule:
+    - cron: "15 5 * * *" # 05:15 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Déclencher la construction Cloudflare Pages
+        env:
+          HOOK: ${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "::notice::Secret CLOUDFLARE_DEPLOY_HOOK absent : rien à faire."
+            exit 0
+          fi
+          curl -fsS -X POST "$HOOK" > /dev/null && echo "Construction demandée."

@@ -63,7 +63,8 @@ Pour corriger un nom arabe à la main, modifier ce fichier puis relancer `build_
 
 | Workflow | Quand | Rôle |
 |---|---|---|
-| `data-live.yml` | toutes les 15 min | `fetch_live.py`, enregistre `public/data/live` et `public/data/world` sur main |
+| `data-live.yml` | toutes les 15 min | `fetch_live.py`, publie `live/` et `world/` sur GitHub Pages (sans commit ; voir `docs/HEBERGEMENT.md`) |
+| `rebuild.yml` | chaque jour | reconstruit le site sur Cloudflare Pages (deploy hook) |
 | `robot.yml` | toutes les 15 min (décalé) | robot de rapports, une Pull Request par rapport |
 | `catalogue.yml` | le 1er du mois | `fetch_recent_catalogue.py` + `build_map_data.py` |
 | `check.yml` | chaque PR et push sur main | contenus publiés complets, types, construction du site |

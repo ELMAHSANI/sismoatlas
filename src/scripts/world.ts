@@ -5,6 +5,7 @@
 import { localTime, makeT, relativeTime, type Lang, type T } from '../lib/quake';
 import { fromWorldFeature, worldItemHtml, worldPopupHtml, type WorldQuake } from '../lib/world';
 import type { QuakeMap } from './quake-map';
+import { fetchLiveData } from '../lib/data-url';
 
 type Tab = '7d' | '30d' | '1y';
 const WINDOW_MS: Record<Tab, number> = { '7d': 7 * 86_400_000, '30d': 30 * 86_400_000, '1y': 365 * 86_400_000 };
@@ -58,7 +59,7 @@ export function initWorld(): void {
 
   async function load(): Promise<void> {
     try {
-      const res = await fetch('/data/world/1y.geojson', { cache: 'no-cache' });
+      const res = await fetchLiveData('world/1y.geojson');
       if (!res.ok) return;
       const fc = await res.json();
       quakes = fc.features.map(fromWorldFeature).sort((a: WorldQuake, b: WorldQuake) => b.time.localeCompare(a.time));

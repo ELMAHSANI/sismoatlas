@@ -11,6 +11,7 @@ import {
   itemHtml, latestHtml, localTime, makeT, popupHtml, nearestCity, relativeTime, type City, type Lang, type Quake, type T,
 } from '../lib/quake';
 import type { QuakeMap } from './quake-map';
+import { fetchLiveData } from '../lib/data-url';
 
 type Tab = 'live' | '24h' | '7d' | '30d';
 const WINDOW_MS: Record<Exclude<Tab, 'live'>, number> = { '24h': 86_400_000, '7d': 7 * 86_400_000, '30d': 30 * 86_400_000 };
@@ -124,7 +125,7 @@ export function initLive(): void {
 
   async function loadFile(name: '30d' | '24h'): Promise<boolean> {
     try {
-      const res = await fetch(`/data/live/${name}.geojson`, { cache: 'no-cache' });
+      const res = await fetchLiveData(`live/${name}.geojson`);
       if (!res.ok) return false;
       const fc = await res.json();
       for (const f of fc.features) upsert(fromFeature(f));
