@@ -5,7 +5,7 @@
 
 backend:
   name: github
-  repo: COMPTE/sismoatlas
+  repo: ELMAHSANI/sismoatlas
   branch: main
   base_url: https://sismoatlas.pages.dev
   auth_endpoint: api/auth
