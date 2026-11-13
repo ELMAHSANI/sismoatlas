@@ -1,6 +1,6 @@
 # À rédiger ou à vérifier
 
-*Liste générée le 12/11/2026 par `node docs/lister-a-completer.mjs` — 368 éléments.*
+*Liste générée le 13/11/2026 par `node docs/lister-a-completer.mjs` — 371 éléments.*
 
 Les versions arabe et anglaise reprennent les mêmes points (« traduction … ») : rédiger d'abord le français.
 
@@ -328,9 +328,10 @@ Les versions arabe et anglaise reprennent les mêmes points (« traduction … �
 
 ### `src/content/pages/ar/data-methods.mdx`
 
-- [ ] رخص إعادة استعمال كل مصدر، بعد التحقق منها
-- [ ] تفاصيل المعالجة، المرحلة 3
-- [ ] طريقة دمج بيانات الهيئات وحذف التكرار، المرحلة 3
+- [ ] شروط إعادة الاستعمال تُطلب من المؤلفين
+- [ ] مصدر الطبقة ورخصتها
+- [ ] 🔎 شروط إعادة الاستعمال
+- [ ] 🔎 شروط إعادة الاستعمال
 
 ### `src/content/pages/ar/disclaimer.mdx`
 
@@ -355,9 +356,10 @@ Les versions arabe et anglaise reprennent les mêmes points (« traduction … �
 
 ### `src/content/pages/en/data-methods.mdx`
 
-- [ ] reuse licence of each source, checked
-- [ ] processing details, phase 3
-- [ ] agency merging and de-duplication method (time and distance windows), phase 3
+- [ ] reuse terms to be requested from the authors
+- [ ] origin and licence of the layer
+- [ ] 🔎 reuse terms
+- [ ] 🔎 reuse terms
 
 ### `src/content/pages/en/disclaimer.mdx`
 
@@ -382,9 +384,10 @@ Les versions arabe et anglaise reprennent les mêmes points (« traduction … �
 
 ### `src/content/pages/fr/data-methods.mdx`
 
-- [ ] licences de réutilisation de chaque source, vérifiées
-- [ ] détails du traitement, phase 3
-- [ ] méthode de fusion des agences et de dédoublonnage (fenêtres de temps et de distance), phase 3
+- [ ] conditions de réutilisation à demander aux auteurs
+- [ ] origine et licence de la couche
+- [ ] 🔎 conditions de réutilisation
+- [ ] 🔎 conditions de réutilisation
 
 ### `src/content/pages/fr/disclaimer.mdx`
 

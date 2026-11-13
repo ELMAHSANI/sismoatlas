@@ -1,47 +1,74 @@
 ---
 title: "Données & méthodes"
-description: "Sources, catalogues, zone étudiée et méthodes de traitement des données sismiques."
+description: "Sources, licences, catalogues, zone étudiée et méthodes de traitement des données sismiques de SismoAtlas."
 lang: "fr"
 translationKey: "data-methods"
-updated: "2026-11-12"
+updated: "2026-11-13"
 draft: true
 ---
+
 ## Zone étudiée
 
-La zone « Maroc et alentours » couvre les latitudes 20° N à 38° N et les longitudes 18° O à 1° E : le Maroc entier, la mer d'Alboran, le sud de l'Espagne et du Portugal et l'ouest de l'Algérie.
+La zone « Maroc et alentours » couvre les latitudes **20° N à 38° N** et les longitudes **18° O à 1° E** : le Maroc entier (provinces du Sud comprises), la mer d'Alboran, le sud de l'Espagne et du Portugal et l'ouest de l'Algérie.
 
 ## Deux catalogues complémentaires
 
-**1. Catalogue de référence, 1045–2005.** Il reprend le catalogue de Peláez et al. (2007), qui rassemble les séismes historiques et instrumentaux de la région (27° N–37° N, 15° O–1° E). Ses magnitudes ont été unifiées en magnitude de moment (Mw). Il est **déclusterisé** : il ne contient que les séismes principaux (sans précurseurs ni répliques), identifiés avec la méthode de Gardner et Knopoff (1974), et seulement ceux de magnitude Mw ≥ 3,0.
+**1. Catalogue de référence, 1045–2005** — Peláez et al. (2007), 1 738 séismes. Il rassemble les séismes historiques et instrumentaux de la région (27° N–37° N, 15° O–1° E) à partir des catalogues de l'IGN (Espagne), du Service de physique du globe de Rabat, du CRAAG (Algérie), de l'ISC, du NEIC et d'études publiées. Ses magnitudes ont été **unifiées en magnitude de moment (Mw)** à l'aide de relations empiriques (magnitude publiée, intensité…). Il est **déclusterisé** : les précurseurs et les répliques ont été retirés avec la méthode de Gardner et Knopoff (1974), puis seuls les séismes de Mw ≥ 3,0 ont été conservés.
 
-**2. Sismicité depuis 2006.** Elle provient des catalogues en ligne de l'IGN (Espagne), de l'USGS et de l'EMSC. Elle contient **tous** les séismes détectés, répliques comprises, avec des magnitudes de types différents (Mw, mb, mbLg, ML…).
+**2. Sismicité depuis 2006** — catalogues en ligne de l'EMSC (qui relaie notamment l'IGN espagnol et le CNRST) et de l'USGS. Il contient **tous** les séismes détectés, répliques comprises, avec des magnitudes de types différents (ml, mb, mbLg, Mw…), non converties.
 
-Ces deux ensembles ne sont pas directement comparables : ils sont affichés comme deux couches distinctes, et les statistiques ne sont calculées qu'à l'intérieur d'un même ensemble.
+Ces deux ensembles **ne se comparent pas directement** : ils sont affichés comme des couches distinctes et les statistiques ne sont calculées qu'à l'intérieur d'un même ensemble.
 
-## Sources
+## Sources et licences
 
-- **IGN** – Instituto Geográfico Nacional (Espagne) : catalogue sismique, bonne couverture du nord du Maroc et de la mer d'Alboran.
-- **USGS** – United States Geological Survey : catalogue mondial, niveaux d'impact PAGER, alertes tsunami.
-- **EMSC** – Centre sismologique euro-méditerranéen : catalogue et flux en temps réel, témoignages.
-- **Peláez et al. (2007)** : catalogue de référence 1045–2005.
-
-[À COMPLÉTER : licences de réutilisation de chaque source, vérifiées]
+| Source | Utilisation sur le site | Licence |
+|---|---|---|
+| Peláez et al. (2007) | catalogue de référence 1045–2005, fiches | [À COMPLÉTER : conditions de réutilisation à demander aux auteurs] |
+| EMSC-CSEM | séismes récents, direct, formulaire « L'avez-vous ressenti ? », répliques | [À VÉRIFIER : conditions de réutilisation] |
+| USGS (ANSS ComCat) | grands séismes mondiaux, niveaux PAGER, mécanismes au foyer, répliques | domaine public |
+| IGN (Espagne) | solutions relayées par l'EMSC pour le nord du Maroc et l'Alboran | [À VÉRIFIER : conditions de réutilisation] |
+| GEM Global Active Faults (Styron et Pagani, 2020) | failles actives | CC BY-SA 4.0 |
+| Bird (2003), conversion Ahlenius / Nordpil | limites de plaques | ODC-By 1.0 |
+| GeoNames | villes de référence (« à 18 km au nord de… ») | CC BY 4.0 |
+| OpenStreetMap | noms arabes de villes, fond de carte (OpenFreeMap / OpenMapTiles) | ODbL |
+| Limites du Maroc | couche fournie par l'équipe | [À COMPLÉTER : origine et licence de la couche] |
 
 ## Mise à jour
 
-Les données récentes sont mises à jour automatiquement toutes les 15 minutes. [À COMPLÉTER : détails du traitement, phase 3]
+- **Séismes récents (Maroc, 30 jours) et grands séismes mondiaux (M ≥ 6, 1 an)** : téléchargés automatiquement toutes les 15 minutes ; la page reçoit aussi les nouveaux séismes en direct (flux de l'EMSC).
+- **Sismicité depuis 2006** : retéléchargée périodiquement (les agences révisent leurs solutions).
+- **Catalogue de référence** : fixe (publication de 2007).
 
 ## Fusion et dédoublonnage
 
-[À COMPLÉTER : méthode de fusion des agences et de dédoublonnage (fenêtres de temps et de distance), phase 3]
+Un même séisme est souvent publié par plusieurs agences. Deux enregistrements sont considérés comme **le même séisme** si leur heure diffère de **20 secondes au plus** et leur épicentre de **50 km au plus**. Pour la zone Maroc, l'**EMSC est l'agence de référence** (il relaie les agences régionales) ; l'identifiant de l'autre agence (USGS) est conservé. Le catalogue de référence et la sismicité récente portent sur des périodes différentes (jusqu'en 2005 / depuis 2006) : ils ne sont pas fusionnés.
+
+## Description en langage simple
+
+- **Ville la plus proche** : calculée à partir de la liste GeoNames (localités de 5 000 habitants et plus ; repère secondaire : villes de 100 000 habitants et plus). La direction est donnée de la ville vers l'épicentre. C'est approximatif : l'épicentre lui-même a une incertitude.
+- **Profondeur** : peu profond (moins de 70 km), intermédiaire (70 à 300 km), profond (plus de 300 km), selon les classes usuelles.
+- **Heure** : les agences publient en temps universel (UTC). L'heure du Maroc est calculée par votre navigateur avec le fuseau officiel `Africa/Casablanca` (le Maroc est revenu à GMT le 20 septembre 2026).
+
+## Section « Séismes au Maroc »
+
+Par défaut, seuls les séismes de magnitude **2,5 ou plus** sont affichés (bouton « Afficher tous les séismes »). Les **îles Canaries** ne sont pas affichées dans cette section : leur activité, souvent volcanique (essaim de La Palma en 2021), n'est pas ressentie au Maroc ; elles restent visibles sur la carte complète.
+
+## Grands séismes dans le monde
+
+Séismes de magnitude 6 ou plus publiés par l'USGS. Le **niveau PAGER** est une estimation automatique des pertes humaines et économiques probables, révisable. L'**indicateur tsunami** signale un séisme fort en mer pour lequel les centres d'alerte peuvent publier une information : il ne signifie pas qu'un tsunami a eu lieu.
 
 ## Limites des données
 
-- Le nombre de petits séismes détectés augmente nettement après 2010, grâce à la densification des réseaux de stations : cette hausse ne traduit pas une augmentation de l'activité.
-- Les localisations anciennes sont imprécises (parfois plusieurs dizaines de kilomètres).
+- Le nombre de petits séismes détectés augmente avec la densification des réseaux de stations : une hausse du nombre de séismes ne traduit pas forcément une hausse de l'activité.
+- Dans la sismicité depuis 2006, le nombre annuel de séismes varie aussi selon la façon dont l'EMSC agrège les petits séismes des agences (forte baisse apparente entre 2012 et 2019 dans nos données).
+- Les localisations anciennes sont imprécises (parfois plusieurs dizaines de kilomètres) ; certaines profondeurs sont fixées par défaut (0, 10 ou 33 km).
 - Les magnitudes récentes, de types différents, ne sont pas toutes équivalentes à une Mw.
+- Les séquences de répliques anciennes (avant les années 2000) sont incomplètes dans les catalogues en ligne.
+- SismoAtlas ne fait **aucune prévision** et ne remplace pas les autorités.
 
 ## Références
 
 - Peláez J. A., Chourak M., Tadili B. A., Aït Brahim L., Hamdache M., López Casado C., Martínez Solares J. M. (2007). *A Catalog of Main Moroccan Earthquakes from 1045 to 2005*. Seismological Research Letters 78(6), 614–621. [doi:10.1785/gssrl.78.6.614](https://doi.org/10.1785/gssrl.78.6.614)
 - Gardner J. K., Knopoff L. (1974). *Is the sequence of earthquakes in Southern California, with aftershocks removed, Poissonian?* Bulletin of the Seismological Society of America 64, 1363–1367.
+- Styron R., Pagani M. (2020). *The GEM Global Active Faults Database*. Earthquake Spectra 36(1_suppl), 160–180. [doi:10.1177/8755293020944182](https://doi.org/10.1177/8755293020944182)
+- Bird P. (2003). *An updated digital model of plate boundaries*. Geochemistry, Geophysics, Geosystems 4(3), 1027. [doi:10.1029/2001GC000252](https://doi.org/10.1029/2001GC000252)

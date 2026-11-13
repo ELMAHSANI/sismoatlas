@@ -38,6 +38,13 @@
   --mag-4-on: #ffffff;
   --mag-5-on: #ffffff;
 
+  /* Classes de profondeur (carte complète) */
+  --depth-1: #fcc419;
+  --depth-2: #f76707;
+  --depth-3: #c2255c;
+  --depth-4: #5f3dc4;
+  --depth-0: #adb5bd;
+
   /* Niveaux d'impact PAGER (USGS) — section « monde » */
   --pager-green: #2f9e44;
   --pager-yellow: #f2c200;

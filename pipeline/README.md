@@ -21,6 +21,7 @@ py -m venv .venv
 | `fetch_recent_catalogue.py` | Sismicité depuis 2006 (EMSC + USGS) | services FDSN en ligne | `data/catalogue/recent_2006.csv` + `RAPPORT_RECENT.md` | mensuelle |
 | `fetch_faults.py` | Failles actives GEM (Styron et Pagani, 2020, CC BY-SA 4.0), zone Maroc | GitHub GEM (cache `.cache/`) | `public/data/sig/gem_faults.geojson` | rarement |
 | `build_events.py` | Données des fiches séismes majeurs : paramètres USGS, mécanismes au foyer, valeurs Peláez, répliques | `pipeline/events.json` + USGS/EMSC + `data/catalogue/` | `public/data/events/<slug>.json` + `data/events/RAPPORT_EVENEMENTS.md` | à l'ajout d'une fiche |
+| `build_map_data.py` | Données de la carte complète (formats compacts) + limites de plaques (Bird, 2003, ODC-By) | `data/catalogue/` + GitHub fraxen/tectonicplates | `public/data/catalogue/{reference,recent-m2,recent-small}.json`, `public/data/sig/plates.geojson` | après chaque mise à jour des catalogues |
 | `fetch_live.py` | Séismes récents (Maroc 30 j) et grands séismes mondiaux (M ≥ 6, 1 an) | services FDSN en ligne | `public/data/live/{24h,7d,30d}.geojson`, `public/data/world/{7d,30d,1y}.geojson` | toutes les 15 min (GitHub Actions, phase 8) |
 
 ```bash
@@ -30,6 +31,7 @@ py -m venv .venv
 .venv/Scripts/python pipeline/fetch_recent_catalogue.py
 .venv/Scripts/python pipeline/fetch_faults.py
 .venv/Scripts/python pipeline/build_events.py
+.venv/Scripts/python pipeline/build_map_data.py
 .venv/Scripts/python pipeline/fetch_live.py
 ```
 

@@ -1,42 +1,316 @@
 ---
-/** Carte complète — construite en phase 7. */
+/**
+ * Carte complète (phase 7) : catalogue de référence 1045–2005 + sismicité depuis 2006,
+ * filtres (catalogue, période, magnitude, profondeur, Canaries), couches (failles, plaques, limites),
+ * fiche détaillée au clic. Données : public/data/catalogue/ (pipeline/build_map_data.py).
+ */
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import MagnitudeScale from '../../../components/MagnitudeScale.astro';
 import type { Lang } from '../../../i18n/config';
-import { langStaticPaths, useTranslations } from '../../../i18n/utils';
+import { langStaticPaths, routePath, useTranslations, type UIKey } from '../../../i18n/utils';
+import fr from '../../../i18n/fr.json';
+import ar from '../../../i18n/ar.json';
+import en from '../../../i18n/en.json';
 
 export const getStaticPaths = langStaticPaths;
 const lang = Astro.params.lang as Lang;
 const t = useTranslations(lang);
+const dicts = { fr, ar, en } as Record<Lang, Record<string, string>>;
+const dict = Object.fromEntries(
+  Object.keys(fr)
+    .filter((k) => ['map.', 'quake.', 'live.map.', 'place.', 'dir.'].some((p) => k.startsWith(p)))
+    .map((k) => [k, dicts[lang][k] ?? (fr as Record<string, string>)[k]]),
+);
+const thisYear = new Date().getFullYear();
 ---
 
 <BaseLayout lang={lang} title={t('nav.map')} description={t('section.map.intro')}>
-  <div class="container page">
+  <div class="container page fullmap-page" data-fullmap data-lang={lang} data-max-year={thisYear}>
     <header class="page-header">
       <h1>{t('nav.map')}</h1>
       <p>{t('section.map.intro')}</p>
     </header>
-    <div class="map-layout">
-      <div class="placeholder map-placeholder">{t('map.placeholder')}</div>
-      <MagnitudeScale lang={lang} />
+
+    <div class="fullmap">
+      <aside class="fm-panel">
+        <details class="fm-filters" open>
+          <summary>{t('map.filters')}</summary>
+          <form class="fm-form" data-filters onsubmit="return false">
+            <fieldset>
+              <legend>{t('map.catalogs')}</legend>
+              <label><input type="checkbox" name="hist" checked /> {t('map.cat.hist')}</label>
+              <label><input type="checkbox" name="ref" checked /> {t('map.cat.ref')}</label>
+              <label><input type="checkbox" name="rec" checked /> {t('map.cat.rec')}</label>
+            </fieldset>
+
+            <fieldset>
+              <legend>{t('map.period')}</legend>
+              <div class="fm-row">
+                <label>{t('map.from')} <input type="number" name="y0" min="1045" max={thisYear} value="1045" inputmode="numeric" /></label>
+                <label>{t('map.to')} <input type="number" name="y1" min="1045" max={thisYear} value={thisYear} inputmode="numeric" /></label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>{t('map.magnitude')} : <output name="magOut">2,5</output></legend>
+              <input type="range" name="mag" min="0" max="7" step="0.5" value="2.5" aria-label={t('map.magnitude')} />
+            </fieldset>
+
+            <fieldset>
+              <legend>{t('map.depth')}</legend>
+              <div class="fm-row">
+                <label>{t('map.depthMin')} <input type="number" name="d0" min="0" max="700" value="0" inputmode="numeric" /></label>
+                <label>{t('map.depthMax')} <input type="number" name="d1" min="0" max="700" value="700" inputmode="numeric" /></label>
+              </div>
+            </fieldset>
+
+            <label class="fm-check"><input type="checkbox" name="canaries" /> {t('map.canaries')}</label>
+
+            <fieldset>
+              <legend>{t('map.layers')}</legend>
+              <label><input type="checkbox" name="faults" checked /> <span class="sw sw-fault" aria-hidden="true"></span>{t('map.layer.faults')}</label>
+              <label><input type="checkbox" name="plates" checked /> <span class="sw sw-plate" aria-hidden="true"></span>{t('map.layer.plates')}</label>
+              <label><input type="checkbox" name="limits" checked /> <span class="sw sw-limit" aria-hidden="true"></span>{t('map.layer.limits')}</label>
+            </fieldset>
+
+            <fieldset>
+              <legend>{t('map.colorBy')}</legend>
+              <label><input type="radio" name="color" value="mag" checked /> {t('map.colorBy.mag')}</label>
+              <label><input type="radio" name="color" value="depth" /> {t('map.colorBy.depth')}</label>
+            </fieldset>
+
+            <button type="reset" class="fm-reset">{t('map.reset')}</button>
+          </form>
+        </details>
+        <p class="fm-count" data-count aria-live="polite">{t('map.loading')}</p>
+        <section class="fm-detail" data-detail aria-live="polite">
+          <p class="muted">{t('map.detail.hint')}</p>
+        </section>
+      </aside>
+
+      <div class="fm-map-wrap">
+        <div id="full-map" class="fm-map" role="region" aria-label={t('section.map.intro')}></div>
+      </div>
     </div>
+
+    <div class="fm-legends">
+      <div data-legend="mag"><MagnitudeScale lang={lang} /></div>
+      <figure class="depth-legend" data-legend="depth" hidden>
+        <figcaption>{t('map.depthLegend')}</figcaption>
+        <ul>
+          {[1, 2, 3, 4, 0].map((n) => <li><span class="dot" style={`background:var(--depth-${n})`} />{t(`map.depth.c${n}` as UIKey)}</li>)}
+        </ul>
+      </figure>
+      <div class="fm-notes">
+        <p>{t('map.note')}</p>
+        <p><a href={routePath(lang, 'dataMethods')}>{t('map.dataLink')}</a></p>
+        <p class="muted small">Peláez et al. (2007) · EMSC-CSEM · USGS · GEM GAF (CC BY-SA 4.0) · Bird (2003, ODC-By) · GeoNames · © OpenStreetMap</p>
+      </div>
+    </div>
+    <script type="application/json" id="map-i18n" set:html={JSON.stringify(dict)} />
   </div>
 </BaseLayout>
 
+<script>
+  import { initFullMap } from '../../../scripts/full-map';
+  initFullMap();
+</script>
+
 <style>
-  .map-layout {
+  .fullmap {
     display: grid;
-    gap: var(--space-5);
+    gap: var(--space-4);
   }
   @media (min-width: 64rem) {
-    .map-layout {
-      grid-template-columns: 1fr 20rem;
+    .fullmap {
+      grid-template-columns: 20rem 1fr;
       align-items: start;
     }
   }
-  .map-placeholder {
-    min-height: 22rem;
+  .fm-panel {
     display: grid;
-    place-items: center;
+    gap: var(--space-3);
+  }
+  .fm-filters {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+  }
+  .fm-filters summary {
+    padding: var(--space-3) var(--space-4);
+    font-weight: 650;
+    cursor: pointer;
+  }
+  .fm-form {
+    display: grid;
+    gap: var(--space-3);
+    padding: 0 var(--space-4) var(--space-4);
+    font-size: var(--fs-sm);
+  }
+  fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-1);
+  }
+  legend {
+    font-weight: 600;
+    margin-block-end: var(--space-1);
+  }
+  label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+  .fm-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2);
+  }
+  .fm-row label {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+  }
+  input[type='number'] {
+    width: 100%;
+    padding: var(--space-1) var(--space-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg);
+    color: var(--color-text);
+    font: inherit;
+  }
+  input[type='range'] {
+    width: 100%;
+    accent-color: var(--color-primary);
+  }
+  input[type='checkbox'],
+  input[type='radio'] {
+    accent-color: var(--color-primary);
+    width: 1.05rem;
+    height: 1.05rem;
+  }
+  .fm-reset {
+    justify-self: start;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    color: var(--color-text);
+    font: inherit;
+    cursor: pointer;
+  }
+  .fm-count {
+    margin: 0;
+    font-weight: 650;
+  }
+  .fm-detail {
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-bg);
+    font-size: var(--fs-sm);
+  }
+  .fm-detail :global(h2) {
+    font-size: var(--fs-lg);
+    margin: 0 0 var(--space-2);
+  }
+  .fm-detail :global(dl) {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-1) var(--space-3);
+    margin: 0;
+  }
+  .fm-detail :global(dt) {
+    color: var(--color-text-muted);
+  }
+  .fm-detail :global(dd) {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+  .fm-detail p {
+    margin: 0;
+  }
+  .fm-map {
+    position: relative;
+    height: min(70vh, 34rem);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+  }
+  @media (min-width: 64rem) {
+    .fm-map {
+      height: 44rem;
+    }
+  }
+  .fm-map :global(.maplibregl-map) {
+    position: absolute;
+    inset: 0;
+  }
+  .fm-legends {
+    display: grid;
+    gap: var(--space-4);
+    margin-block-start: var(--space-5);
+  }
+  @media (min-width: 64rem) {
+    .fm-legends {
+      grid-template-columns: 20rem 1fr;
+      align-items: start;
+    }
+  }
+  .depth-legend {
+    margin: 0;
+    padding: var(--space-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+  .depth-legend figcaption {
+    font-weight: 650;
+    margin-block-end: var(--space-2);
+  }
+  .depth-legend ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-1);
+    font-size: var(--fs-sm);
+  }
+  .depth-legend li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+  .dot {
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    flex: none;
+  }
+  .sw {
+    display: inline-block;
+    width: 1.2rem;
+    flex: none;
+  }
+  .sw-fault {
+    height: 2px;
+    background: var(--color-danger);
+  }
+  .sw-plate {
+    height: 0;
+    border-top: 3px dashed var(--color-text-muted);
+  }
+  .sw-limit {
+    height: 2px;
+    background: var(--color-primary);
+  }
+  .fm-notes p {
+    margin-block-end: var(--space-2);
+  }
+  .small {
+    font-size: var(--fs-sm);
   }
 </style>

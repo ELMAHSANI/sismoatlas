@@ -1,47 +1,74 @@
 ---
 title: "Data & methods"
-description: "Sources, catalogues, study area and methods used to process earthquake data."
+description: "Sources, licences, catalogues, study area and processing methods for SismoAtlas earthquake data."
 lang: "en"
 translationKey: "data-methods"
-updated: "2026-11-12"
+updated: "2026-11-13"
 draft: true
 ---
+
 ## Study area
 
-The "Morocco and surroundings" area spans latitudes 20° N to 38° N and longitudes 18° W to 1° E: the whole of Morocco, the Alboran Sea, southern Spain and Portugal, and western Algeria.
+The "Morocco and surroundings" area spans latitudes **20° N to 38° N** and longitudes **18° W to 1° E**: the whole of Morocco (southern provinces included), the Alboran Sea, southern Spain and Portugal, and western Algeria.
 
 ## Two complementary catalogues
 
-**1. Reference catalogue, 1045–2005.** It is based on the catalogue by Peláez et al. (2007), which compiles historical and instrumental earthquakes in the region (27° N–37° N, 15° W–1° E). Its magnitudes have been unified as moment magnitude (Mw). It is **declustered**: it contains only mainshocks (no foreshocks or aftershocks), identified with the Gardner and Knopoff (1974) method, and only events with Mw ≥ 3.0.
+**1. Reference catalogue, 1045–2005** — Peláez et al. (2007), 1,738 earthquakes. It compiles historical and instrumental earthquakes in the region (27° N–37° N, 15° W–1° E) from the catalogues of IGN (Spain), the Service de Physique du Globe in Rabat, CRAAG (Algeria), ISC, NEIC and published studies. Its magnitudes have been **unified as moment magnitude (Mw)** using empirical relationships. It is **declustered**: foreshocks and aftershocks were removed with the Gardner and Knopoff (1974) method, then only events with Mw ≥ 3.0 were kept.
 
-**2. Seismicity since 2006.** It comes from the online catalogues of IGN (Spain), USGS and EMSC. It contains **all** detected earthquakes, including aftershocks, with different magnitude types (Mw, mb, mbLg, ML…).
+**2. Seismicity since 2006** — online catalogues of the EMSC (which relays, among others, the Spanish IGN and Morocco's CNRST) and the USGS. It contains **all** detected earthquakes, aftershocks included, with different, unconverted magnitude types (ml, mb, mbLg, Mw…).
 
-The two datasets are not directly comparable: they are shown as two separate layers, and statistics are computed only within the same dataset.
+The two datasets **are not directly comparable**: they are shown as separate layers and statistics are computed only within the same dataset.
 
-## Sources
+## Sources and licences
 
-- **IGN** – Instituto Geográfico Nacional (Spain): earthquake catalogue with good coverage of northern Morocco and the Alboran Sea.
-- **USGS** – United States Geological Survey: global catalogue, PAGER impact levels, tsunami alerts.
-- **EMSC** – European-Mediterranean Seismological Centre: catalogue, real-time feed and testimonies.
-- **Peláez et al. (2007)**: reference catalogue 1045–2005.
-
-[À COMPLÉTER : reuse licence of each source, checked]
+| Source | Use on the site | Licence |
+|---|---|---|
+| Peláez et al. (2007) | reference catalogue 1045–2005, earthquake pages | [À COMPLÉTER : reuse terms to be requested from the authors] |
+| EMSC-CSEM | recent earthquakes, live feed, "Did you feel it?" form, aftershocks | [À VÉRIFIER : reuse terms] |
+| USGS (ANSS ComCat) | major earthquakes worldwide, PAGER levels, focal mechanisms, aftershocks | public domain |
+| IGN (Spain) | solutions relayed by the EMSC for northern Morocco and the Alboran Sea | [À VÉRIFIER : reuse terms] |
+| GEM Global Active Faults (Styron and Pagani, 2020) | active faults | CC BY-SA 4.0 |
+| Bird (2003), conversion by Ahlenius / Nordpil | plate boundaries | ODC-By 1.0 |
+| GeoNames | reference cities ("18 km north of…") | CC BY 4.0 |
+| OpenStreetMap | Arabic city names, base map (OpenFreeMap / OpenMapTiles) | ODbL |
+| Morocco boundaries | layer provided by the team | [À COMPLÉTER : origin and licence of the layer] |
 
 ## Updates
 
-Recent data are updated automatically every 15 minutes. [À COMPLÉTER : processing details, phase 3]
+- **Recent earthquakes (Morocco, 30 days) and major earthquakes worldwide (M ≥ 6, 1 year)**: downloaded automatically every 15 minutes; the page also receives new earthquakes live (EMSC feed).
+- **Seismicity since 2006**: re-downloaded periodically (agencies revise their solutions).
+- **Reference catalogue**: fixed (2007 publication).
 
 ## Merging and de-duplication
 
-[À COMPLÉTER : agency merging and de-duplication method (time and distance windows), phase 3]
+The same earthquake is often published by several agencies. Two records are considered **the same earthquake** if their times differ by **20 seconds at most** and their epicentres by **50 km at most**. For the Morocco area, the **EMSC is the reference agency** (it relays the regional agencies); the other agency's identifier (USGS) is kept. The reference catalogue and recent seismicity cover different periods (up to 2005 / since 2006) and are not merged.
+
+## Plain-language descriptions
+
+- **Nearest city**: computed from the GeoNames list (places with 5,000 inhabitants or more; secondary landmark: cities of 100,000 or more). The direction is given from the city to the epicentre. It is approximate: the epicentre itself is uncertain.
+- **Depth**: shallow (less than 70 km), intermediate (70 to 300 km), deep (more than 300 km), following the usual classes.
+- **Time**: agencies publish in Coordinated Universal Time (UTC). Morocco time is computed by your browser with the official `Africa/Casablanca` time zone (Morocco returned to GMT on 20 September 2026).
+
+## "Earthquakes in Morocco" section
+
+By default, only earthquakes of magnitude **2.5 or more** are shown ("Show all earthquakes" button). The **Canary Islands** are not shown in this section: their activity, often volcanic (La Palma swarm in 2021), is not felt in Morocco; they remain visible on the full map.
+
+## Major earthquakes worldwide
+
+Earthquakes of magnitude 6 or more published by the USGS. The **PAGER level** is an automatic, revisable estimate of likely human and economic losses. The **tsunami flag** marks a strong offshore earthquake for which warning centres may issue information: it does not mean a tsunami occurred.
 
 ## Data limitations
 
-- The number of small earthquakes detected rises sharply after 2010 because station networks became denser: this does not reflect increased activity.
-- Old locations are imprecise (sometimes by several tens of kilometres).
+- The number of small earthquakes detected rises as station networks become denser: more earthquakes does not necessarily mean more activity.
+- In seismicity since 2006, the annual number of earthquakes also depends on how the EMSC aggregates small events from agencies (a large apparent drop between 2012 and 2019 in our data).
+- Old locations are imprecise (sometimes by tens of kilometres); some depths are fixed by default (0, 10 or 33 km).
 - Recent magnitudes of different types are not all equivalent to Mw.
+- Older aftershock sequences (before the 2000s) are incomplete in online catalogues.
+- SismoAtlas makes **no forecasts** and does not replace the authorities.
 
 ## References
 
 - Peláez J. A., Chourak M., Tadili B. A., Aït Brahim L., Hamdache M., López Casado C., Martínez Solares J. M. (2007). *A Catalog of Main Moroccan Earthquakes from 1045 to 2005*. Seismological Research Letters 78(6), 614–621. [doi:10.1785/gssrl.78.6.614](https://doi.org/10.1785/gssrl.78.6.614)
 - Gardner J. K., Knopoff L. (1974). *Is the sequence of earthquakes in Southern California, with aftershocks removed, Poissonian?* Bulletin of the Seismological Society of America 64, 1363–1367.
+- Styron R., Pagani M. (2020). *The GEM Global Active Faults Database*. Earthquake Spectra 36(1_suppl), 160–180. [doi:10.1177/8755293020944182](https://doi.org/10.1177/8755293020944182)
+- Bird P. (2003). *An updated digital model of plate boundaries*. Geochemistry, Geophysics, Geosystems 4(3), 1027. [doi:10.1029/2001GC000252](https://doi.org/10.1029/2001GC000252)
