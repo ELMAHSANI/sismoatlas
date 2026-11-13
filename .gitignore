@@ -38,3 +38,9 @@ donnees_brutes/**
 
 # Sortie locale du robot de rapports (en CI : dossier temporaire)
 data/robot/changesets.json
+
+# Catalogue Peláez et al. (2007) : non publié avant l'accord écrit des auteurs (voir data/LICENCES.md).
+# Les fichiers restent sur le disque (pipeline/import_catalogue.py les régénère).
+data/catalogue/historique.*
+data/catalogue/instrumental.*
+public/data/catalogue/reference.json

@@ -121,6 +121,7 @@ export function initFullMap(): void {
   async function loadFile(index: 0 | 1 | 2): Promise<FC> {
     const name = ['reference', 'recent-m2', 'recent-small'][index];
     const res = await fetch(`/data/catalogue/${name}.json`);
+    if (!res.ok) throw new Error(`${name}.json indisponible (${res.status})`);
     const json = await res.json();
     raw[index] = json;
     const features: Feat[] = json.rows.map((r: any[], i: number) => {
@@ -252,6 +253,20 @@ export function initFullMap(): void {
       .join('')}</dl>${link ? `<p style="margin-top:.5rem"><a href="${esc(link)}" target="_blank" rel="noopener">${esc(t('map.detail.link'))}</a></p>` : ''}`;
   }
 
+  function disableReference(): void {
+    raw[0] = { rows: [], agencies: [] };
+    for (const name of ['hist', 'ref']) {
+      const input = form.elements.namedItem(name) as HTMLInputElement;
+      input.checked = false;
+      input.disabled = true;
+    }
+    const note = root!.querySelector<HTMLElement>('[data-ref-pending]');
+    if (note) note.hidden = false;
+    const y0 = form.elements.namedItem('y0') as HTMLInputElement;
+    y0.value = '2006';
+    apply();
+  }
+
   // ------------------------------------------------------------ démarrage
   (async () => {
     await loadCss(cssUrl);
@@ -277,7 +292,14 @@ export function initFullMap(): void {
     map.fitBounds(MOROCCO_BOUNDS, { padding: 12, animate: false });
 
     for (const [id, index] of [['ref', 0], ['rec', 1]] as const) {
-      loaded[id] = await loadFile(index);
+      try {
+        if (id === 'ref' && root!.dataset.hasReference !== '1') throw new Error('non publié');
+        loaded[id] = await loadFile(index);
+      } catch {
+        // Catalogue de référence non publié (en attente de l'accord de ses auteurs) : options désactivées
+        if (id === 'ref') disableReference();
+        continue;
+      }
       addQuakeLayer(id, loaded[id]!, read());
       apply();
     }

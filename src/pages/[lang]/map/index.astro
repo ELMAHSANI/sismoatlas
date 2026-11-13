@@ -4,6 +4,8 @@
  * filtres (catalogue, période, magnitude, profondeur, Canaries), couches (failles, plaques, limites),
  * fiche détaillée au clic. Données : public/data/catalogue/ (pipeline/build_map_data.py).
  */
+import fs from 'node:fs';
+import path from 'node:path';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import MagnitudeScale from '../../../components/MagnitudeScale.astro';
 import type { Lang } from '../../../i18n/config';
@@ -22,10 +24,12 @@ const dict = Object.fromEntries(
     .map((k) => [k, dicts[lang][k] ?? (fr as Record<string, string>)[k]]),
 );
 const thisYear = new Date().getFullYear();
+// Catalogue de référence publié seulement s'il est présent (accord des auteurs requis, voir data/LICENCES.md)
+const hasReference = fs.existsSync(path.join(process.cwd(), 'public', 'data', 'catalogue', 'reference.json'));
 ---
 
 <BaseLayout lang={lang} title={t('nav.map')} description={t('section.map.intro')}>
-  <div class="container page fullmap-page" data-fullmap data-lang={lang} data-max-year={thisYear}>
+  <div class="container page fullmap-page" data-fullmap data-lang={lang} data-max-year={thisYear} data-has-reference={hasReference ? '1' : '0'}>
     <header class="page-header">
       <h1>{t('nav.map')}</h1>
       <p>{t('section.map.intro')}</p>
@@ -41,6 +45,7 @@ const thisYear = new Date().getFullYear();
               <label><input type="checkbox" name="hist" checked /> {t('map.cat.hist')}</label>
               <label><input type="checkbox" name="ref" checked /> {t('map.cat.ref')}</label>
               <label><input type="checkbox" name="rec" checked /> {t('map.cat.rec')}</label>
+              <p class="muted fm-pending" data-ref-pending hidden>{t('map.refPending')}</p>
             </fieldset>
 
             <fieldset>
@@ -191,6 +196,10 @@ const thisYear = new Date().getFullYear();
     accent-color: var(--color-primary);
     width: 1.05rem;
     height: 1.05rem;
+  }
+  .fm-pending {
+    margin: 0;
+    font-size: 0.8rem;
   }
   .fm-reset {
     justify-self: start;

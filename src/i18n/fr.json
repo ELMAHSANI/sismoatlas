@@ -176,6 +176,7 @@
   "map.cat.hist": "Séismes historiques (1045–1899)",
   "map.cat.ref": "Catalogue de référence (1900–2005)",
   "map.cat.rec": "Sismicité depuis 2006",
+  "map.refPending": "Le catalogue de référence 1045–2005 (Peláez et al., 2007) sera ajouté à la carte après accord de ses auteurs.",
   "map.period": "Période",
   "map.from": "De",
   "map.to": "à",
