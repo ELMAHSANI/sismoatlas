@@ -37,7 +37,7 @@ const hasReference = fs.existsSync(path.join(process.cwd(), 'public', 'data', 'c
 
     <div class="fullmap">
       <aside class="fm-panel">
-        <details class="fm-filters" open>
+        <details class="fm-filters" id="fm-filters">
           <summary>{t('map.filters')}</summary>
           <form class="fm-form" data-filters onsubmit="return false">
             <fieldset>
@@ -87,6 +87,11 @@ const hasReference = fs.existsSync(path.join(process.cwd(), 'public', 'data', 'c
             <button type="reset" class="fm-reset">{t('map.reset')}</button>
           </form>
         </details>
+        <!-- Filtres ouverts d'emblée sur grand écran, repliés sur mobile : décidé avant le premier affichage
+             (sinon la carte remonte d'un coup quand le script les replie). -->
+        <script is:inline>
+          document.getElementById('fm-filters').open = matchMedia('(min-width: 64rem)').matches;
+        </script>
         <p class="fm-count" data-count aria-live="polite">{t('map.loading')}</p>
         <section class="fm-detail" data-detail aria-live="polite">
           <p class="muted">{t('map.detail.hint')}</p>

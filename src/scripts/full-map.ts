@@ -66,8 +66,7 @@ export function initFullMap(): void {
   const detail = root.querySelector<HTMLElement>('[data-detail]')!;
   const legendMag = root.querySelector<HTMLElement>('[data-legend="mag"]')!;
   const legendDepth = root.querySelector<HTMLElement>('[data-legend="depth"]')!;
-  const filtersBox = root.querySelector<HTMLDetailsElement>('.fm-filters')!;
-  if (!matchMedia('(min-width: 64rem)').matches) filtersBox.open = false;
+  // Ouverture initiale (grand écran) : script en ligne dans src/pages/[lang]/map/index.astro
 
   // Données brutes (lignes compactes) et propriétés calculées, par fichier
   const raw: { rows: any[]; agencies: string[]; magTypes?: string[] }[] = [];
