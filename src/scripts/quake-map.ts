@@ -125,6 +125,9 @@ export async function createQuakeMap(container: HTMLElement, o: QuakeMapOptions)
     },
   });
   map.getCanvas().setAttribute('aria-label', o.label);
+  // Le canevas MapLibre est déjà une région nommée : éviter deux repères portant le même nom
+  container.removeAttribute('role');
+  container.removeAttribute('aria-label');
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }), document.documentElement.dir === 'rtl' ? 'top-left' : 'top-right');
 
   // L'animation est sur un élément enfant : MapLibre positionne le marqueur avec `transform`

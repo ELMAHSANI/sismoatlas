@@ -4,10 +4,10 @@
  * - onglets En direct / 24 h / 7 jours / 30 jours, filtre magnitude ≥ 2,5 / tout ;
  * - temps relatif mis à jour toutes les 30 s ;
  * - direct : WebSocket EMSC, reconnexion progressive, repli sur les fichiers GeoJSON toutes les 5 min ;
- * - carte MapLibre chargée seulement quand elle approche de l'écran (ou au clic en mode économie de données).
+ * - carte MapLibre chargée après le chargement de la page, quand elle est visible à l'écran (ou au clic en mode économie de données).
  */
 import {
-  DEFAULT_MIN_MAG, EXCLUDE_CANARIES, NEAR_MAJOR_MIN_POP, NEAR_MIN_POP, depthClass, formatMag, fromFeature, inCanaries,
+  DEFAULT_MIN_MAG, EXCLUDE_CANARIES, afterLoad, NEAR_MAJOR_MIN_POP, NEAR_MIN_POP, depthClass, formatMag, fromFeature, inCanaries,
   itemHtml, latestHtml, localTime, makeT, popupHtml, nearestCity, relativeTime, type City, type Lang, type Quake, type T,
 } from '../lib/quake';
 import type { QuakeMap } from './quake-map';
@@ -285,17 +285,19 @@ export function initLive(): void {
     const saveData = conn?.saveData || /(^|-)2g$/.test(conn?.effectiveType ?? '');
     els.mapBtn?.addEventListener('click', loadMap);
     if (saveData || !('IntersectionObserver' in window)) return; // l'utilisateur choisit d'afficher la carte
+    // MapLibre pèse ~1 Mo : on attend que la page soit chargée et que la carte soit réellement
+    // visible (au moins 30 %), pour ne pas bloquer l'affichage sur mobile.
     const io = new IntersectionObserver(
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
           io.disconnect();
           const idle = (window as any).requestIdleCallback ?? ((cb: () => void) => setTimeout(cb, 300));
-          idle(() => loadMap());
+          idle(() => loadMap(), { timeout: 3000 });
         }
       },
-      { rootMargin: '200px' },
+      { threshold: 0.3 },
     );
-    io.observe(els.mapEl);
+    afterLoad(() => io.observe(els.mapEl));
   }
 
   // ------------------------------------------------------------ interactions

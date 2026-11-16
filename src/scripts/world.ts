@@ -2,7 +2,7 @@
  * Section « Grands séismes dans le monde » côté navigateur :
  * onglets 7 j / 30 j / 1 an, temps relatif, heure du Maroc, carte du monde chargée en différé.
  */
-import { localTime, makeT, relativeTime, type Lang, type T } from '../lib/quake';
+import { afterLoad, localTime, makeT, relativeTime, type Lang, type T } from '../lib/quake';
 import { fromWorldFeature, worldItemHtml, worldPopupHtml, type WorldQuake } from '../lib/world';
 import type { QuakeMap } from './quake-map';
 import { fetchLiveData } from '../lib/data-url';
@@ -110,7 +110,7 @@ export function initWorld(): void {
     }
   }
 
-  // Carte : chargée quand elle approche de l'écran (sur demande en mode économie de données)
+  // Carte : chargée après le chargement de la page, quand elle est visible (sur demande en mode économie de données)
   const conn = (navigator as any).connection;
   const saveData = conn?.saveData || /(^|-)2g$/.test(conn?.effectiveType ?? '');
   mapBtn?.addEventListener('click', loadMap);
@@ -119,12 +119,13 @@ export function initWorld(): void {
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
           io.disconnect();
-          loadMap();
+          const idle = (window as any).requestIdleCallback ?? ((cb: () => void) => setTimeout(cb, 300));
+          idle(() => loadMap(), { timeout: 3000 });
         }
       },
-      { rootMargin: '200px' },
+      { threshold: 0.3 },
     );
-    io.observe(mapEl);
+    afterLoad(() => io.observe(mapEl));
   }
 
   tabs.forEach((btn) =>

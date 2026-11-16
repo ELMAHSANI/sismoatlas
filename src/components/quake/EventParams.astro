@@ -6,7 +6,7 @@
  */
 import { getShock } from '../../lib/events';
 import { langFromUrl, useTranslations, type UIKey } from '../../i18n/utils';
-import { formatMag } from '../../lib/quake';
+import { formatMag, magTypeLabel } from '../../lib/quake';
 
 interface Props {
   event: string;
@@ -34,7 +34,7 @@ const pelaezDate = p ? (p.time ? `${p.date} ${p.time}` : p.date) : '';
   ) : (
     <figure class="event-params">
       <figcaption>{t('event.params.title')}</figcaption>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0">
         <table>
           <thead>
             <tr>
@@ -61,7 +61,7 @@ const pelaezDate = p ? (p.time ? `${p.date} ${p.time}` : p.date) : '';
             </tr>
             <tr>
               <th scope="row">{t('event.params.magnitude')}</th>
-              {u && <td><strong>{formatMag(u.mag, lang)}</strong> <span dir="ltr">{u.magType}</span></td>}
+              {u && <td><strong>{formatMag(u.mag, lang)}</strong> <span dir="ltr">{magTypeLabel(u.magType)}</span></td>}
               {p && <td><strong>{formatMag(p.mw, lang)}</strong> Mw{p.mwMethod && <span class="muted"> — {p.mwMethod}</span>}</td>}
             </tr>
             {

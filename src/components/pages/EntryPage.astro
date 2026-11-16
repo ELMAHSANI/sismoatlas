@@ -3,6 +3,7 @@
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import References from '../References.astro';
+import ScrollTable from '../ScrollTable.astro';
 import { LANGS, type Lang } from '../../i18n/config';
 import { formatDate, routePath, useTranslations } from '../../i18n/utils';
 import { getAlternates, type ArticleCollection, type ArticleEntry } from '../../lib/content';
@@ -38,6 +39,7 @@ const alternates = Object.fromEntries(
   description={data.description}
   alternates={alternates}
   ogType="article"
+  noindex={data.draft}
   publishedTime={data.date}
   modifiedTime={data.updated}
 >
@@ -59,7 +61,7 @@ const alternates = Object.fromEntries(
     </header>
 
     <div class="prose">
-      <Content />
+      <Content components={{ table: ScrollTable }} />
     </div>
 
     <div class="prose after">

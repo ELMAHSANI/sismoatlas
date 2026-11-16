@@ -108,10 +108,56 @@ const items = MAIN_NAV.map((key) => {
     color: var(--color-text);
     font-family: 'Inter Variable', system-ui, sans-serif;
   }
+  .brand {
+    min-width: 0;
+  }
+  .brand-name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
   .header-tools {
     display: flex;
+    flex: none;
     align-items: center;
     gap: var(--space-2);
+  }
+
+  /* Petits téléphones (360 px, courant sur Android) : en-tête compact pour tout faire tenir */
+  @media (max-width: 25rem) {
+    .header-bar {
+      gap: var(--space-2);
+    }
+    .brand {
+      gap: 0.375rem;
+      font-size: 1rem;
+    }
+    .brand :global(svg) {
+      width: 24px;
+      height: 24px;
+    }
+    .header-tools {
+      gap: var(--space-1);
+    }
+    .menu-toggle,
+    .header-tools :global(.theme-toggle) {
+      width: 2.25rem;
+      height: 2.25rem;
+    }
+    .header-tools :global(.lang-switcher a) {
+      min-width: 2rem;
+      padding-inline: 0.3rem;
+    }
+  }
+  /* Très petits écrans (320 px) : le logo seul suffit, le nom reste lu par les lecteurs d'écran */
+  @media (max-width: 21.5rem) {
+    .brand-name {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+    }
   }
   .menu-toggle {
     display: inline-grid;

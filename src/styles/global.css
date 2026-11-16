@@ -111,6 +111,21 @@ td {
   padding: var(--space-2) var(--space-3);
   border-block-end: 1px solid var(--color-border);
 }
+/* Tableaux des contenus (enveloppés par ScrollTable.astro) : défilement horizontal sur mobile */
+.table-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+}
+.table-scroll:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Attributions des cartes MapLibre : liens soulignés pour les distinguer du texte */
+.maplibregl-ctrl.maplibregl-ctrl-attrib a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
 
 /* ---- Utilitaires ---- */
 .container {
@@ -170,7 +185,7 @@ td {
   border: 1px solid var(--color-border);
 }
 .badge--draft {
-  background: color-mix(in srgb, var(--color-accent) 14%, transparent);
+  background: color-mix(in srgb, var(--color-accent) 8%, transparent);
   color: var(--color-accent);
   border-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
 }

@@ -10,8 +10,11 @@ interface Props {
   date?: Date;
   draft?: boolean;
   kicker?: string;
+  /** Niveau du titre : 2 sur une page de rubrique (sous le h1), 3 sous un h2 (accueil). */
+  level?: 2 | 3;
 }
-const { lang, href, title, description, date, draft, kicker } = Astro.props;
+const { lang, href, title, description, date, draft, kicker, level = 3 } = Astro.props;
+const H = `h${level}` as 'h2' | 'h3';
 const t = useTranslations(lang);
 ---
 
@@ -21,7 +24,7 @@ const t = useTranslations(lang);
       {kicker && <span class="kicker">{kicker}</span>}
       {draft && <span class="badge badge--draft">{t('common.draft')}</span>}
     </div>
-    <h3><a href={href}>{title}</a></h3>
+    <H class="entry-title"><a href={href}>{title}</a></H>
     <p>{description}</p>
     {date && <time class="muted" datetime={date.toISOString()}>{formatDate(date, lang)}</time>}
   </article>
@@ -62,16 +65,16 @@ const t = useTranslations(lang);
     text-transform: none;
     letter-spacing: 0;
   }
-  h3 {
+  .entry-title {
     margin: 0;
     font-size: var(--fs-lg);
   }
-  h3 a {
+  .entry-title a {
     color: var(--color-text);
     text-decoration: none;
   }
   /* Toute la carte est cliquable */
-  h3 a::after {
+  .entry-title a::after {
     content: '';
     position: absolute;
     inset: 0;

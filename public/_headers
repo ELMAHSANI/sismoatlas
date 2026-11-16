@@ -13,3 +13,10 @@
 # Service worker : toujours revalidé, pour que les mises à jour du guide arrivent vite
 /sw.js
   Cache-Control: no-cache
+
+# Sécurité (toutes les pages). Pas de géolocalisation, caméra ni micro sur le site.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), camera=(), microphone=(), payment=(), usb=()
+  X-Frame-Options: SAMEORIGIN

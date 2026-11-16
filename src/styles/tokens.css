@@ -21,7 +21,7 @@
   --color-primary: #0b3d91;
   --color-primary-strong: #072a66;
   --color-on-primary: #ffffff;
-  --color-accent: #d9480f;
+  --color-accent: #c2410c; /* contraste ≥ 4,5 sur blanc (texte d'accent) */
   --color-danger: #c92a2a;
   --color-link: #0b4fbf;
   --color-focus: #f08c00;
@@ -32,7 +32,7 @@
   --mag-3: #f76707; /* 4–5   orange */
   --mag-4: #e03131; /* 5–6   rouge  */
   --mag-5: #7b2cbf; /* ≥ 6   violet */
-  --mag-1-on: #ffffff;
+  --mag-1-on: #06200b; /* texte foncé sur le vert : contraste ≥ 4,5 */
   --mag-2-on: #1f1a00;
   --mag-3-on: #1f0d00;
   --mag-4-on: #ffffff;

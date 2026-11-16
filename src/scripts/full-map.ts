@@ -8,7 +8,7 @@
 import * as maplibregl from 'maplibre-gl';
 import type { ExpressionSpecification, FilterSpecification, MapGeoJSONFeature } from 'maplibre-gl';
 import { STYLES, adaptBaseStyle, css, cssUrl, isDark, loadCss, MOROCCO_BOUNDS } from './quake-map';
-import { esc, formatMag, localTime, makeT, nearestCity, placePhrase, type City, type Lang, type T } from '../lib/quake';
+import { esc, formatMag, magTypeLabel, localTime, makeT, nearestCity, placePhrase, type City, type Lang, type T } from '../lib/quake';
 
 type Cat = 'hist' | 'ref' | 'rec';
 interface Props {
@@ -231,7 +231,7 @@ export function initFullMap(): void {
       const [lon, lat, mag, depth, minutes, ag, mt, id, can] = r;
       const iso = new Date(minutes * MINUTE_MS).toISOString();
       rows.push([t('map.detail.date'), iso.slice(0, 10)], [t('map.detail.time'), `${iso.slice(11, 16)} · ${localTime(iso, lang, false)} (${t('quake.moroccoTime')})`],
-        [t('map.detail.mag'), mag != null ? `${formatMag(mag, lang)} ${file.magTypes?.[mt] ?? ''}` : t('map.detail.unknown')],
+        [t('map.detail.mag'), mag != null ? `${formatMag(mag, lang)} ${magTypeLabel(file.magTypes?.[mt])}` : t('map.detail.unknown')],
         [t('map.detail.depth'), depth != null ? `${depth} km` : t('map.detail.unknown')],
         [t('map.detail.agency'), file.agencies[ag]], [t('map.detail.catalog'), t('map.cat.rec') + (can ? ` — ${t('map.detail.canaries')}` : '')]);
       try {

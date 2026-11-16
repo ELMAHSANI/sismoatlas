@@ -1,0 +1,9 @@
+---
+/**
+ * Remplace les tableaux des contenus MDX (<Content components={{ table: ScrollTable }} />) :
+ * le tableau défile horizontalement sur mobile (et au clavier) au lieu d'élargir la page.
+ */
+const props = Astro.props;
+---
+
+<div class="table-scroll" tabindex="0"><table {...props}><slot /></table></div>

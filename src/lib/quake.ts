@@ -267,7 +267,7 @@ export function latestHtml(q: Quake, lang: Lang, t: T, pageUrl: string, relative
   <article class="latest-card" style="${magStyle(q)}" data-id="${esc(q.id)}">
     <div class="latest-mag" aria-label="${esc(t('quake.mag', { mag: formatMag(q.mag, lang) }))}">
       <span class="latest-mag-value">${esc(formatMag(q.mag, lang))}</span>
-      <span class="latest-mag-type">${esc(q.magType || '')}</span>
+      <span class="latest-mag-type">${esc(magTypeLabel(q.magType))}</span>
     </div>
     <div class="latest-body">
       <p class="latest-kicker">${esc(t('live.latest'))}</p>
@@ -322,4 +322,25 @@ export function makeT(dict: Record<string, string>): T {
     if (vars) for (const [k, v] of Object.entries(vars)) s = s.replaceAll(`{${k}}`, String(v));
     return s;
   };
+}
+
+/** Exécute `fn` une fois la page entièrement chargée (immédiatement si c'est déjà le cas). */
+export function afterLoad(fn: () => void): void {
+  if (document.readyState === 'complete') fn();
+  else window.addEventListener('load', () => fn(), { once: true });
+}
+
+/**
+ * Type de magnitude dans sa graphie usuelle (les agences le publient souvent en minuscules) :
+ * ml → ML, mw → Mw, mww → Mww, mb → mb, mblg → mbLg, ms → Ms, md → Md.
+ */
+export function magTypeLabel(type: string | null | undefined): string {
+  const s = (type ?? '').trim();
+  if (!s) return '';
+  const low = s.toLowerCase();
+  if (low === 'ml') return 'ML';
+  if (low === 'mb') return 'mb';
+  if (low === 'mblg' || low === 'mb_lg') return 'mbLg';
+  if (/^m[a-z_]*$/.test(low)) return 'M' + low.slice(1); // mw, mwr, mww, ms, md, mi…
+  return s;
 }

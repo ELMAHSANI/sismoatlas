@@ -70,7 +70,7 @@ const levels = ['red', 'orange', 'yellow', 'green', 'none'] as const;
       <div class="tabs js-only" role="tablist" aria-label={t('world.list.title')}>
         {
           tabs.map((tab, i) => (
-            <button type="button" role="tab" class="tab" data-tab={tab.id} aria-selected={i === 0 ? 'true' : 'false'} aria-controls="world-list">
+            <button type="button" role="tab" class="tab" data-tab={tab.id} aria-selected={i === 0 ? 'true' : 'false'} aria-controls="world-panel">
               {t(tab.key)}
             </button>
           ))
@@ -85,10 +85,12 @@ const levels = ['red', 'orange', 'yellow', 'green', 'none'] as const;
       </div>
       <div>
         <h3 class="visually-hidden">{t('world.list.title')}</h3>
-        <ol id="world-list" class="world-list" role="tabpanel">
-          <Fragment set:html={week.map((q) => worldItemHtml(q, lang, tt, false)).join('')} />
-          {week.length === 0 && <li class="placeholder">{t('world.list.empty')}</li>}
-        </ol>
+        <div id="world-panel" role="tabpanel" aria-label={t('world.list.title')}>
+          <ol id="world-list" class="world-list">
+            <Fragment set:html={week.map((q) => worldItemHtml(q, lang, tt, false)).join('')} />
+            {week.length === 0 && <li class="placeholder">{t('world.list.empty')}</li>}
+          </ol>
+        </div>
       </div>
     </div>
 

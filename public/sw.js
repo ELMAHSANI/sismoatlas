@@ -6,8 +6,9 @@
  * - Fichiers /_astro/ (empreinte dans le nom, immuables) : cache d'abord.
  * - Données en direct (/data/…) et sites externes : jamais mis en cache ici (toujours à jour).
  */
-const CACHE = 'sismoatlas-guide-v1';
+const CACHE = 'sismoatlas-guide-v2';
 const GUIDES = ['/fr/safety-guide/', '/ar/safety-guide/', '/en/safety-guide/'];
+const USEFUL_FONT = /-(latin|latin-ext|arabic)-wght/;
 const EXTRA = ['/favicon.svg', '/manifest.webmanifest', '/icons/icon-192.png', '/icons/icon-512.png'];
 
 /** Met en cache une page du guide et les fichiers /_astro/ qu'elle utilise (CSS → polices comprises). */
@@ -21,7 +22,8 @@ async function cacheGuide(cache, url, response) {
       if (!res.ok) continue;
       const text = await res.clone().text();
       await cache.put(css, res);
-      for (const m of text.match(/\/_astro\/[^"'()\s]+\.woff2/g) || []) assets.add(m);
+      // Polices : seulement les jeux de caractères utiles au guide (latin, arabe), pas le cyrillique, le grec…
+      for (const m of text.match(/\/_astro\/[^"'()\s]+\.woff2/g) || []) if (USEFUL_FONT.test(m)) assets.add(m);
     } catch (e) {
       /* hors ligne pendant l'installation : réessayé à la prochaine visite */
     }
