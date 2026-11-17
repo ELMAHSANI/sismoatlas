@@ -58,8 +58,8 @@ const ogImage = new URL(image ?? `/og/sismoatlas-${lang}.png`, Astro.site);
 // Statistiques sans cookies (Cloudflare Web Analytics) : jeton fourni par Cloudflare, en production seulement
 const beaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN as string | undefined;
 // Validation du site dans Google Search Console et Bing Webmaster Tools (jetons publics, variables Cloudflare)
-const googleVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION as string | undefined;
-const bingVerification = import.meta.env.PUBLIC_BING_SITE_VERIFICATION as string | undefined;
+const googleVerification = (import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION as string | undefined) || SITE.googleSiteVerification;
+const bingVerification = (import.meta.env.PUBLIC_BING_SITE_VERIFICATION as string | undefined) || SITE.bingSiteVerification;
 // Données structurées (schema.org) : le site et son éditeur sur l'accueil, l'article sur les pages de contenu
 const isHome = pathname === `/${lang}/`;
 const orgId = new URL('/#organization', Astro.site).href;

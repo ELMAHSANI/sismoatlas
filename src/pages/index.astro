@@ -6,9 +6,10 @@
 import '../styles/global.css';
 import { LANGS, LANG_META, DEFAULT_LANG } from '../i18n/config';
 import { localizePath, useTranslations } from '../i18n/utils';
+import { SITE } from '../site.config';
 // Google Search Console et Bing valident la propriété sur cette page racine
-const googleVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION as string | undefined;
-const bingVerification = import.meta.env.PUBLIC_BING_SITE_VERIFICATION as string | undefined;
+const googleVerification = (import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION as string | undefined) || SITE.googleSiteVerification;
+const bingVerification = (import.meta.env.PUBLIC_BING_SITE_VERIFICATION as string | undefined) || SITE.bingSiteVerification;
 ---
 
 <!doctype html>
