@@ -63,8 +63,10 @@ le WebSocket de l'EMSC côté navigateur.
 - Si un `.prj` manque, **demander** le système de coordonnées, ne pas deviner.
 - Simplifier les géométries pour le web (poids léger), garder une version complète pour les analyses.
 - **Le territoire marocain doit être affiché dans son intégralité, provinces du Sud comprises**,
-  à partir de la couche de limites fournie dans `donnees_brutes/shp/`. Masquer ou neutraliser les
-  frontières du fond de carte si elles diffèrent.
+  à partir de **Natural Earth (domaine public), édition « point de vue du Maroc »**
+  (`pipeline/fetch_limits.py`). Décision du 17/11/2026 : la couche `donnees_brutes/shp/Morocco.shp`
+  n'est plus utilisée (origine et licence inconnues). Masquer ou neutraliser les frontières du fond
+  de carte si elles diffèrent.
 
 ### 4.2 Structure cible du catalogue (`data/catalogue/`)
 Deux tables : **instrumental** et **historique**, + une table **sources**.

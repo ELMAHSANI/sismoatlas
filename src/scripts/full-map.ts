@@ -275,7 +275,7 @@ export function initFullMap(): void {
       bounds: MOROCCO_BOUNDS,
       fitBoundsOptions: { padding: 12 },
       maxZoom: 12,
-      attributionControl: { compact: true, customAttribution: 'Peláez et al. 2007 · EMSC-CSEM · USGS · GEM GAF · Bird 2003' },
+      attributionControl: { compact: true, customAttribution: (root!.dataset.hasReference === '1' ? 'Peláez et al. 2007 · ' : '') + 'EMSC-CSEM · USGS · GEM GAF · Bird 2003 · Natural Earth' },
       cooperativeGestures: !matchMedia('(min-width: 64rem)').matches,
       locale: {
         'CooperativeGesturesHandler.WindowsHelpText': t('live.map.coopWindows'),

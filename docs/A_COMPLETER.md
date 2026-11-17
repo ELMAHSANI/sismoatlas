@@ -1,8 +1,16 @@
 # À rédiger ou à vérifier
 
-*Liste générée le 13/11/2026 par `node docs/lister-a-completer.mjs` — 371 éléments.*
+*Liste générée le 17/11/2026 par `node docs/lister-a-completer.mjs` — 370 éléments.*
 
 Les versions arabe et anglaise reprennent les mêmes points (« traduction … ») : rédiger d'abord le français.
+
+## data/LICENCES.md
+
+### `data/LICENCES.md`
+
+- [ ] conditions à obtenir des auteurs
+- [ ] 🔎 conditions de réutilisation
+
 
 ## data/catalogue
 
@@ -329,7 +337,6 @@ Les versions arabe et anglaise reprennent les mêmes points (« traduction … �
 ### `src/content/pages/ar/data-methods.mdx`
 
 - [ ] شروط إعادة الاستعمال تُطلب من المؤلفين
-- [ ] مصدر الطبقة ورخصتها
 - [ ] 🔎 شروط إعادة الاستعمال
 - [ ] 🔎 شروط إعادة الاستعمال
 
@@ -357,7 +364,6 @@ Les versions arabe et anglaise reprennent les mêmes points (« traduction … �
 ### `src/content/pages/en/data-methods.mdx`
 
 - [ ] reuse terms to be requested from the authors
-- [ ] origin and licence of the layer
 - [ ] 🔎 reuse terms
 - [ ] 🔎 reuse terms
 
@@ -385,7 +391,6 @@ Les versions arabe et anglaise reprennent les mêmes points (« traduction … �
 ### `src/content/pages/fr/data-methods.mdx`
 
 - [ ] conditions de réutilisation à demander aux auteurs
-- [ ] origine et licence de la couche
 - [ ] 🔎 conditions de réutilisation
 - [ ] 🔎 conditions de réutilisation
 

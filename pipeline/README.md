@@ -17,6 +17,7 @@ py -m venv .venv
 |---|---|---|---|---|
 | `import_catalogue.py` | Catalogue de référence Peláez et al. (2007), 1045–2005 | `donnees_brutes/excel/moroccan_catalog1045_2005.xls` | `data/catalogue/{historique,instrumental,sources}.csv` + GeoJSON + `RAPPORT_QUALITE.md` | quand le fichier change |
 | `convert_shp.py` | Couches SIG → WGS84, version complète et version web simplifiée | `donnees_brutes/**/*.shp, .gpkg, .geojson` | `data/sig/`, `public/data/sig/` + `RAPPORT_SIG.md` | quand une couche est ajoutée |
+| `fetch_limits.py` | Limites du Maroc, territoire complet : Natural Earth (domaine public), édition « point de vue du Maroc » | GitHub nvkelso/natural-earth-vector (cache `.cache/`) | `data/sig/morocco.geojson`, `public/data/sig/morocco.geojson` | rarement |
 | `build_cities.py` | Villes de référence FR / AR / EN | GeoNames (téléchargé, cache `.cache/`) + `data/villes/noms_arabes_osm.csv` | `data/villes/cities.csv`, `public/data/cities.json` + `RAPPORT_VILLES.md` | rarement |
 | `fetch_recent_catalogue.py` | Sismicité depuis 2006 (EMSC + USGS) | services FDSN en ligne | `data/catalogue/recent_2006.csv` + `RAPPORT_RECENT.md` | mensuelle |
 | `fetch_faults.py` | Failles actives GEM (Styron et Pagani, 2020, CC BY-SA 4.0), zone Maroc | GitHub GEM (cache `.cache/`) | `public/data/sig/gem_faults.geojson` | rarement |
@@ -28,6 +29,7 @@ py -m venv .venv
 ```bash
 .venv/Scripts/python pipeline/import_catalogue.py
 .venv/Scripts/python pipeline/convert_shp.py
+.venv/Scripts/python pipeline/fetch_limits.py
 .venv/Scripts/python pipeline/build_cities.py
 .venv/Scripts/python pipeline/fetch_recent_catalogue.py
 .venv/Scripts/python pipeline/fetch_faults.py

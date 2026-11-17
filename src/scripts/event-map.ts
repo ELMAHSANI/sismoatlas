@@ -53,7 +53,7 @@ export async function renderEventMap(el: HTMLElement): Promise<void> {
     bounds,
     fitBoundsOptions: { padding: 16 },
     maxZoom: 11,
-    attributionControl: { compact: true, customAttribution: 'USGS · EMSC-CSEM · GEM GAF (CC BY-SA 4.0)' },
+    attributionControl: { compact: true, customAttribution: 'USGS · EMSC-CSEM · GEM GAF (CC BY-SA 4.0) · Natural Earth' },
     cooperativeGestures: true,
   });
   map.getCanvas().setAttribute('aria-label', el.getAttribute('aria-label') ?? '');

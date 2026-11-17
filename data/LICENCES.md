@@ -9,5 +9,5 @@
 | `villes/noms_arabes_osm.csv` (et les noms arabes repris dans les fichiers ci-dessus) | © contributeurs OpenStreetMap | ODbL 1.0 | attribution « © OpenStreetMap » ; base dérivée redistribuée sous ODbL |
 | `sig/gem_faults.geojson`, `../public/data/sig/gem_faults.geojson` | GEM Global Active Faults Database (Styron et Pagani, 2020) | CC BY-SA 4.0 | attribution ; dérivés sous CC BY-SA 4.0 |
 | `../public/data/sig/plates.geojson` | Bird (2003), conversion Ahlenius / Nordpil | ODC-By 1.0 | attribution |
-| `sig/morocco.geojson`, `../public/data/sig/morocco.geojson` | couche fournie par l'équipe | [À COMPLÉTER : origine et licence] | — |
+| `sig/morocco.geojson`, `../public/data/sig/morocco.geojson` | Natural Earth v5.1.2, Admin 0 – Countries, édition « point de vue du Maroc » (`pipeline/fetch_limits.py`) | domaine public | aucune (citée par principe) |
 | Rapports de qualité (`*.md`) | SismoAtlas | CC BY 4.0 | — |

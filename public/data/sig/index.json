@@ -1,17 +1,4 @@
 {
-  "generated": "2026-11-12T13:44:37+00:00",
-  "layers": [
-    {
-      "name": "morocco",
-      "geometry": "MultiPolygon",
-      "count": 1,
-      "bounds": [
-        -17.107,
-        20.7726,
-        -1.0003,
-        35.9255
-      ],
-      "file": "morocco.geojson"
-    }
-  ]
+  "generated": "2026-11-17T00:35:15+00:00",
+  "layers": []
 }

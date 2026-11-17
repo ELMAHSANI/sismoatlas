@@ -27,6 +27,9 @@ from shapely import make_valid
 
 from common import DATA, PUBLIC_DATA, RAW, now_utc, rel, write_json_atomic
 
+# Couches de donnees_brutes/ remplacées par une source ouverte : non converties (licence inconnue)
+REPLACED = {"morocco": "remplacée par Natural Earth, domaine public (`pipeline/fetch_limits.py`), faute de licence connue"}
+
 DEFAULT_TOLERANCE = 0.002  # degrés (~200 m) : suffisant pour l'affichage web à l'échelle du Maroc
 WEB_PRECISION = 5           # décimales (~1 m)
 FULL_PRECISION = 7
@@ -118,9 +121,10 @@ def report(results: list[dict], notes: list[str], src: Path, tolerance: float) -
              f"*Généré le {now_utc():%d/%m/%Y à %H:%M} UTC par `pipeline/convert_shp.py`.*\n",
              f"Dossier analysé : `{rel(src)}` · simplification web : tolérance {tolerance}° · sortie en WGS84 (EPSG:4326).\n"]
     if not results:
-        lines.append("**Aucune couche SIG trouvée.** Déposez vos couches dans `donnees_brutes/shp/` "
+        lines.append("**Aucune couche à convertir.** Déposez vos couches dans `donnees_brutes/shp/` "
                      "(.shp avec .shx, .dbf, .prj et si possible .cpg ; ou .gpkg / .geojson).\n")
-        lines.append("Couche prioritaire : **limites du Maroc, territoire complet** (indispensable avant la phase 4).\n")
+        lines.append("Les limites du Maroc (territoire complet) proviennent de Natural Earth, domaine public : "
+                     "`pipeline/fetch_limits.py`.\n")
     for r in results:
         lines.append(f"## {r.get('name') or r['source']}\n")
         lines.append(f"- Source : `{r['source']}`")
@@ -156,6 +160,10 @@ def main() -> None:
     layers, notes = find_layers(args.src)
     results = []
     for path, layer in layers:
+        if slug(layer or path.stem) in REPLACED:
+            notes.append(f"`{rel(path)}` : {REPLACED[slug(layer or path.stem)]} — ignorée par ce script.")
+            print(f"{rel(path)} : ignorée ({REPLACED[slug(layer or path.stem)]})")
+            continue
         try:
             results.append(convert(path, layer, args.out_data, args.out_public, args.tolerance))
         except Exception as err:  # une couche défectueuse ne doit pas bloquer les autres

@@ -116,7 +116,7 @@ export async function createQuakeMap(container: HTMLElement, o: QuakeMapOptions)
     fitBoundsOptions: { padding: 12 },
     maxZoom: o.maxZoom ?? 11,
     renderWorldCopies: false,
-    attributionControl: { compact: true, customAttribution: o.colorMode === 'pager' ? 'USGS' : 'EMSC-CSEM · USGS' },
+    attributionControl: { compact: true, customAttribution: (o.colorMode === 'pager' ? 'USGS' : 'EMSC-CSEM · USGS') + ' · Natural Earth' },
     cooperativeGestures: true,
     locale: {
       'CooperativeGesturesHandler.WindowsHelpText': o.t('live.map.coopWindows'),

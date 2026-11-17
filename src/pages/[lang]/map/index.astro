@@ -114,7 +114,7 @@ const hasReference = fs.existsSync(path.join(process.cwd(), 'public', 'data', 'c
       <div class="fm-notes">
         <p>{t('map.note')}</p>
         <p><a href={routePath(lang, 'dataMethods')}>{t('map.dataLink')}</a></p>
-        <p class="muted small">Peláez et al. (2007) · EMSC-CSEM · USGS · GEM GAF (CC BY-SA 4.0) · Bird (2003, ODC-By) · GeoNames · © OpenStreetMap</p>
+        <p class="muted small">{hasReference && 'Peláez et al. (2007) · '}EMSC-CSEM · USGS · GEM GAF (CC BY-SA 4.0) · Bird (2003, ODC-By) · Natural Earth · GeoNames · © OpenStreetMap</p>
       </div>
     </div>
     <script type="application/json" id="map-i18n" set:html={JSON.stringify(dict)} />
