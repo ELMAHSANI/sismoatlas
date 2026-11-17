@@ -1,6 +1,6 @@
 # À rédiger ou à vérifier
 
-*Liste générée le 17/11/2026 par `node docs/lister-a-completer.mjs` — 370 éléments.*
+*Liste générée le 17/11/2026 par `node docs/lister-a-completer.mjs` — 350 éléments.*
 
 Les versions arabe et anglaise reprennent les mêmes points (« traduction … ») : rédiger d'abord le français.
 
@@ -9,7 +9,6 @@ Les versions arabe et anglaise reprennent les mêmes points (« traduction … �
 ### `data/LICENCES.md`
 
 - [ ] conditions à obtenir des auteurs
-- [ ] 🔎 conditions de réutilisation
 
 
 ## data/catalogue
@@ -21,7 +20,6 @@ Les versions arabe et anglaise reprennent les mêmes points (« traduction … �
 ### `data/catalogue/sources.csv`
 
 - [ ] conditions de réutilisation à demander aux auteurs
-- [ ] conditions de réutilisation à vérifier
 
 
 ## src/content/articles
@@ -310,19 +308,16 @@ Les versions arabe et anglaise reprennent les mêmes points (« traduction … �
 
 ### `src/content/guide/ar/safety-guide.mdx`
 
-- [ ] أرقام الطوارئ الرسمية في المغرب (الوقاية المدنية، الشرطة، الدرك، الإسعاف)، يُتحقق منها من مصدر رسمي
 - [ ] المصدر الرسمي المغربي
 - [ ] 🔎 مقارنة كل توصية مع التعليمات الرسمية المغربية (الوقاية المدنية، السلطات المحلية) وذكر المصدر الرسمي.
 
 ### `src/content/guide/en/safety-guide.mdx`
 
-- [ ] official emergency numbers in Morocco (Civil Protection, police, gendarmerie, ambulance), to be checked against an official source
 - [ ] official Moroccan source
 - [ ] 🔎 compare each instruction with the official Moroccan recommendations (Civil Protection, local authorities) and cite the official source.
 
 ### `src/content/guide/fr/safety-guide.mdx`
 
-- [ ] numéros d'urgence officiels au Maroc (Protection civile, police, gendarmerie, SAMU), à vérifier auprès d'une source officielle
 - [ ] source officielle marocaine
 - [ ] 🔎 comparer chaque consigne avec les recommandations officielles marocaines (Protection civile, autorités locales) et citer la source officielle.
 
@@ -337,8 +332,6 @@ Les versions arabe et anglaise reprennent les mêmes points (« traduction … �
 ### `src/content/pages/ar/data-methods.mdx`
 
 - [ ] شروط إعادة الاستعمال تُطلب من المؤلفين
-- [ ] 🔎 شروط إعادة الاستعمال
-- [ ] 🔎 شروط إعادة الاستعمال
 
 ### `src/content/pages/ar/disclaimer.mdx`
 
@@ -346,14 +339,11 @@ Les versions arabe et anglaise reprennent les mêmes points (« traduction … �
 
 ### `src/content/pages/ar/legal-notice.mdx`
 
-- [ ] الاسم أو الاسم التجاري، العنوان، البريد الإلكتروني للاتصال
+- [ ] اسم الناشر (شخص أو جمعية) والعنوان البريدي
 - [ ] اسم مدير النشر
-- [ ] العنوان البريدي للمستضيف، يُتحقق منه عند الإطلاق
 
 ### `src/content/pages/ar/privacy.mdx`
 
-- [ ] تأكيد الأداة وإعداداتها عند الإطلاق
-- [ ] عنوان الاتصال
 - [ ] التحقق من ضرورة التصريح لدى اللجنة الوطنية لمراقبة حماية المعطيات ذات الطابع الشخصي وذكر رقمه عند الاقتضاء
 
 ### `src/content/pages/en/about.mdx`
@@ -364,8 +354,6 @@ Les versions arabe et anglaise reprennent les mêmes points (« traduction … �
 ### `src/content/pages/en/data-methods.mdx`
 
 - [ ] reuse terms to be requested from the authors
-- [ ] 🔎 reuse terms
-- [ ] 🔎 reuse terms
 
 ### `src/content/pages/en/disclaimer.mdx`
 
@@ -373,14 +361,11 @@ Les versions arabe et anglaise reprennent les mêmes points (« traduction … �
 
 ### `src/content/pages/en/legal-notice.mdx`
 
-- [ ] name or company name, address, contact e-mail
+- [ ] name of the publisher (person or association) and postal address
 - [ ] name of the publication director
-- [ ] postal address of the host, to be checked at launch
 
 ### `src/content/pages/en/privacy.mdx`
 
-- [ ] confirm the tool and its configuration at launch
-- [ ] contact address
 - [ ] check whether a declaration to the CNDP is required and give its number if applicable
 
 ### `src/content/pages/fr/about.mdx`
@@ -391,8 +376,6 @@ Les versions arabe et anglaise reprennent les mêmes points (« traduction … �
 ### `src/content/pages/fr/data-methods.mdx`
 
 - [ ] conditions de réutilisation à demander aux auteurs
-- [ ] 🔎 conditions de réutilisation
-- [ ] 🔎 conditions de réutilisation
 
 ### `src/content/pages/fr/disclaimer.mdx`
 
@@ -400,14 +383,11 @@ Les versions arabe et anglaise reprennent les mêmes points (« traduction … �
 
 ### `src/content/pages/fr/legal-notice.mdx`
 
-- [ ] nom ou raison sociale, adresse, adresse e-mail de contact
+- [ ] nom de l'éditeur (personne ou association) et adresse postale
 - [ ] nom du directeur de la publication
-- [ ] adresse postale de l'hébergeur, à vérifier au moment de la mise en ligne
 
 ### `src/content/pages/fr/privacy.mdx`
 
-- [ ] confirmer l'outil et sa configuration à la mise en ligne
-- [ ] adresse de contact
 - [ ] vérifier si une déclaration auprès de la CNDP est nécessaire et indiquer son numéro le cas échéant
 
 

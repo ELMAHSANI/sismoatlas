@@ -96,7 +96,7 @@ SOURCES = [
         "id": "emsc", "type": "agence",
         "citation": "EMSC-CSEM, Centre sismologique euro-méditerranéen, service FDSN « seismicportal ».",
         "doi": "", "url": "https://www.seismicportal.eu/",
-        "licence": "[À COMPLÉTER : conditions de réutilisation à vérifier]",
+        "licence": "CC BY 4.0 (https://www.seismicportal.eu/terms.html)",
         "remarques": "Relaie notamment les solutions de l'IGN (Espagne) pour la zone.",
     },
     {
