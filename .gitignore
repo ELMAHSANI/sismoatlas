@@ -44,3 +44,6 @@ data/robot/changesets.json
 data/catalogue/historique.*
 data/catalogue/instrumental.*
 public/data/catalogue/reference.json
+
+# Prototypes à valider (non publiés)
+prototypes/

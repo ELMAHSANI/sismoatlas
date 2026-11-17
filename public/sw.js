@@ -6,7 +6,7 @@
  * - Fichiers /_astro/ (empreinte dans le nom, immuables) : cache d'abord.
  * - Données en direct (/data/…) et sites externes : jamais mis en cache ici (toujours à jour).
  */
-const CACHE = 'sismoatlas-guide-v2';
+const CACHE = 'sismoatlas-guide-v3';
 const GUIDES = ['/fr/safety-guide/', '/ar/safety-guide/', '/en/safety-guide/'];
 const USEFUL_FONT = /-(latin|latin-ext|arabic)-wght/;
 const EXTRA = ['/favicon.svg', '/manifest.webmanifest', '/icons/icon-192.png', '/icons/icon-512.png'];

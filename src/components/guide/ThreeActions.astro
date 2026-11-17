@@ -1,0 +1,183 @@
+---
+/**
+ * Guide de sécurité — animation « Les 3 gestes » : se baisser, s'abriter, s'agripper.
+ *   <ThreeActions />  (dans src/content/guide/<langue>/safety-guide.mdx)
+ * Dessins originaux SismoAtlas (SVG). Le moteur est dans src/scripts/three-actions.ts.
+ * Sans JavaScript, le bloc est masqué : les consignes écrites du guide restent la référence.
+ */
+import { langFromUrl, useTranslations } from '../../i18n/utils';
+import type { UIKey } from '../../i18n/utils';
+
+const t = useTranslations(langFromUrl(Astro.url));
+const a = (k: string) => t(`guide.anim.${k}` as UIKey);
+const strings = Object.fromEntries(['calm', 'shake', 'drop', 'cover', 'hold', 'wait', 'end', 'play', 'pause'].map((k) => [k, a(k)]));
+---
+
+<figure class="ta js-only" data-three-actions data-i18n={JSON.stringify(strings)}>
+  <figcaption class="ta-title">{a('title')}</figcaption>
+  <div class="ta-card">
+    <div class="ta-scene" role="img" aria-label={a('sceneLabel')}>
+      <svg data-ta="stage" class="ta-mirror" viewBox="0 0 400 250" aria-hidden="true">
+      <defs>
+      <linearGradient id="ta-wallG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--ta-wall-top)"/><stop offset="1" stop-color="var(--ta-wall)"/></linearGradient>
+      <linearGradient id="ta-skyG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--ta-sky)"/><stop offset="1" stop-color="var(--ta-sky2)"/></linearGradient>
+      <linearGradient id="ta-beamG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--ta-beam)" stop-opacity=".45"/><stop offset="1" stop-color="var(--ta-beam)" stop-opacity="0"/></linearGradient>
+      <linearGradient id="ta-floorG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--ta-floor-d)"/><stop offset="1" stop-color="var(--ta-floor)"/></linearGradient>
+      <radialGradient id="ta-glowG"><stop offset="0" stop-color="var(--ta-glow)" stop-opacity=".7"/><stop offset="1" stop-color="var(--ta-glow)" stop-opacity="0"/></radialGradient>
+      <pattern id="ta-zellige" width="14" height="14" patternUnits="userSpaceOnUse">
+      <rect width="14" height="14" fill="var(--ta-z3)"/><path d="M7 0 L14 7 L7 14 L0 7Z" fill="var(--ta-z1)"/>
+      <path d="M7 3 L11 7 L7 11 L3 7Z" fill="var(--ta-z3)"/><circle cx="7" cy="7" r="1.8" fill="var(--ta-z2)"/>
+      </pattern>
+      <pattern id="ta-rugP" width="16" height="10" patternUnits="userSpaceOnUse">
+      <rect width="16" height="10" fill="var(--ta-rug)"/><path d="M0 5 L4 1 L8 5 L4 9Z M8 5 L12 1 L16 5 L12 9Z" fill="none" stroke="var(--ta-rug2)" stroke-width="1.2"/>
+      <circle cx="4" cy="5" r="1" fill="var(--ta-rug3)"/><circle cx="12" cy="5" r="1" fill="var(--ta-rug3)"/>
+      </pattern>
+      <pattern id="ta-fabricP" width="8" height="8" patternUnits="userSpaceOnUse">
+      <rect width="8" height="8" fill="var(--ta-fabric)"/><path d="M0 4 H8" stroke="var(--ta-fabric-l)" stroke-width="1" opacity=".55"/>
+      </pattern>
+      <g data-ta="thumb-bg"><rect x="0" y="0" width="400" height="202" fill="url(#ta-wallG)"/><rect x="0" y="182" width="400" height="20" fill="url(#ta-zellige)"/><rect x="0" y="201" width="400" height="60" fill="url(#ta-floorG)"/>
+      <polygon points="176,212 364,212 378,234 162,234" fill="url(#ta-rugP)"/>
+      <rect x="228" y="158" width="9" height="60" rx="2" fill="var(--ta-wood-dd)"/><rect x="305" y="158" width="9" height="60" rx="2" fill="var(--ta-wood-dd)"/>
+      <rect x="200" y="143" width="142" height="13" rx="3" fill="var(--ta-wood)"/><rect x="206" y="155" width="130" height="8" fill="var(--ta-wood-d)"/>
+      <rect x="208" y="156" width="11" height="66" rx="2.5" fill="var(--ta-wood-d)"/><rect x="321" y="156" width="11" height="66" rx="2.5" fill="var(--ta-wood-d)"/></g>
+      </defs>
+      <g data-ta="room">
+      <!-- mur, plafond, plinthe en zellige -->
+      <rect x="-20" y="-20" width="440" height="222" fill="url(#ta-wallG)"/>
+      <rect x="-20" y="-20" width="440" height="24" fill="var(--ta-wall-shade)" opacity=".55"/>
+      <rect x="-20" y="182" width="440" height="20" fill="url(#ta-zellige)"/>
+      <rect x="-20" y="179" width="440" height="3.5" fill="var(--ta-wall-shade)"/>
+      <!-- sol en terre cuite -->
+      <rect x="-20" y="201" width="440" height="70" fill="url(#ta-floorG)"/>
+      <g stroke="var(--ta-floor-d)" stroke-width="1.2" opacity=".8">
+      <line x1="-20" y1="214" x2="420" y2="214"/><line x1="-20" y1="232" x2="420" y2="232"/>
+      <line x1="20" y1="201" x2="-6" y2="270"/><line x1="90" y1="201" x2="76" y2="270"/><line x1="160" y1="201" x2="156" y2="270"/>
+      <line x1="230" y1="201" x2="236" y2="270"/><line x1="300" y1="201" x2="316" y2="270"/><line x1="370" y1="201" x2="396" y2="270"/>
+      </g>
+      <!-- fenêtre en arc outrepassé et rayon de lumière -->
+      <polygon points="38,160 102,160 196,270 70,270" fill="url(#ta-beamG)"/>
+      <path d="M38 156 V92 A40 40 0 1 1 102 92 V156 Z" fill="url(#ta-skyG)" stroke="var(--ta-frame)" stroke-width="7"/>
+      <path d="M44 150 V95 A30 30 0 0 1 60 70" fill="none" stroke="#fff" stroke-width="3" opacity=".35" stroke-linecap="round"/>
+      <line x1="70" y1="52" x2="70" y2="156" stroke="var(--ta-frame)" stroke-width="3.5"/>
+      <line x1="38" y1="110" x2="102" y2="110" stroke="var(--ta-frame)" stroke-width="3.5"/>
+      <!-- sedari (banquette marocaine) -->
+      <rect x="-20" y="138" width="150" height="40" rx="9" fill="var(--ta-cushion)"/>
+      <g stroke="var(--ta-cushion-d)" stroke-width="2"><line x1="30" y1="140" x2="30" y2="176"/><line x1="80" y1="140" x2="80" y2="176"/></g>
+      <rect x="-20" y="170" width="150" height="14" rx="5" fill="var(--ta-fabric-d)"/>
+      <rect x="-20" y="182" width="150" height="20" fill="url(#ta-fabricP)"/>
+      <rect x="-20" y="182" width="150" height="3" fill="var(--ta-fabric-l)" opacity=".8"/>
+      <!-- étagère, vase, livres -->
+      <rect x="128" y="104" width="52" height="5" rx="2" fill="var(--ta-wood)"/>
+      <rect x="166" y="90" width="5" height="14" fill="var(--ta-z1)"/><rect x="171" y="92" width="4" height="12" fill="var(--ta-accent)"/>
+      <g data-ta="vase">
+      <path d="M146 104 C138 98 140 88 146 85 H158 C164 88 166 98 158 104 Z" fill="var(--ta-vase)"/>
+      <path d="M148 85 V80 H156 V85 Z" fill="var(--ta-vase-d)"/>
+      <path d="M144 94 H160" stroke="var(--ta-z3)" stroke-width="1.6" opacity=".8"/>
+      </g>
+      <g data-ta="shards" opacity="0">
+      <path d="M148 221 l5 -4 l3 4z M160 222 l4 -3 l2 3z M140 222 l3 -2 l2 2z" fill="var(--ta-vase-d)"/>
+      </g>
+      <!-- cadre -->
+      <g data-ta="frame">
+      <path d="M345 64 L331 80 M345 64 L359 80" stroke="var(--ta-wood-d)" stroke-width="1.4"/>
+      <rect x="323" y="80" width="44" height="32" rx="2" fill="var(--ta-frame)" stroke="var(--ta-wood)" stroke-width="4"/>
+      <path d="M328 108 l10 -12 l8 7 l7 -6 l9 11z" fill="var(--ta-z2)" opacity=".75"/><circle cx="356" cy="90" r="3" fill="var(--ta-brass)"/>
+      </g>
+      <!-- lanterne -->
+      <g data-ta="lamp">
+      <line x1="268" y1="-20" x2="268" y2="44" stroke="var(--ta-brass-d)" stroke-width="2"/>
+      <circle cx="268" cy="64" r="34" fill="url(#ta-glowG)"/>
+      <path d="M262 44 H274 L283 56 L279 78 H257 L253 56 Z" fill="var(--ta-brass)"/>
+      <path d="M260 56 H276 L273 74 H263 Z" fill="var(--ta-glow)"/>
+      <path d="M268 56 V74 M262 65 H274" stroke="var(--ta-brass-d)" stroke-width="1.4"/>
+      <path d="M262 78 H274 L268 86 Z" fill="var(--ta-brass-d)"/>
+      </g>
+      <!-- tapis berbère -->
+      <polygon points="176,212 364,212 378,234 162,234" fill="url(#ta-rugP)"/>
+      <polygon points="176,212 364,212 366,215 174,215" fill="var(--ta-rug3)" opacity=".6"/>
+      <!-- table solide -->
+      <ellipse cx="270" cy="224" rx="78" ry="5" fill="#000" opacity=".14"/>
+      <rect x="228" y="158" width="9" height="60" rx="2" fill="var(--ta-wood-dd)"/>
+      <rect x="305" y="158" width="9" height="60" rx="2" fill="var(--ta-wood-dd)"/>
+      <rect x="200" y="143" width="142" height="13" rx="3" fill="var(--ta-wood)"/>
+      <rect x="200" y="143" width="142" height="3.5" rx="1.5" fill="var(--ta-wood-l)"/>
+      <rect x="206" y="155" width="130" height="8" fill="var(--ta-wood-d)"/>
+      <rect x="208" y="156" width="11" height="66" rx="2.5" fill="var(--ta-wood-d)"/>
+      <rect x="321" y="156" width="11" height="66" rx="2.5" fill="var(--ta-wood-d)"/>
+      <rect x="208" y="156" width="3" height="66" fill="var(--ta-wood)" opacity=".7"/><rect x="321" y="156" width="3" height="66" fill="var(--ta-wood)" opacity=".7"/>
+      <!-- personnage -->
+      <ellipse data-ta="shadow" cx="110" cy="224" rx="22" ry="4" fill="#000" opacity=".16"/>
+      <g data-ta="hero" class="ta-char" data-expr="calm"></g>
+      <circle data-ta="grip" cx="326" cy="197" r="10" fill="none" stroke="var(--ta-accent)" stroke-width="2.5" opacity="0"/>
+      </g>
+      <!-- poussière et traits de vibration -->
+      <g data-ta="dust" fill="var(--ta-wall-shade)"></g>
+      <g data-ta="lines" stroke="var(--ta-accent)" stroke-width="3" stroke-linecap="round" fill="none" opacity="0">
+      <path d="M6 240 q8 -6 16 0 t16 0"/><path d="M362 240 q8 -6 16 0 t16 0"/><path d="M190 22 l-8 8 M198 26 l-6 10"/>
+      </g>
+      <g data-ta="alert" opacity="0" transform="translate(112 40)">
+      <path d="M0 -20 L21 16 H-21 Z" fill="var(--ta-accent)"/><rect x="-2.5" y="-8" width="5" height="13" rx="2" fill="#fff"/><circle cx="0" cy="10" r="3" fill="#fff"/>
+      </g>
+      <g data-ta="ok" opacity="0" transform="translate(200 46)">
+      <circle r="18" fill="var(--ta-ok)"/><g class="ta-unflip"><path d="M-8 0 l6 6 l11 -12" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+      </g>
+      </svg>
+    </div>
+    <div class="ta-progress" aria-hidden="true"><span data-ta-bar></span></div>
+    <div class="ta-caption" data-ta-caption>
+      <span class="ta-badge" data-ta-badge aria-hidden="true">1</span>
+      <p data-ta-text>{a('drop')}</p>
+    </div>
+    <div class="ta-steps" role="group" aria-label={a('stepsLabel')}>
+      <button type="button" class="ta-step" data-go="drop"><span class="ta-thumb" data-thumb="drop"></span><b>{a('s1')}</b></button>
+      <button type="button" class="ta-step" data-go="cover"><span class="ta-thumb" data-thumb="cover"></span><b>{a('s2')}</b></button>
+      <button type="button" class="ta-step" data-go="hold"><span class="ta-thumb" data-thumb="hold"></span><b>{a('s3')}</b></button>
+    </div>
+    <div class="ta-controls">
+      <button type="button" data-ta-play>{a('pause')}</button>
+      <button type="button" data-ta-replay>{a('replay')}</button>
+    </div>
+  </div>
+</figure>
+
+<script>
+  import { initThreeActions } from '../../scripts/three-actions';
+  document.querySelectorAll<HTMLElement>('[data-three-actions]').forEach((el) => initThreeActions(el));
+</script>
+
+<style is:global>
+  .ta { --ta-accent: #c2410c; --ta-ok: #237a4b; --ta-wall-top: #f7ebd9; --ta-wall: #f0dfc6; --ta-wall-shade: #e4cfb1; --ta-floor: #c8744c; --ta-floor-d: #b26240; --ta-floor-l: #d58a63; --ta-wood: #8d5b3a; --ta-wood-l: #a8714b; --ta-wood-d: #6c4328; --ta-wood-dd: #55331e; --ta-sky: #a8daf3; --ta-sky2: #e2f3fb; --ta-frame: #fbf4e8; --ta-z1: #1f6f8b; --ta-z2: #2e8b57; --ta-z3: #f6efe2; --ta-brass: #c9a24a; --ta-brass-d: #a07e2f; --ta-glow: #ffe8a3; --ta-fabric: #7d2b3a; --ta-fabric-d: #63212e; --ta-fabric-l: #c9a24a; --ta-cushion: #2a6f73; --ta-cushion-d: #1f5558; --ta-rug: #a8322d; --ta-rug2: #f3e7d3; --ta-rug3: #1f3f66; --ta-skin: #c98b62; --ta-skin-d: #ad7350; --ta-hair: #2a1c15; --ta-shirt: #2f72b5; --ta-shirt-d: #245a91; --ta-shirt-l: #6fa3d8; --ta-pants: #39405a; --ta-pants-d: #2b3047; --ta-belt: #5a3a24; --ta-shoe: #2a2a2a; --ta-vase: #2f8f9d; --ta-vase-d: #226e79; --ta-beam: #fff6dc; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .ta { --ta-accent: #fb923c; --ta-ok: #3fae6f; --ta-wall-top: #433a4c; --ta-wall: #3a3242; --ta-wall-shade: #322a39; --ta-floor: #6e3f2c; --ta-floor-d: #5d3424; --ta-floor-l: #7c4a35; --ta-sky: #1b2c4f; --ta-sky2: #2b4170; --ta-frame: #4b4253; --ta-z3: #d9d2c4; --ta-glow: #ffd36b; --ta-beam: #9fb4ff; }
+  }
+  :root[data-theme='dark'] .ta { --ta-accent: #fb923c; --ta-ok: #3fae6f; --ta-wall-top: #433a4c; --ta-wall: #3a3242; --ta-wall-shade: #322a39; --ta-floor: #6e3f2c; --ta-floor-d: #5d3424; --ta-floor-l: #7c4a35; --ta-sky: #1b2c4f; --ta-sky2: #2b4170; --ta-frame: #4b4253; --ta-z3: #d9d2c4; --ta-glow: #ffd36b; --ta-beam: #9fb4ff; }
+  .ta { margin: var(--space-4) 0 var(--space-6); }
+  .ta-title { font-weight: 700; font-size: var(--fs-lg); margin-block-end: var(--space-2); }
+  .ta-card { border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; background: var(--color-surface); box-shadow: var(--shadow); }
+  .ta-scene { aspect-ratio: 400 / 250; background: var(--ta-wall); }
+  .ta-scene svg, .ta-thumb svg { display: block; width: 100%; height: 100%; }
+  [dir='rtl'] .ta-mirror { transform: scaleX(-1); }
+  .ta-unflip { transform-box: fill-box; transform-origin: center; }
+  [dir='rtl'] .ta-unflip { transform: scaleX(-1); }
+  .ta .fv { display: none; }
+  .ta-char[data-expr='calm'] :is(.e-open, .b-normal, .m-smile),
+  .ta-char[data-expr='alarm'] :is(.e-wide, .b-up, .m-o),
+  .ta-char[data-expr='focus'] :is(.e-squint, .b-focus, .m-line),
+  .ta-char[data-expr='relief'] :is(.e-happy, .b-normal, .m-relief) { display: inline; }
+  .ta-progress { height: 4px; background: var(--color-border); }
+  .ta-progress span { display: block; height: 100%; width: 0; background: var(--color-primary); }
+  .ta-caption { display: flex; gap: var(--space-3); align-items: center; min-height: 5rem; padding: var(--space-3) var(--space-4); border-block-start: 1px solid var(--color-border); }
+  .ta-caption p { margin: 0; font-weight: 600; font-size: var(--fs-lg); line-height: var(--lh-tight); }
+  .ta-badge { flex: none; display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 50%; font-weight: 800; font-size: 1.2rem; background: var(--color-primary); color: var(--color-on-primary); }
+  .ta-badge.warn { background: var(--color-accent); color: #fff; }
+  .ta-badge.ok { background: var(--ta-ok); color: #fff; }
+  .ta-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-2); padding: var(--space-3); border-block-start: 1px solid var(--color-border); }
+  .ta-step { display: grid; justify-items: center; gap: var(--space-1); padding: var(--space-1) var(--space-1) var(--space-2); border: 2px solid var(--color-border); border-radius: var(--radius); background: transparent; color: var(--color-text); font: inherit; cursor: pointer; }
+  .ta-step b { font-size: var(--fs-sm); }
+  .ta-step[aria-current] { border-color: var(--color-primary); background: color-mix(in srgb, var(--color-primary) 12%, transparent); }
+  .ta-thumb { width: 100%; aspect-ratio: 2 / 1; border-radius: var(--radius-sm); overflow: hidden; background: var(--ta-wall); }
+  .ta-controls { display: flex; justify-content: center; gap: var(--space-2); padding: 0 var(--space-3) var(--space-3); }
+  .ta-controls button { min-height: 2.5rem; padding: var(--space-2) var(--space-4); border-radius: 999px; border: 1px solid var(--color-border); background: var(--color-bg); color: var(--color-text); font: inherit; font-weight: 600; cursor: pointer; }
+  .ta :is(button):focus-visible { outline: 3px solid var(--color-focus); outline-offset: 2px; }
+  @media print { .ta { display: none; } }
+</style>
