@@ -238,6 +238,7 @@
   "footer.sourcesIntro": "Les données sismiques proviennent d'organismes publics et de publications scientifiques :",
   "footer.copyright": "© {year} SismoAtlas",
   "footer.contentLicense": "Textes sous licence {license}, sauf mention contraire.",
+  "footer.contact": "Contact :",
 
   "theme.light": "Clair",
   "theme.dark": "Sombre",

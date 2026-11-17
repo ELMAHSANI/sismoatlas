@@ -9,6 +9,8 @@ export const SITE = {
    * ⚠️ À passer à `false` avant la mise en ligne publique (vérification de la phase 10).
    */
   showDrafts: true,
+  /** Adresse de contact publique du site. */
+  contactEmail: 'sismoatlas@gmail.com',
   /** Licence des contenus éditoriaux. */
   contentLicense: 'CC BY 4.0',
   contentLicenseUrl: 'https://creativecommons.org/licenses/by/4.0/',

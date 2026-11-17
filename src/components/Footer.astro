@@ -29,6 +29,7 @@ const year = new Date().getFullYear();
           <Logo size={24} /><span>{t('site.name')}</span>
         </a>
         <p class="muted">{t('site.tagline')}</p>
+        <p class="contact">{t('footer.contact')} <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a></p>
       </div>
 
       <section aria-labelledby="footer-sources">
@@ -106,6 +107,9 @@ const year = new Date().getFullYear();
     color: var(--color-text);
     text-decoration: none;
     margin-block-end: var(--space-2);
+  }
+  .contact {
+    margin-block: var(--space-2) 0;
   }
   h2 {
     font-size: var(--fs-base);

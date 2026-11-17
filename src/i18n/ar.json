@@ -238,6 +238,7 @@
   "footer.sourcesIntro": "تأتي البيانات الزلزالية من هيئات عمومية ومنشورات علمية:",
   "footer.copyright": "© {year} SismoAtlas",
   "footer.contentLicense": "النصوص مرخّصة بموجب {license}، ما لم يُذكر خلاف ذلك.",
+  "footer.contact": "للاتصال:",
 
   "theme.light": "فاتح",
   "theme.dark": "داكن",

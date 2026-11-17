@@ -238,6 +238,7 @@
   "footer.sourcesIntro": "Earthquake data come from public agencies and scientific publications:",
   "footer.copyright": "© {year} SismoAtlas",
   "footer.contentLicense": "Texts licensed under {license} unless otherwise stated.",
+  "footer.contact": "Contact:",
 
   "theme.light": "Light",
   "theme.dark": "Dark",
