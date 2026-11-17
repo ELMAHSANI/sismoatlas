@@ -1,6 +1,6 @@
 # À rédiger ou à vérifier
 
-*Liste générée le 17/11/2026 par `node docs/lister-a-completer.mjs` — 341 éléments.*
+*Liste générée le 17/11/2026 par `node docs/lister-a-completer.mjs` — 311 éléments.*
 
 Les versions arabe et anglaise reprennent les mêmes points (« traduction … ») : rédiger d'abord le français.
 
@@ -363,17 +363,6 @@ Les versions arabe et anglaise reprennent les mêmes points (« traduction … �
 
 ## src/content/understand
 
-### `src/content/understand/ar/earthquake-resistant-building.mdx`
-
-- [ ] traduction arabe de la section française
-- [ ] traduction arabe de la section française
-- [ ] traduction arabe de la section française
-- [ ] traduction arabe de la section française
-- [ ] traduction arabe de la section française
-- [ ] traduction arabe de la section française
-- [ ] 🖼️ Figure : Carte du zonage sismique RPS 2000 (couche à fournir dans donnees_brutes/shp/)
-- [ ] 🖼️ Figure : Schéma : bâtiment conforme / non conforme (source ou dessin original)
-
 ### `src/content/understand/ar/magnitude-vs-intensity.mdx`
 
 - [ ] traduction arabe de la section française
@@ -408,17 +397,6 @@ Les versions arabe et anglaise reprennent les mêmes points (« traduction … �
 - [ ] 🖼️ Figure : Carte du Rif et de l'Alboran : failles actives (GEM) et séismes majeurs
 - [ ] 🖼️ Figure : Carte de la sismicité du catalogue de référence 1045–2005 (data/catalogue/, déjà disponible)
 
-### `src/content/understand/en/earthquake-resistant-building.mdx`
-
-- [ ] traduction anglaise de la section française
-- [ ] traduction anglaise de la section française
-- [ ] traduction anglaise de la section française
-- [ ] traduction anglaise de la section française
-- [ ] traduction anglaise de la section française
-- [ ] traduction anglaise de la section française
-- [ ] 🖼️ Figure : Carte du zonage sismique RPS 2000 (couche à fournir dans donnees_brutes/shp/)
-- [ ] 🖼️ Figure : Schéma : bâtiment conforme / non conforme (source ou dessin original)
-
 ### `src/content/understand/en/magnitude-vs-intensity.mdx`
 
 - [ ] traduction anglaise de la section française
@@ -452,23 +430,6 @@ Les versions arabe et anglaise reprennent les mêmes points (« traduction … �
 - [ ] 🖼️ Figure : Carte des plaques tectoniques autour du Maroc avec flèches de convergence (données de limites de plaques : Bird, 2003 ; vitesses : source à citer)
 - [ ] 🖼️ Figure : Carte du Rif et de l'Alboran : failles actives (GEM) et séismes majeurs
 - [ ] 🖼️ Figure : Carte de la sismicité du catalogue de référence 1045–2005 (data/catalogue/, déjà disponible)
-
-### `src/content/understand/fr/earthquake-resistant-building.mdx`
-
-- [ ] ce ne sont pas les séismes qui tuent, mais les bâtiments qui s'effondrent (formulation à sourcer)
-- [ ] Agadir 1960 et la naissance d'une réglementation
-- [ ] texte officiel, date d'adoption, version révisée (2011) — références exactes à vérifier
-- [ ] à quels bâtiments il s'applique
-- [ ] zones et paramètres du règlement
-- [ ] où trouver la zone de sa commune
-- [ ] régularité du bâtiment, chaînages, qualité des matériaux, fondations
-- [ ] illustrations simples
-- [ ] faire appel à un architecte et un ingénieur
-- [ ] vérifier son logement
-- [ ] fixer les meubles lourds
-- [ ] textes officiels et liens (ministère, Bulletin officiel)
-- [ ] 🖼️ Figure : Carte du zonage sismique RPS 2000 (couche à fournir dans donnees_brutes/shp/)
-- [ ] 🖼️ Figure : Schéma : bâtiment conforme / non conforme (source ou dessin original)
 
 ### `src/content/understand/fr/magnitude-vs-intensity.mdx`
 

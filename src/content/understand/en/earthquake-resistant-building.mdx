@@ -1,42 +1,121 @@
 ---
-title: "Earthquake-resistant building: the RPS 2000 code"
-description: "What Morocco's seismic building code requires and why it saves lives."
+title: "Earthquake-resistant building: the RPS 2000"
+description: "The essentials of Morocco's seismic building code (RPS 2000, 2011 version): its purpose, the zones, the soils, and the key rules for building well."
 date: "2026-11-12"
+updated: "2026-11-17"
 author: "SismoAtlas"
 lang: "en"
 translationKey: "earthquake-resistant-building"
 category: "understand"
-tags: []
-references: []
+tags: ["RPS 2000", "earthquake-resistant construction", "seismic zoning", "Morocco"]
+references:
+  - citation: "Ministère de l'Habitat et de la Politique de la Ville, Direction de la Qualité et des Affaires Techniques. Le Règlement de Construction Parasismique RPS 2000 – Version 2011."
+  - citation: "Decree No. 2-02-177 of 9 Hijja 1422 (22 February 2002) approving the seismic building code (RPS 2000) applicable to buildings, setting seismic rules and establishing the National Committee for Earthquake Engineering."
+  - citation: "Decree No. 2-12-682 of 17 Rajab 1434 (28 May 2013) amending Decree No. 2-02-177 and approving the \"RPS 2000, 2011 version\"."
 license: "CC BY 4.0"
-draft: true
+draft: false
 ---
-import FigureTodo from '../../../components/FigureTodo.astro';
+
+In Morocco, buildings must comply with a seismic building code: the **RPS 2000**, whose current version is the **2011 version**. Here are the essentials, without formulas. Numbers in brackets refer to sections of the code.
 
 ## Why building rules?
 
-[À COMPLÉTER : traduction anglaise de la section française]
+- The code aims to **limit loss of life and damage to property** caused by earthquakes (foreword).
+- Morocco has significant seismic activity because it lies in a zone of collision between the **African and Eurasian plates** (§ 5.1). The code recalls the Lisbon earthquake of 1 November 1755, which was destructive in Morocco, and the earthquake of 22 September 1522, which was destructive in the northern Rif and in Fez, as well as the major northern faults such as the Jebha and Nekor faults.
+- After the 1960 Agadir earthquake, a decree of 21 December 1960 imposed earthquake-resistant provisions in Agadir. The 2002 decree approving the RPS 2000 repealed it: the rules now apply to the whole country (Decree No. 2-02-177, art. 6).
 
-## What is RPS 2000?
+## What is the RPS 2000?
 
-[À COMPLÉTER : traduction anglaise de la section française]
+- It was approved by **Decree No. 2-02-177 of 22 February 2002**. Its revised version, the **"RPS 2000, 2011 version"**, was approved by **Decree No. 2-12-682 of 28 May 2013**, after ten years of experience. Each decree came into force six months after its publication in the Official Bulletin.
+- It applies **throughout the country, to all constructions** (decree, art. 3): new buildings, and existing buildings undergoing major changes, such as a change of use or an extension (§ 1.2).
+- It does not apply to:
+  - buildings built with **traditional local techniques** (earth, straw, wood, palm, reed…);
+  - **single-storey** residential or business buildings **of 50 m² or less** (decree, art. 3).
+- Very specific structures are covered by other rules: nuclear power plants, chemical plants, tunnels, dams (§ 1.2).
+- A **National Committee for Earthquake Engineering** proposes the zoning maps and improvements to the code (decree, art. 4).
 
-## Morocco's seismic zoning
+## What level of protection?
 
-[À COMPLÉTER : traduction anglaise de la section française]
+Buildings are designed for an earthquake with a **10% chance of being exceeded in 50 years**, i.e. a return period of **475 years** (§ 2.2). Depending on the strength of the earthquake, the code sets three objectives (§ 2.2.1 to 2.2.3):
 
-<FigureTodo>Carte du zonage sismique RPS 2000 (couche à fournir dans donnees_brutes/shp/)</FigureTodo>
+| Earthquake | What the building must guarantee |
+|---|---|
+| Weak | negligible damage, the building remains usable |
+| Moderate | repairable damage, use quickly restored |
+| Violent | major damage **but no collapse** |
 
-## Key principles
+The last objective is the most important: a compliant building may be damaged, but it must give its occupants time to get out alive.
 
-[À COMPLÉTER : traduction anglaise de la section française]
+## Seismic zoning of Morocco
 
-<FigureTodo>Schéma : bâtiment conforme / non conforme (source ou dessin original)</FigureTodo>
+- The country is divided into **5 zones, from 0 to 4**, according to the expected level of shaking. There are two maps: one for the maximum ground **velocity**, the other for the maximum ground **acceleration** (§ 5.2.2).
+- The velocity zone sets the coefficient used in the calculations: 0, 0.07, 0.10, 0.13 and 0.17 from zone 0 to zone 4 (table 5.1).
+- The **annex of the code** gives, **for each commune**, its velocity and its two zones. Some examples:
+
+| Commune (province or prefecture) | Velocity (cm/s) | Velocity zone | Acceleration zone |
+|---|---|---|---|
+| Al Hoceima (Al Hoceima) | 17 | 4 | 4 |
+| Imzouren (Al Hoceima) | 17 | 4 | 4 |
+| Nador (Nador) | 17 | 4 | 3 |
+| Tangier (Tanger-Assilah) | 13 | 3 | 3 |
+| Agadir (Agadir Ida Ou Tanane) | 13 | 3 | 4 |
+| Marrakech Medina (Marrakech-Medina) | 10 | 2 | 3 |
+| Anfa (Casablanca-Anfa) | 10 | 2 | 2 |
+| Agdal Riyad (Rabat) | 10 | 2 | 2 |
+| Laayoune (Laayoune) | 5 | 0 | 0 |
+| Dakhla (Oued Eddahab) | 5 | 0 | 1 |
+
+Communes in **zone 4** for velocity are in the Rif and along the Mediterranean coast: the provinces of Nador, Al Hoceima, Tetouan, Chefchaouen and Fahs-Anjra. For acceleration, there are also some in the provinces of Taza and Agadir Ida Ou Tanane. In Al Hoceima province, all 35 communes are in zone 4 for acceleration.
+
+## The soil matters as much as the zone
+
+- The same earthquake is felt more strongly on soft ground than on rock. The code therefore classifies sites into **five types, from S1 to S5**, from rock to soft soils (table 5.2). The softer the soil, the greater the seismic force to be taken into account: it is multiplied by up to 1.8. For type S5 (special conditions), a specialist sets the value.
+- A **soil study is mandatory** (§ 4.3). Special care is required for uncompacted fill, shallow groundwater, which can make the ground behave like a liquid during an earthquake (liquefaction), and landslide risks. On such sites, building is only allowed once measures have been taken to limit the risk.
+- **Near a fault** (§ 4.3):
+  - hospitals, schools and other class I and II buildings must be built **at least 120 m on either side** of the fault;
+  - for ordinary buildings, a **special site study** is required near an active fault.
+
+## Not all buildings are equal
+
+The code classifies buildings according to the consequences of their collapse (§ 3.1). The higher the class, the more the design force is increased (table 3.1):
+
+| Class | Examples | Factor |
+|---|---|---|
+| I: vital importance | civil protection, hospitals, clinics, police stations, power and telecommunication plants, water towers | × 1.3 |
+| II: public buildings | schools, universities, large mosques, sports and performance halls, halls for more than 300 people, shopping centres | × 1.2 |
+| III: ordinary buildings | housing, offices, shops | × 1.0 |
+
+## Key principles for building well
+
+- **A simple, regular shape** (§ 3.2):
+  - rectangular, roughly symmetrical plan, with limited projecting parts;
+  - length no more than 3.5 times the width;
+  - height no more than 4 times the shortest side of the base;
+  - no abrupt change in stiffness or mass from one floor to the next, with at most 30% difference;
+  - columns and load-bearing walls continuous from top to foundations.
+- **Seismic joints** (§ 4.5):
+  - an H-, L-, T-, U- or Z-shaped building must be split into simple blocks;
+  - two neighbouring buildings with very different heights or masses must be separated by a joint of at least **5 cm**.
+- **Strong, tied foundations** (§ 4.4): homogeneous, rigid foundations, tied together in both directions by ground beams. They must be designed so that, if something gives way, it is the structure and not the foundations.
+- **Quality materials** (§ 4.2): concrete with a strength of at least **22 MPa** and high-bond steel bars.
+- **Ductility** (§ 2.3.3): in a violent earthquake, the structure must be able to deform a lot without breaking. It then absorbs the earthquake's energy instead of collapsing all at once.
+
+## One- or two-storey masonry houses
+
+For small buildings whose walls of blocks, bricks or rubble stone carry the load, the code sets simple rules (§ 7.3.3):
+
+- load-bearing walls distributed **symmetrically, in both directions**;
+- mortar joints **always completely filled**, without mixing two materials in the same load-bearing wall;
+- wall thickness of at least **15 cm** for solid blocks and bricks, and **20 cm** for hollow ones;
+- **reinforced concrete tie beams and columns**:
+  - vertical ones at corners and at the edges of large openings (1.50 m high or more), with at most **5 m** between two;
+  - horizontal ones at foundation level and at **every floor**;
+  - **no masonry wall edge** may be left free, without a tie.
 
 ## What everyone can do
 
-[À COMPLÉTER : traduction anglaise de la section française]
+- **To build, extend or change the use of a building**, check that the project is designed according to the RPS 2000 (2011 version). It is a regulatory requirement, and it includes a soil study.
+- **Ask your local planning department for your commune's zone.** It is listed in the annex of the code.
+- **At home**, apply the same logic as the code, which recommends anchoring equipment so that it cannot slide or tip over (§ 2.1.3): fix heavy furniture to the wall. See also our [safety guide](/en/safety-guide/).
 
-## Further reading
-
-[À COMPLÉTER : traduction anglaise de la section française]
+This summary follows the text of the RPS 2000, 2011 version. It does not replace the code itself or the advice of an architect or engineer.

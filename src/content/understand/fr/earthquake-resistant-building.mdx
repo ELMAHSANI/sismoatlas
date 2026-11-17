@@ -1,48 +1,121 @@
 ---
 title: "Construire parasismique : le RPS 2000"
-description: "Ce que prévoit le règlement parasismique marocain et pourquoi il protège des vies."
+description: "L'essentiel du règlement parasismique marocain (RPS 2000, version 2011) : à quoi il sert, les zones, les sols, et les règles clés pour bien construire."
 date: "2026-11-12"
+updated: "2026-11-17"
 author: "SismoAtlas"
 lang: "fr"
 translationKey: "earthquake-resistant-building"
 category: "understand"
-tags: []
-references: []
+tags: ["RPS 2000", "construction parasismique", "zonage sismique", "Maroc"]
+references:
+  - citation: "Ministère de l'Habitat et de la Politique de la Ville, Direction de la Qualité et des Affaires Techniques. Le Règlement de Construction Parasismique RPS 2000 – Version 2011."
+  - citation: "Décret n° 2-02-177 du 9 hija 1422 (22 février 2002) approuvant le règlement de construction parasismique (RPS 2000) applicable aux bâtiments, fixant les règles parasismiques et instituant le Comité national du génie parasismique."
+  - citation: "Décret n° 2-12-682 du 17 rejeb 1434 (28 mai 2013) modifiant le décret n° 2-02-177 et approuvant le « RPS 2000, version 2011 »."
 license: "CC BY 4.0"
-draft: true
+draft: false
 ---
-import FigureTodo from '../../../components/FigureTodo.astro';
+
+Au Maroc, la construction des bâtiments doit respecter un règlement parasismique : le **RPS 2000**, dont la version en vigueur est la **version 2011**. Voici l'essentiel, sans formules. Les numéros entre parenthèses renvoient aux sections du règlement.
 
 ## Pourquoi des règles de construction ?
 
-- [À COMPLÉTER : ce ne sont pas les séismes qui tuent, mais les bâtiments qui s'effondrent (formulation à sourcer)]
-- [À COMPLÉTER : Agadir 1960 et la naissance d'une réglementation]
+- Le règlement a pour objectif de **limiter les dommages en vies humaines et en biens** lors des tremblements de terre (avant-propos).
+- Le Maroc est soumis à une activité sismique appréciable, car il se trouve dans une zone de collision entre les **plaques africaine et eurasienne** (§ 5.1). Le règlement rappelle le séisme de Lisbonne du 1ᵉʳ novembre 1755, destructeur au Maroc, et celui du 22 septembre 1522, destructeur dans le nord du Rif et à Fès, ainsi que les grandes failles du nord comme celles de Jebha et du Nekor.
+- Après le séisme d'Agadir de 1960, un décret du 21 décembre 1960 avait imposé des dispositions antisismiques à Agadir. Le décret de 2002 qui approuve le RPS 2000 l'a abrogé : la règle vaut désormais pour tout le pays (décret n° 2-02-177, art. 6).
 
 ## Qu'est-ce que le RPS 2000 ?
 
-- [À COMPLÉTER : texte officiel, date d'adoption, version révisée (2011) — références exactes à vérifier]
-- [À COMPLÉTER : à quels bâtiments il s'applique]
+- Il a été approuvé par le **décret n° 2-02-177 du 22 février 2002**. Sa version révisée, le **« RPS 2000, version 2011 »**, a été approuvée par le **décret n° 2-12-682 du 28 mai 2013**, après dix ans de retour d'expérience. Chaque décret est entré en vigueur six mois après sa publication au Bulletin officiel.
+- Il s'applique **sur tout le territoire, à toutes les constructions** (décret, art. 3) : bâtiments neufs, et bâtiments existants qui subissent des modifications importantes, comme un changement d'usage ou un agrandissement (§ 1.2).
+- Il ne s'applique pas :
+  - aux bâtiments construits selon les **techniques traditionnelles locales** (terre, paille, bois, palmier, roseau…) ;
+  - aux bâtiments **d'un seul niveau** d'habitation ou professionnels **de 50 m² au plus** (décret, art. 3).
+- Les ouvrages très particuliers relèvent d'autres règles : centrales nucléaires, usines chimiques, tunnels, barrages (§ 1.2).
+- Un **Comité national du génie parasismique** propose les cartes de zonage et les améliorations du règlement (décret, art. 4).
+
+## Quel niveau de protection ?
+
+Le règlement dimensionne les bâtiments pour un séisme qui a **10 % de chances d'être dépassé en 50 ans**, c'est-à-dire une période de retour de **475 ans** (§ 2.2). Selon la force du séisme, il fixe trois objectifs (§ 2.2.1 à 2.2.3) :
+
+| Séisme | Ce que le bâtiment doit garantir |
+|---|---|
+| Faible | dommages négligeables, le bâtiment reste utilisable |
+| Modéré | dommages réparables, utilisation vite rétablie |
+| Violent | dommages importants **mais pas d'effondrement** |
+
+Le dernier objectif est le plus important : un bâtiment conforme peut être abîmé, mais il doit laisser à ses occupants le temps d'en sortir vivants.
 
 ## Le zonage sismique du Maroc
 
-- [À COMPLÉTER : zones et paramètres du règlement]
-- [À COMPLÉTER : où trouver la zone de sa commune]
+- Le pays est divisé en **5 zones, de 0 à 4**, selon le niveau de secousse attendu. Il existe deux cartes : l'une pour la **vitesse** maximale du sol, l'autre pour l'**accélération** maximale (§ 5.2.2).
+- La zone de vitesse fixe le coefficient utilisé dans les calculs : 0 ; 0,07 ; 0,10 ; 0,13 et 0,17 de la zone 0 à la zone 4 (tableau 5.1).
+- L'**annexe du règlement** donne, **pour chaque commune**, sa vitesse et ses deux zones. Quelques exemples :
 
-<FigureTodo>Carte du zonage sismique RPS 2000 (couche à fournir dans donnees_brutes/shp/)</FigureTodo>
+| Commune (province ou préfecture) | Vitesse (cm/s) | Zone en vitesse | Zone en accélération |
+|---|---|---|---|
+| Al Hoceima (Al Hoceima) | 17 | 4 | 4 |
+| Imzouren (Al Hoceima) | 17 | 4 | 4 |
+| Nador (Nador) | 17 | 4 | 3 |
+| Tanger (Tanger-Assilah) | 13 | 3 | 3 |
+| Agadir (Agadir Ida Ou Tanane) | 13 | 3 | 4 |
+| Marrakech Médina (Marrakech-Médina) | 10 | 2 | 3 |
+| Anfa (Casablanca-Anfa) | 10 | 2 | 2 |
+| Agdal Riyad (Rabat) | 10 | 2 | 2 |
+| Laâyoune (Laâyoune) | 5 | 0 | 0 |
+| Dakhla (Oued Eddahab) | 5 | 0 | 1 |
 
-## Les grands principes
+Les communes classées en **zone 4** pour la vitesse se trouvent dans le Rif et sur la côte méditerranéenne : provinces de Nador, Al Hoceima, Tétouan, Chefchaouen et Fahs-Anjra. Pour l'accélération, on en trouve aussi dans les provinces de Taza et d'Agadir Ida Ou Tanane. Dans la province d'Al Hoceima, les 35 communes sont en zone 4 pour l'accélération.
 
-- [À COMPLÉTER : régularité du bâtiment, chaînages, qualité des matériaux, fondations]
-- [À COMPLÉTER : illustrations simples]
+## Le sol compte autant que la zone
 
-<FigureTodo>Schéma : bâtiment conforme / non conforme (source ou dessin original)</FigureTodo>
+- Le même séisme est ressenti plus fort sur un sol meuble que sur du rocher. Le règlement classe donc les terrains en **cinq types, de S1 à S5**, du rocher aux sols mous (tableau 5.2). Plus le sol est mou, plus l'effort sismique à prendre en compte est grand : il est multiplié jusqu'à 1,8. Pour le type S5 (conditions spéciales), un spécialiste fixe la valeur.
+- L'**étude de sol est obligatoire** (§ 4.3). Une attention particulière est exigée pour les remblais non compactés, les nappes d'eau peu profondes, qui peuvent rendre le sol liquide pendant un séisme (liquéfaction), et les risques de glissement de terrain. Sur ces sites, on ne peut construire qu'après avoir pris des mesures pour limiter le risque.
+- **Près d'une faille** (§ 4.3) :
+  - les hôpitaux, écoles et autres bâtiments des classes I et II doivent être construits **à au moins 120 m de part et d'autre** de la faille ;
+  - pour les bâtiments ordinaires, une **étude spéciale du site** est exigée près d'une faille active.
+
+## Tous les bâtiments ne sont pas égaux
+
+Le règlement classe les bâtiments selon les conséquences de leur effondrement (§ 3.1). Plus la classe est élevée, plus l'effort de calcul est majoré (tableau 3.1) :
+
+| Classe | Exemples | Majoration |
+|---|---|---|
+| I : importance vitale | protection civile, hôpitaux, cliniques, postes de police, centrales électriques et de télécommunication, châteaux d'eau | × 1,3 |
+| II : grand public | écoles, universités, grandes mosquées, salles de sport et de spectacle, salles de plus de 300 personnes, centres commerciaux | × 1,2 |
+| III : bâtiments ordinaires | logements, bureaux, commerces | × 1,0 |
+
+## Les grands principes pour bien construire
+
+- **Une forme simple et régulière** (§ 3.2) :
+  - plan rectangulaire et à peu près symétrique, avec des parties en saillie limitées ;
+  - longueur au plus 3,5 fois la largeur ;
+  - hauteur au plus 4 fois le plus petit côté de la base ;
+  - pas de changement brutal de rigidité ou de masse d'un étage à l'autre, avec au plus 30 % d'écart ;
+  - poteaux et murs porteurs continus du haut jusqu'aux fondations.
+- **Des joints sismiques** (§ 4.5) :
+  - un bâtiment en forme de H, L, T, U ou Z doit être découpé en blocs simples ;
+  - deux bâtiments voisins de hauteurs ou de masses très différentes doivent être séparés par un joint d'au moins **5 cm**.
+- **Des fondations solides et liées** (§ 4.4) : fondations homogènes et rigides, reliées entre elles dans les deux directions par des longrines. Elles doivent être calculées pour que, si quelque chose cède, ce soit la structure et non les fondations.
+- **Des matériaux de qualité** (§ 4.2) : un béton d'au moins **22 MPa** de résistance et des aciers à haute adhérence.
+- **De la ductilité** (§ 2.3.3) : pour un séisme violent, la structure doit pouvoir se déformer fortement sans se rompre. Elle absorbe ainsi l'énergie du séisme au lieu de s'effondrer d'un coup.
+
+## Maisons en maçonnerie de 1 ou 2 niveaux
+
+Pour les petites constructions dont les murs en blocs, en briques ou en moellons portent le bâtiment, le règlement fixe des règles simples (§ 7.3.3) :
+
+- des murs porteurs répartis **symétriquement, dans les deux directions** ;
+- des joints de mortier **toujours bien remplis**, sans mélanger deux matériaux dans un même mur porteur ;
+- une épaisseur de mur d'au moins **15 cm** pour les blocs et briques pleins, et **20 cm** pour les creux ;
+- des **chaînages en béton armé** :
+  - verticaux, aux angles et au bord des grandes ouvertures (1,50 m de haut ou plus), avec au plus **5 m** entre deux chaînages ;
+  - horizontaux, au niveau des fondations et de **chaque plancher** ;
+  - **aucun bord de mur en maçonnerie** ne doit rester libre, sans chaînage.
 
 ## Ce que chacun peut faire
 
-- [À COMPLÉTER : faire appel à un architecte et un ingénieur]
-- [À COMPLÉTER : vérifier son logement]
-- [À COMPLÉTER : fixer les meubles lourds]
+- **Pour construire, agrandir ou changer l'usage d'un bâtiment**, vérifiez que le projet est étudié selon le RPS 2000 (version 2011). C'est une obligation réglementaire, et elle comprend une étude de sol.
+- **Renseignez-vous sur la zone de votre commune** auprès des services d'urbanisme. Elle figure dans l'annexe du règlement.
+- **Chez vous**, appliquez la même logique que le règlement, qui recommande d'ancrer les équipements pour qu'ils ne glissent pas et ne se renversent pas (§ 2.1.3) : fixez au mur les meubles lourds. Voir aussi notre [guide de sécurité](/fr/safety-guide/).
 
-## Pour aller plus loin
-
-- [À COMPLÉTER : textes officiels et liens (ministère, Bulletin officiel)]
+Ce résumé suit le texte du RPS 2000, version 2011. Il ne remplace pas le règlement lui-même ni l'avis d'un architecte ou d'un ingénieur.
