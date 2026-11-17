@@ -223,7 +223,27 @@ export function shareUrl(q: Quake, lang: Lang, t: T, pageUrl: string): string {
     time: localTime(q.time, lang),
   });
   const link = `${pageUrl}?q=${encodeURIComponent(q.id)}`;
-  return `https://wa.me/?text=${encodeURIComponent(`${text} ${link}`)}`;
+  return `https://wa.me/?text=${encodeURIComponent(`${text} ${link}\n${shareHashtags(q, lang, t)}`)}`;
+}
+
+/** Mot-dièse à partir d'un nom : « Al Hoceima » → #AlHoceima ; « الدار البيضاء » → #الدار_البيضاء */
+export function hashtag(name: string): string {
+  const words = name.replace(/[’'‘\-.,()]/g, ' ').split(/\s+/).filter(Boolean);
+  if (!words.length) return '';
+  const arabic = /[؀-ۿ]/.test(name);
+  return '#' + (arabic ? words.join('_') : words.map((w) => w[0].toUpperCase() + w.slice(1)).join(''));
+}
+
+/**
+ * Mots-dièse du partage : thème (« séisme »), ville proche (≤ 100 km), pays si la ville est au Maroc, nom du site.
+ * Ils rendent le message trouvable sur les réseaux sociaux (Facebook, X, Instagram, TikTok…).
+ */
+export function shareHashtags(q: Quake, lang: Lang, t: T): string {
+  const tags = [t('live.share.tagQuake')];
+  if (q.near && q.near.km <= 100) tags.push(hashtag(cityName(q.near, lang)));
+  if (q.near?.cc === 'MA') tags.push(t('live.share.tagCountry'));
+  tags.push('#SismoAtlas');
+  return [...new Set(tags.filter(Boolean))].join(' ');
 }
 
 // ---------------------------------------------------------------- rendu HTML (serveur et navigateur)

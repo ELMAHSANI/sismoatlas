@@ -74,6 +74,8 @@
   "live.felt": "هل شعرت به؟",
   "live.share": "مشاركة عبر واتساب",
   "live.share.text": "زلزال بقوة {mag} {place}، {ago} ({time} بتوقيت المغرب).",
+  "live.share.tagQuake": "#زلزال",
+  "live.share.tagCountry": "#المغرب",
   "live.source": "التفاصيل ({agency})",
   "live.new": "جديد",
   "live.status.connecting": "جارٍ الاتصال بالبث المباشر…",

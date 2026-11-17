@@ -74,6 +74,8 @@
   "live.felt": "L'avez-vous ressenti ?",
   "live.share": "Partager sur WhatsApp",
   "live.share.text": "Séisme de magnitude {mag} {place}, {ago} ({time}, heure du Maroc).",
+  "live.share.tagQuake": "#séisme",
+  "live.share.tagCountry": "#Maroc",
   "live.source": "Fiche détaillée ({agency})",
   "live.new": "Nouveau",
   "live.status.connecting": "Connexion au direct…",

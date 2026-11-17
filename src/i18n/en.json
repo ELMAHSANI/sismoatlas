@@ -74,6 +74,8 @@
   "live.felt": "Did you feel it?",
   "live.share": "Share on WhatsApp",
   "live.share.text": "Magnitude {mag} earthquake {place}, {ago} ({time} Morocco time).",
+  "live.share.tagQuake": "#earthquake",
+  "live.share.tagCountry": "#Morocco",
   "live.source": "Details ({agency})",
   "live.new": "New",
   "live.status.connecting": "Connecting to live feed…",

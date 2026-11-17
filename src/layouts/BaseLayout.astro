@@ -9,6 +9,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { LANGS, LANG_META, DEFAULT_LANG, type Lang } from '../i18n/config';
 import { switchLangPath, useTranslations } from '../i18n/utils';
+import { SITE } from '../site.config';
 
 interface Props {
   lang: Lang;
@@ -25,9 +26,13 @@ interface Props {
   image?: string;
   /** Page qui lit les données en direct (accueil) : ouvrir la connexion à l'avance. */
   liveData?: boolean;
+  /** Auteur d'un article (données structurées) ; « SismoAtlas » = le site lui-même. */
+  author?: string;
+  /** Mots-clés d'un article (étiquettes du frontmatter). */
+  keywords?: string[];
 }
 
-const { lang, title, description, alternates, noindex = false, ogType = 'website', publishedTime, modifiedTime, image, liveData = false } = Astro.props;
+const { lang, title, description, alternates, noindex = false, ogType = 'website', publishedTime, modifiedTime, image, liveData = false, author, keywords } = Astro.props;
 // Origine des données en direct (GitHub Pages) : préconnexion pour gagner ~0,3 s sur mobile
 const liveDataOrigin = (() => {
   try {
@@ -52,18 +57,54 @@ const canonical = new URL(pathname, Astro.site);
 const ogImage = new URL(image ?? `/og/sismoatlas-${lang}.png`, Astro.site);
 // Statistiques sans cookies (Cloudflare Web Analytics) : jeton fourni par Cloudflare, en production seulement
 const beaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN as string | undefined;
-// Données structurées (moteurs de recherche) : le site, sur la page d'accueil de chaque langue
+// Validation du site dans Google Search Console et Bing Webmaster Tools (jetons publics, variables Cloudflare)
+const googleVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION as string | undefined;
+const bingVerification = import.meta.env.PUBLIC_BING_SITE_VERIFICATION as string | undefined;
+// Données structurées (schema.org) : le site et son éditeur sur l'accueil, l'article sur les pages de contenu
 const isHome = pathname === `/${lang}/`;
-const jsonLd = isHome
-  ? {
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      name: siteName,
-      url: new URL(`/${lang}/`, Astro.site).href,
-      inLanguage: meta.htmlLang,
-      description: pageDescription,
-    }
-  : null;
+const orgId = new URL('/#organization', Astro.site).href;
+const organization = {
+  '@type': 'Organization',
+  '@id': orgId,
+  name: siteName,
+  url: new URL(`/${lang}/`, Astro.site).href,
+  logo: new URL('/icons/icon-512.png', Astro.site).href,
+  email: SITE.contactEmail,
+};
+const jsonLd = noindex
+  ? null
+  : isHome
+    ? {
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'WebSite',
+            name: siteName,
+            url: new URL(`/${lang}/`, Astro.site).href,
+            inLanguage: meta.htmlLang,
+            description: pageDescription,
+            publisher: { '@id': orgId },
+          },
+          organization,
+        ],
+      }
+    : ogType === 'article'
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: title ?? siteName,
+          description: pageDescription,
+          inLanguage: meta.htmlLang,
+          mainEntityOfPage: canonical.href,
+          image: ogImage.href,
+          ...(publishedTime && { datePublished: publishedTime.toISOString() }),
+          ...((modifiedTime ?? publishedTime) && { dateModified: (modifiedTime ?? publishedTime)!.toISOString() }),
+          author: author && author !== siteName ? { '@type': 'Person', name: author } : { '@id': orgId },
+          publisher: organization,
+          license: SITE.contentLicenseUrl,
+          ...(keywords?.length && { keywords: keywords.join(', ') }),
+        }
+      : null;
 ---
 
 <!doctype html>
@@ -77,6 +118,8 @@ const jsonLd = isHome
     {hreflangLangs.map((l) => <link rel="alternate" hreflang={l} href={new URL(altPaths[l], Astro.site)} />)}
     {!alternates && <link rel="alternate" hreflang="x-default" href={new URL(altPaths[DEFAULT_LANG], Astro.site)} />}
     {noindex && <meta name="robots" content="noindex" />}
+    {googleVerification && <meta name="google-site-verification" content={googleVerification} />}
+    {bingVerification && <meta name="msvalidate.01" content={bingVerification} />}
     <link rel="preload" as="font" type="font/woff2" href={lang === 'ar' ? notoArabicUrl : interLatinUrl} crossorigin="anonymous" />
     {liveData && liveDataOrigin && <link rel="preconnect" href={liveDataOrigin} crossorigin="anonymous" />}
     <meta property="og:site_name" content={siteName} />
