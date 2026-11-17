@@ -6,6 +6,9 @@
 import '../styles/global.css';
 import { LANGS, LANG_META, DEFAULT_LANG } from '../i18n/config';
 import { localizePath, useTranslations } from '../i18n/utils';
+// Google Search Console et Bing valident la propriété sur cette page racine
+const googleVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION as string | undefined;
+const bingVerification = import.meta.env.PUBLIC_BING_SITE_VERIFICATION as string | undefined;
 ---
 
 <!doctype html>
@@ -15,6 +18,8 @@ import { localizePath, useTranslations } from '../i18n/utils';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>SismoAtlas</title>
     <meta name="robots" content="noindex" />
+    {googleVerification && <meta name="google-site-verification" content={googleVerification} />}
+    {bingVerification && <meta name="msvalidate.01" content={bingVerification} />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     {LANGS.map((l) => <link rel="alternate" hreflang={l} href={new URL(localizePath(l), Astro.site)} />)}
     <script is:inline>
