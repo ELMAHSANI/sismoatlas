@@ -1,6 +1,6 @@
 # À rédiger ou à vérifier
 
-*Liste générée le 17/11/2026 par `node docs/lister-a-completer.mjs` — 350 éléments.*
+*Liste générée le 17/11/2026 par `node docs/lister-a-completer.mjs` — 341 éléments.*
 
 Les versions arabe et anglaise reprennent les mêmes points (« traduction … ») : rédiger d'abord le français.
 
@@ -20,21 +20,6 @@ Les versions arabe et anglaise reprennent les mêmes points (« traduction … �
 ### `data/catalogue/sources.csv`
 
 - [ ] conditions de réutilisation à demander aux auteurs
-
-
-## src/content/articles
-
-### `src/content/articles/ar/welcome.mdx`
-
-- [ ] تقديم الكاتب أو الفريق
-
-### `src/content/articles/en/welcome.mdx`
-
-- [ ] presentation of the author or team
-
-### `src/content/articles/fr/welcome.mdx`
-
-- [ ] présentation de l'auteur ou de l'équipe
 
 
 ## src/content/earthquakes
@@ -324,11 +309,6 @@ Les versions arabe et anglaise reprennent les mêmes points (« traduction … �
 
 ## src/content/pages
 
-### `src/content/pages/ar/about.mdx`
-
-- [ ] تقديم الكاتب أو الفريق
-- [ ] عنوان الاتصال
-
 ### `src/content/pages/ar/data-methods.mdx`
 
 - [ ] شروط إعادة الاستعمال تُطلب من المؤلفين
@@ -346,11 +326,6 @@ Les versions arabe et anglaise reprennent les mêmes points (« traduction … �
 
 - [ ] التحقق من ضرورة التصريح لدى اللجنة الوطنية لمراقبة حماية المعطيات ذات الطابع الشخصي وذكر رقمه عند الاقتضاء
 
-### `src/content/pages/en/about.mdx`
-
-- [ ] presentation of the author or team, affiliations
-- [ ] contact address
-
 ### `src/content/pages/en/data-methods.mdx`
 
 - [ ] reuse terms to be requested from the authors
@@ -367,11 +342,6 @@ Les versions arabe et anglaise reprennent les mêmes points (« traduction … �
 ### `src/content/pages/en/privacy.mdx`
 
 - [ ] check whether a declaration to the CNDP is required and give its number if applicable
-
-### `src/content/pages/fr/about.mdx`
-
-- [ ] présentation de l'auteur ou de l'équipe, affiliations
-- [ ] adresse de contact
 
 ### `src/content/pages/fr/data-methods.mdx`
 
