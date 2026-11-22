@@ -1,1 +1,9 @@
-{}
+{
+  "2026-11-21-timor-leste-m6-8": {
+    "event": "usgs:us6000ucij",
+    "scope": "world",
+    "stages": {
+      "mise-a-jour": "2026-11-22 16:24"
+    }
+  }
+}
