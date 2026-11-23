@@ -1,1 +1,9 @@
-{}
+{
+  "2026-11-16-indonesia-m6-6": {
+    "event": "usgs:us7000tymu",
+    "scope": "world",
+    "stages": {
+      "bilan": "2026-11-23 22:44"
+    }
+  }
+}
