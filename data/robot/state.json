@@ -1,1 +1,9 @@
-{}
+{
+  "2026-11-23-vanuatu-region-m6-5": {
+    "event": "usgs:us6000ucvm",
+    "scope": "world",
+    "stages": {
+      "preliminaire": "2026-11-23 11:09"
+    }
+  }
+}
