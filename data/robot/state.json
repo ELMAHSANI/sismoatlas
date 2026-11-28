@@ -1,1 +1,9 @@
-{}
+{
+  "2026-11-21-peru-m6-7": {
+    "event": "usgs:us6000ucfm",
+    "scope": "world",
+    "stages": {
+      "bilan": "2026-11-28 04:10"
+    }
+  }
+}
